@@ -1,11 +1,17 @@
 /* #region nav */
 nav {
-  background: linear-gradient(180deg, var(--c1-green1---075) 0%, var(--c1-green1---050) 50%, var(--c1-green1---000) 100%);
-  transition: background 1s ease-in-out;
+  background: linear-gradient(180deg, var(--c1-green1---075) 0%, var(--c1-green1---050) 50%, var(--c1-green1---025) 100%);
 }
 
-nav:hover {
-  background: linear-gradient(180deg, var(--c1-green1---075) 0%, var(--c1-green1---050) 50%, var(--c1-green1---025) 100%);
+@media(min-width: 768px) {
+  nav {
+    background: linear-gradient(180deg, var(--c1-green1---075) 0%, var(--c1-green1---050) 50%, var(--c1-green1---000) 100%);
+    transition: background 1s ease-in-out;
+  }
+
+  nav:hover {
+    background: linear-gradient(180deg, var(--c1-green1---075) 0%, var(--c1-green1---050) 50%, var(--c1-green1---025) 100%);
+  }
 }
 
 /* #endregion */
@@ -25,9 +31,21 @@ nav:hover {
 /* #endregion */
 
 
+/* #region nav-toggler */
+.navbar-toggler {
+  margin-right: 10vw;
+}
+
+/* #endregion */
+
+
 /* #region menu */
 #menu {
   margin-right: 10vw;
+}
+
+.nav-link {
+  text-align: end;
 }
 
 .nav-link:hover {
