@@ -1,0 +1,37 @@
+/* #region nav */
+nav {
+  background: linear-gradient(180deg, var(--c1-green1---075) 0%, var(--c1-green1---050) 50%, var(--c1-green1---000) 100%);
+  transition: background 1s ease-in-out;
+}
+
+nav:hover {
+  background: linear-gradient(180deg, var(--c1-green1---075) 0%, var(--c1-green1---050) 50%, var(--c1-green1---025) 100%);
+}
+
+/* #endregion */
+
+
+/* #region nav-brand */
+.navbar-brand {
+  margin-left: 10vw;
+}
+
+#logoH {
+  height: 12.5vh;
+  width: auto;
+  object-fit: contain;
+}
+
+/* #endregion */
+
+
+/* #region menu */
+#menu {
+  margin-right: 10vw;
+}
+
+.nav-link:hover {
+  color: var(--c1-brown2---100);
+}
+
+/* #endregion */

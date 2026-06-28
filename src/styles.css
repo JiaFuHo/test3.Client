@@ -1,1 +1,122 @@
-/* You can add global styles to this file, and also import other style files */
+/* #region root */
+:root {
+  --c1-blue1----100: rgba(10, 30, 60);
+  --c1-blue2----100: rgba(30, 90, 150);
+  --c1-blue3----100: rgba(30, 105, 165);
+  --c1-blue4----100: rgba(90, 120, 165);
+  --c1-blue5----100: rgba(110, 180, 255);
+  --c1-blue6----100: rgba(175, 205, 225);
+  --c1-brown1---100: rgba(150, 120, 90);
+  --c1-brown2---100: rgba(210, 150, 90);
+  --c1-brown3---100: rgba(225, 180, 105);
+  --c1-green1---100: rgba(165, 190, 125);
+  --c1-green1---075: rgba(165, 190, 125, .75);
+  --c1-green1---050: rgba(165, 190, 125, .5);
+  --c1-green1---025: rgba(165, 190, 125, .25);
+  --c1-green1---000: rgba(165, 190, 125, 0);
+  --c1-green2---100: rgba(215, 230, 165);
+  --c1-orange1--100: rgba(255, 210, 165);
+  --c1-orange2--100: rgba(255, 225, 185);
+  --c1-red------100: rgba(225, 105, 105);
+  --c1-yellow---100: rgba(255, 255, 90);
+
+  --c1-black---100: rgba(0, 0, 0);
+  --c1-black---050: rgba(0, 0, 0, .5);
+
+  --c1-gray1---100: rgba(34, 34, 34);
+  --c1-gray2---100: rgba(102, 102, 102);
+  --c1-gray3---100: rgba(153, 153, 153);
+  --c1-gray4---100: rgba(204, 204, 204);
+  --c1-gray5---100: rgba(221, 221, 221);
+
+  --c1-white---100: rgba(255, 255, 255);
+  --c1-white---060: rgba(255, 255, 255, .6);
+  --c1-white---080: rgba(255, 255, 255, .8);
+
+  --c2-blue1---100: rgba(180, 210, 255);
+  --c2-blue2---100: rgba(225, 240, 255);
+  --c2-green1--100: rgba(195, 225, 180);
+  --c2-green2--100: rgba(225, 255, 225);
+  --c2-green3--100: rgba(240, 255, 240);
+  --c2-Indigo--100: rgba(180, 195, 240);
+  --c2-orange1-100: rgba(255, 225, 195);
+  --c2-orange2-100: rgba(255, 240, 225);
+  --c2-pink----100: rgba(255, 225, 240);
+  --c2-purple1-100: rgba(225, 180, 255);
+  --c2-purple2-100: rgba(210, 210, 240);
+  --c2-red1----100: rgba(255, 210, 210);
+  --c2-red2----100: rgba(255, 240, 240);
+  --c2-yellow1-100: rgba(255, 240, 200);
+  --c2-yellow2-100: rgba(255, 250, 230);
+
+  --f-family-1: 'Righteous', 'Noto Sans TC', sans-serif;
+
+  --h-header: 15vh;
+}
+
+/* #endregion */
+
+
+/* #region global */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* #endregion */
+
+
+/* #region form */
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+/* #endregion */
+
+
+/* #region media */
+canvas,
+img,
+picture,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+/* #endregion */
+
+
+/* #region html */
+html {
+  font-size: 16px;
+
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--h-header);
+}
+
+/* #endregion */
+
+
+/* #region body */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-family: var(--f-family-1);
+
+  background-image: url("/images/bg1.png");
+  background-position: center;
+  background-repeat: repeat;
+}
+
+/* #endregion */
