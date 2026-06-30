@@ -7,8 +7,12 @@
   --c1-blue5----100: rgba(110, 180, 255);
   --c1-blue6----100: rgba(175, 205, 225);
   --c1-brown1---100: rgba(150, 120, 90);
+  --c1-brown1---075: rgba(150, 120, 90, .75);
+  --c1-brown1---050: rgba(150, 120, 90, .5);
   --c1-brown2---100: rgba(210, 150, 90);
   --c1-brown3---100: rgba(225, 180, 105);
+  --c1-brown3---025: rgba(225, 180, 105, .25);
+  --c1-brown3---000: rgba(225, 180, 105, 0);
   --c1-green1---100: rgba(165, 190, 125);
   --c1-green1---075: rgba(165, 190, 125, .75);
   --c1-green1---050: rgba(165, 190, 125, .5);
@@ -154,7 +158,8 @@ section:last-of-type {
 
 /* #region footer */
 footer {
-  height: var(--h-footer);
+  height: auto;
+  min-height: var(--h-footer);
 }
 
 /* #endregion */
