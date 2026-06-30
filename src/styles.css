@@ -25,6 +25,7 @@
   --c1-yellow---100: rgba(255, 255, 90);
 
   --c1-black---100: rgba(0, 0, 0);
+  --c1-black---075: rgba(0, 0, 0, .75);
   --c1-black---050: rgba(0, 0, 0, .5);
 
   --c1-gray1---100: rgba(34, 34, 34);
@@ -114,7 +115,9 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  overflow-x: hidden;
 
+  color: var(--c1-black---075);
   font-family: var(--f-family-1);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
