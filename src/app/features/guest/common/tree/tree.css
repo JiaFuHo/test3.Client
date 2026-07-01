@@ -1,0 +1,65 @@
+img {
+  position: absolute;
+}
+
+#tree1,
+#tree2,
+#tree3,
+#tree4,
+#tree5 {
+  display: none;
+}
+
+@media(min-width: 768px) {
+  #tree4 {
+    display: block;
+    z-index: 1;
+    bottom: calc(var(--h-footer) - 8.75vh);
+    right: -2.5vw;
+
+    height: auto;
+    width: 20vw;
+  }
+
+  #tree5 {
+    display: block;
+    z-index: 0;
+    bottom: calc(var(--h-footer) - 11.25vh);
+    right: -12.5vw;
+
+    height: auto;
+    width: 30vw;
+  }
+}
+
+@media(min-width: 992px) {
+  #tree1 {
+    display: block;
+    z-index: 0;
+    bottom: calc(var(--h-footer) - 8.75vh);
+    left: -7.5vw;
+
+    height: auto;
+    width: 20vw;
+  }
+
+  #tree2 {
+    display: block;
+    z-index: 2;
+    bottom: calc(var(--h-footer) - 7.5vh);
+    left: -1.5vw;
+
+    height: auto;
+    width: 15vw;
+  }
+
+  #tree3 {
+    display: block;
+    z-index: 1;
+    bottom: calc(var(--h-footer) - 10vh);
+    left: -2.5vw;
+
+    height: auto;
+    width: 25vw;
+  }
+}

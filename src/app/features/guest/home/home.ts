@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { Tree } from '../../../layouts/guest/tree/tree';
+import { Tree } from '../common/tree/tree';
 
 @Component({
   selector: 'app-home',
