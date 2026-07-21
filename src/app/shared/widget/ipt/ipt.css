@@ -1,0 +1,17 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+input {
+  width: 100%;
+  padding: .25rem;
+  border: 1px solid var(--c1-gray4---100);
+  border-radius: .5rem;
+  outline: none;
+}
+
+input:focus {
+  border-color: var(--c2-orange1-075);
+  box-shadow: 0 0 0 .125rem var(--c2-orange1-075);
+}

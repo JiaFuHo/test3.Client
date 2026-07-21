@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+
+import { CoreModule } from '../../../shared/module/core';
 
 @Component({
   selector: 'app-header',
-  imports: [RouterLink],
+  imports: [CoreModule],
   templateUrl: './header.html',
   styleUrl: './header.css',
 })

@@ -17,8 +17,12 @@ export const routes: Routes = [
     component: Guest,
     children: [
       {
-        path: 'login',
+        path: 'loginG',
         component: LoginG,
+      },
+      {
+        path: 'loginA',
+        component: LoginA,
       },
       {
         path: 'home',
@@ -46,10 +50,6 @@ export const routes: Routes = [
     path: 'admin',
     component: Admin,
     children: [
-      {
-        path: 'login',
-        component: LoginA,
-      },
       {
         path: 'home',
         component: HomeA,

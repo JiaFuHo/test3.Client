@@ -14,21 +14,21 @@ img {
   #tree4 {
     display: block;
     z-index: 1;
-    bottom: calc(var(--h-footer) - 8.75vh);
+    bottom: -8.75vh;
     right: -2.5vw;
 
-    height: auto;
     width: 20vw;
+    height: auto;
   }
 
   #tree5 {
     display: block;
     z-index: 0;
-    bottom: calc(var(--h-footer) - 11.25vh);
+    bottom: -11.25vh;
     right: -12.5vw;
 
-    height: auto;
     width: 30vw;
+    height: auto;
   }
 }
 
@@ -36,30 +36,30 @@ img {
   #tree1 {
     display: block;
     z-index: 0;
-    bottom: calc(var(--h-footer) - 8.75vh);
+    bottom: -8.75vh;
     left: -7.5vw;
 
-    height: auto;
     width: 20vw;
+    height: auto;
   }
 
   #tree2 {
     display: block;
     z-index: 2;
-    bottom: calc(var(--h-footer) - 7.5vh);
+    bottom: -7.5vh;
     left: -1.5vw;
 
-    height: auto;
     width: 15vw;
+    height: auto;
   }
 
   #tree3 {
     display: block;
     z-index: 1;
-    bottom: calc(var(--h-footer) - 10vh);
+    bottom: -10vh;
     left: -2.5vw;
 
-    height: auto;
     width: 25vw;
+    height: auto;
   }
 }

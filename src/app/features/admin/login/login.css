@@ -1,0 +1,19 @@
+#btnLAS {
+  color: var(--c1-white---100);
+  background-color: var(--c1-green1---100);
+  border: none;
+  border-radius: .5rem;
+}
+
+#btnLAL {
+  color: var(--c1-white---100);
+  background-color: var(--c1-green1---100);
+  border: none;
+  border-radius: .5rem;
+}
+
+#btnLAS:hover,
+#btnLAL:hover {
+  border-color: var(--c2-orange1-100);
+  box-shadow: 0 0 0 .25rem var(--c2-orange1-100);
+}

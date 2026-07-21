@@ -45,6 +45,7 @@
   --c2-green3--100: rgba(240, 255, 240);
   --c2-indigo--100: rgba(180, 195, 240);
   --c2-orange1-100: rgba(255, 225, 195);
+  --c2-orange1-075: rgba(255, 225, 195, .75);
   --c2-orange2-100: rgba(255, 240, 225);
   --c2-pink----100: rgba(255, 225, 240);
   --c2-purple1-100: rgba(225, 180, 255);
@@ -59,9 +60,7 @@
   --h-header: 15vh;
   --h-footer: 20vh;
 }
-
 /* #endregion */
-
 
 /* #region global */
 *,
@@ -71,9 +70,7 @@
   margin: 0;
   padding: 0;
 }
-
 /* #endregion */
-
 
 /* #region form */
 button,
@@ -82,9 +79,7 @@ select,
 textarea {
   font: inherit;
 }
-
 /* #endregion */
-
 
 /* #region media */
 canvas,
@@ -95,9 +90,7 @@ video {
   display: block;
   max-width: 100%;
 }
-
 /* #endregion */
-
 
 /* #region html */
 html {
@@ -106,9 +99,7 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: var(--h-header);
 }
-
 /* #endregion */
-
 
 /* #region body */
 body {
@@ -126,25 +117,19 @@ body {
   background-position: center;
   background-repeat: repeat;
 }
-
 /* #endregion */
-
 
 /* #region header */
 header {
   height: var(--h-header);
 }
-
 /* #endregion */
-
 
 /* #region main */
 main {
   min-height: calc(100vh - var(--h-header) - var(--h-footer));
 }
-
 /* #endregion */
-
 
 /* #region section */
 section {
@@ -155,14 +140,11 @@ section:last-of-type {
   height: auto;
   min-height: calc(100vh - var(--h-header) - var(--h-footer));
 }
-
 /* #endregion */
-
 
 /* #region footer */
 footer {
   height: auto;
   min-height: var(--h-footer);
 }
-
 /* #endregion */

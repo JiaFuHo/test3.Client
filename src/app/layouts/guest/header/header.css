@@ -1,4 +1,3 @@
-/* #region nav */
 nav {
   background: linear-gradient(180deg, var(--c1-green1---075) 0%, var(--c1-green1---050) 50%, var(--c1-green1---025) 100%);
 }
@@ -14,32 +13,20 @@ nav {
   }
 }
 
-/* #endregion */
-
-
-/* #region nav-brand */
 .navbar-brand {
   margin-left: 10vw;
 }
 
 #logoH {
-  height: 12.5vh;
   width: auto;
+  height: 12.5vh;
   object-fit: contain;
 }
 
-/* #endregion */
-
-
-/* #region nav-toggler */
 .navbar-toggler {
   margin-right: 10vw;
 }
 
-/* #endregion */
-
-
-/* #region menu */
 #menu {
   margin-right: 10vw;
 }
@@ -51,5 +38,3 @@ nav {
 .nav-link:hover {
   color: var(--c1-brown2---100);
 }
-
-/* #endregion */
