@@ -1,3 +1,37 @@
 section:last-of-type {
   position: relative;
 }
+
+#btnLGS {
+  color: var(--c1-white---100);
+  background-color: var(--c1-green1---100);
+  border: none;
+  border-radius: .5rem;
+}
+
+#btnLGL {
+  color: var(--c1-white---100);
+  background-color: var(--c1-green1---100);
+  border: none;
+  border-radius: .5rem;
+}
+
+#btnLGS:hover,
+#btnLGL:hover {
+  border-color: var(--c2-orange1-100);
+  box-shadow: 0 0 0 .25rem var(--c2-orange1-100);
+}
+
+#btnG {
+  color: var(--c1-white---100);
+  background-color: var(--c1-gray3---100);
+  border: none;
+  border-radius: .5rem;
+}
+
+#btnF {
+  color: var(--c1-white---100);
+  background-color: var(--c2-indigo1-100);
+  border: none;
+  border-radius: .5rem;
+}

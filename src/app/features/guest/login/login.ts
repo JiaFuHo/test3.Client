@@ -1,35 +1,32 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+
+import { CoreModule } from '../../../shared/module/core';
+import { Ipt } from '../../../shared/widget/ipt/ipt';
 
 import { Tree } from '../common/tree/tree';
 
 @Component({
   selector: 'app-login',
-  imports: [Tree],
+  imports: [CoreModule, Ipt, Tree],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
 export class LoginG {
   //#region State
+  private _fb = inject(FormBuilder);
 
-  //#endregion
-
-  //#region Computed
-
-  //#endregion
-
-  //#region Constructor
-
-  //#endregion
-
-  //#region Lifecycle
-
-  //#endregion
-
-  //#region Event
-
+  public formLG = this._fb.nonNullable.group({
+    Acc: ['', Validators.required],
+    Pwd: ['', Validators.required],
+  });
   //#endregion
 
   //#region Method
+  public loginG() {
+    if (this.formLG.invalid) { this.formLG.markAllAsTouched(); return; }
 
+    const args = this.formLG.getRawValue();
+  }
   //#endregion
 }
