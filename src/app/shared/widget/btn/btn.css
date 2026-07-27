@@ -1,3 +1,7 @@
+button {
+  transition: none !important;
+}
+
 button:hover {
   border-color: var(--c2-orange1-100);
   box-shadow: 0 0 0 .25rem var(--c2-orange1-100);
