@@ -2,13 +2,14 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 
 import { CoreModule } from '../../../shared/module/core';
+import { Btn } from '../../../shared/widget/btn/btn';
 import { Ipt } from '../../../shared/widget/ipt/ipt';
 
 import { Tree } from '../common/tree/tree';
 
 @Component({
   selector: 'app-login',
-  imports: [CoreModule, Ipt, Tree],
+  imports: [CoreModule, Btn, Ipt, Tree],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })

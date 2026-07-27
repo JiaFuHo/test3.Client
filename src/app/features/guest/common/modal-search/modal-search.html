@@ -1,0 +1,56 @@
+<div id="modal_search" class="modal fade" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <form class="modal-content" [formGroup]="formQ" (ngSubmit)="query()">
+      <div class="modal-header justify-content-center">
+        <h4 class="modal-title">{{ (mode === '') ? '搜尋' : '進階搜尋' }}</h4>
+      </div>
+
+      <div class="modal-body d-flex justify-content-center">
+        <div class="row align-items-stretch w-100">
+          <div class="col-3 mb-3 pe-1">
+            <app-drp [controlName]="formQ.controls.Type1" [options]="type1List"></app-drp>
+          </div>
+          <div class="col-9 mb-3 ps-1">
+            <app-ipt [controlName]="formQ.controls.Info"></app-ipt>
+          </div>
+
+          @if (mode === '') {}
+          @else {
+          <div class="col-3 d-flex align-items-center mb-3 pe-1">
+            <p class="mb-0" style="padding-left: .75rem">年份：</p>
+          </div>
+          <div class="col-9 mb-3 ps-1">
+            <div class="row m-0 w-100">
+              <div class="col-6 ps-0">
+                <app-ipt [controlName]="formQ.controls.SYear" placeholder="(起)"></app-ipt>
+              </div>
+              <div class="col-6 pe-0">
+                <app-ipt [controlName]="formQ.controls.EYear" placeholder="(迄)"></app-ipt>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-6 mb-3 pe-1">
+            <app-drp [controlName]="formQ.controls.Lang" [options]="langList"></app-drp>
+          </div>
+          <div class="col-6 mb-3 ps-1">
+            <app-drp [controlName]="formQ.controls.Type2" [options]="type2List"></app-drp>
+          </div>
+          }
+
+          <div class="col-12 d-flex justify-content-end gap-2">
+            <app-btn id="btnSw" class="btn_BG-BLUE5" (click)="switch()">{{ (mode === '') ? '更多' : '更少' }}</app-btn>
+            <app-btn type="submit" id="btnQ" class="btn_BG-GREEN1">搜尋</app-btn>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer d-flex justify-content-start">
+        <p>熱門：</p>
+        <app-btn class="btn_BG-GRAY3">Le Petit Prince</app-btn>
+        <app-btn class="btn_BG-GRAY3">ONE PIECE</app-btn>
+        <app-btn class="btn_BG-GRAY3">Warriors</app-btn>
+      </div>
+    </form>
+  </div>
+</div>

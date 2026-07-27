@@ -4,17 +4,15 @@ import { FormControl } from '@angular/forms';
 import { CoreModule } from '../../module/core';
 
 @Component({
-  selector: 'app-ipt',
+  selector: 'app-drp',
   imports: [CoreModule],
-  templateUrl: './ipt.html',
-  styleUrl: './ipt.css',
+  templateUrl: './drp.html',
+  styleUrl: './drp.css',
 })
-export class Ipt {
+export class Drp {
   //#region Input
   @Input({ alias: 'controlName', required: true }) N!: FormControl;
-  @Input('type') T: string = 'text';
-  @Input('id') I: string = '';
+  @Input('options') O: any[] = [];
   @Input('class') C: string = '';
-  @Input('placeholder') P: string = '';
   //#endregion
 }

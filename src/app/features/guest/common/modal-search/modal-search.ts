@@ -1,0 +1,77 @@
+import { Component, inject } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+
+import { CoreModule } from '../../../../shared/module/core';
+import { Btn } from '../../../../shared/widget/btn/btn';
+import { Drp } from '../../../../shared/widget/drp/drp';
+import { Ipt } from '../../../../shared/widget/ipt/ipt';
+
+interface Opt { value: string; text: string; }
+
+const Type1List: Opt[] = [
+  { value: 'title', text: '書名' },
+  { value: 'author', text: '作者' },
+  { value: 'publisher', text: '出版社' },
+  { value: 'isbn', text: 'ISBN' },
+];
+
+const LangList: Opt[] = [
+  { value: '', text: '請選擇語言' },
+  { value: '1', text: 'English' },
+  { value: '2', text: 'le français' },
+  { value: '3', text: '中文' },
+  { value: '4', text: '日本語' },
+  { value: '5', text: '한국어' },
+];
+
+const Type2List: Opt[] = [
+  { value: '', text: '請選擇文體' },
+  { value: '1', text: '小說' },
+  { value: '2', text: '兒童讀物' },
+  { value: '3', text: '青少年讀物' },
+  { value: '4', text: '散文' },
+  { value: '5', text: '傳記' },
+  { value: '6', text: '詩集' },
+  { value: '7', text: '漫畫' },
+];
+
+@Component({
+  selector: 'app-modal-search',
+  imports: [CoreModule, Btn, Drp, Ipt],
+  templateUrl: './modal-search.html',
+  styleUrl: './modal-search.css',
+})
+export class ModalSearch {
+  //#region State
+  private _fb = inject(FormBuilder);
+
+  public mode = '';
+  public type1List = Type1List;
+  public langList = LangList;
+  public type2List = Type2List;
+
+  public formQ = this._fb.nonNullable.group({
+    Type1: ['title'],
+    Info: ['', Validators.required],
+    SYear: [''],
+    EYear: [''],
+    Lang: [''],
+    Type2: [''],
+  });
+  //#endregion
+
+  //#region Method
+  public query() {}
+
+  public switch() {
+    this.mode = (this.mode === '') ? 'A' : '';
+
+    const Info = this.formQ.controls.Info;
+
+    if (this.mode === 'A') { Info.clearValidators(); }
+    else { Info.setValidators([Validators.required]); }
+
+    Info.updateValueAndValidity();
+  }
+  //#endregion
+}
