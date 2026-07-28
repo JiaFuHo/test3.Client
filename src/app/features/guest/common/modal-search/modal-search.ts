@@ -1,12 +1,17 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 
-import { CoreModule } from '../../../../shared/module/core';
-import { Btn } from '../../../../shared/widget/btn/btn';
-import { Drp } from '../../../../shared/widget/drp/drp';
-import { Ipt } from '../../../../shared/widget/ipt/ipt';
+import { HttpProvider } from '../../../../core/providers/system/serviceP';
 
-interface Opt { value: string; text: string; }
+import { CoreModule } from '../../../../shared/modules/core';
+import { Btn } from '../../../../shared/widgets/btn/btn';
+import { Drp } from '../../../../shared/widgets/drp/drp';
+import { Ipt } from '../../../../shared/widgets/ipt/ipt';
+
+interface Opt {
+  value: string;
+  text: string;
+}
 
 const Type1List: Opt[] = [
   { value: 'title', text: '書名' },
@@ -16,7 +21,7 @@ const Type1List: Opt[] = [
 ];
 
 const LangList: Opt[] = [
-  { value: '', text: '請選擇語言' },
+  { value: '', text: '語言 (全部)' },
   { value: '1', text: 'English' },
   { value: '2', text: 'le français' },
   { value: '3', text: '中文' },
@@ -25,7 +30,7 @@ const LangList: Opt[] = [
 ];
 
 const Type2List: Opt[] = [
-  { value: '', text: '請選擇文體' },
+  { value: '', text: '文體 (全部)' },
   { value: '1', text: '小說' },
   { value: '2', text: '兒童讀物' },
   { value: '3', text: '青少年讀物' },
@@ -43,14 +48,15 @@ const Type2List: Opt[] = [
 })
 export class ModalSearch {
   //#region State
-  private _fb = inject(FormBuilder);
+  private _formBuilder = inject(FormBuilder);
+  private _serviceP = inject(HttpProvider);
 
   public mode = '';
   public type1List = Type1List;
   public langList = LangList;
   public type2List = Type2List;
 
-  public formQ = this._fb.nonNullable.group({
+  public formQ = this._formBuilder.nonNullable.group({
     Type1: ['title'],
     Info: ['', Validators.required],
     SYear: [''],
@@ -61,7 +67,16 @@ export class ModalSearch {
   //#endregion
 
   //#region Method
-  public query() {}
+  public query() {
+    if (this.formQ.invalid) { this.formQ.markAllAsTouched(); return; }
+
+    const args = this.formQ.getRawValue();
+
+    this._serviceP.post<any>('/api/Search', args).subscribe({
+      next: (res) => { },
+      error: (ex) => { },
+    });
+  }
 
   public switch() {
     this.mode = (this.mode === '') ? 'A' : '';

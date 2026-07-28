@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { CoreModule } from '../../../shared/module/core';
+import { CoreModule } from '../../../shared/modules/core';
 
 import { ModalSearch } from '../../../features/guest/common/modal-search/modal-search';
 

@@ -1,9 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 
-import { CoreModule } from '../../../shared/module/core';
-import { Btn } from '../../../shared/widget/btn/btn';
-import { Ipt } from '../../../shared/widget/ipt/ipt';
+import { CoreModule } from '../../../shared/modules/core';
+import { Btn } from '../../../shared/widgets/btn/btn';
+import { Ipt } from '../../../shared/widgets/ipt/ipt';
 
 import { Tree } from '../common/tree/tree';
 
@@ -15,9 +15,9 @@ import { Tree } from '../common/tree/tree';
 })
 export class LoginG {
   //#region State
-  private _fb = inject(FormBuilder);
+  private _formBuilder = inject(FormBuilder);
 
-  public formLG = this._fb.nonNullable.group({
+  public formLG = this._formBuilder.nonNullable.group({
     Acc: ['', Validators.required],
     Pwd: ['', Validators.required],
   });

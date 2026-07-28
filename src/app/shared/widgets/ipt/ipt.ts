@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
-import { CoreModule } from '../../module/core';
+import { CoreModule } from '../../modules/core';
 
 @Component({
   selector: 'app-ipt',
