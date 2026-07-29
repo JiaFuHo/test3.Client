@@ -73,7 +73,11 @@ export class ModalSearch {
     const args = this.formQ.getRawValue();
 
     this._serviceP.get<any>('/guest/search', args).subscribe({
-      next: (res) => { console.log(res); },
+      next: (res) => {
+        this.formQ.reset();
+
+        console.log(res); // ???
+      },
       error: (err) => { },
     });
   }
