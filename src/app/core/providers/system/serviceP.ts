@@ -11,28 +11,28 @@ export class HttpProvider {
   //#endregion
 
   //#region Method
-  public get<T>(endpoint: string): Observable<T> {
+  public get<T>(endpoint: string, args?: any): Observable<T> {
     const URL = `${this.serviceURL}${endpoint}`;
 
-    return this._http.get<T>(URL);
+    return this._http.get<T>(URL, { params: args });
   }
 
-  public post<T>(endpoint: string, body: any): Observable<T> {
+  public post<T>(endpoint: string, args: any): Observable<T> {
     const URL = `${this.serviceURL}${endpoint}`;
 
-    return this._http.post<T>(URL, body);
+    return this._http.post<T>(URL, args);
   }
 
-  public put<T>(endpoint: string, body: any): Observable<T> {
+  public put<T>(endpoint: string, args: any): Observable<T> {
     const URL = `${this.serviceURL}${endpoint}`;
 
-    return this._http.put<T>(URL, body);
+    return this._http.put<T>(URL, args);
   }
 
-  public delete<T>(endpoint: string): Observable<T> {
+  public delete<T>(endpoint: string, args?: any): Observable<T> {
     const URL = `${this.serviceURL}${endpoint}`;
 
-    return this._http.delete<T>(URL);
+    return this._http.delete<T>(URL, { params: args });
   }
   //#endregion
 }

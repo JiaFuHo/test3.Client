@@ -72,9 +72,9 @@ export class ModalSearch {
 
     const args = this.formQ.getRawValue();
 
-    this._serviceP.post<any>('/api/Search', args).subscribe({
-      next: (res) => { },
-      error: (ex) => { },
+    this._serviceP.get<any>('/guest/search', args).subscribe({
+      next: (res) => { console.log(res); },
+      error: (err) => { },
     });
   }
 
@@ -82,9 +82,16 @@ export class ModalSearch {
     this.mode = (this.mode === '') ? 'A' : '';
 
     const Info = this.formQ.controls.Info;
+    const SYear = this.formQ.controls.SYear;
+    const EYear = this.formQ.controls.EYear;
+    const Lang = this.formQ.controls.Lang;
+    const Type2 = this.formQ.controls.Type2;
 
     if (this.mode === 'A') { Info.clearValidators(); }
-    else { Info.setValidators([Validators.required]); }
+    else {
+      Info.setValidators([Validators.required]);
+      [SYear, EYear, Lang, Type2].forEach(x => x.reset());
+    }
 
     Info.updateValueAndValidity();
   }
