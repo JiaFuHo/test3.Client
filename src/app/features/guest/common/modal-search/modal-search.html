@@ -14,7 +14,7 @@
             <app-ipt [controlName]="formQ.controls.Info"></app-ipt>
           </div>
 
-          @if (mode === '') {}
+          @if (mode === '') { }
           @else {
           <div class="col-3 d-flex align-items-center mb-3 pe-1">
             <p class="mb-0" style="padding-left: .75rem">年份：</p>
@@ -47,9 +47,9 @@
 
       <div class="modal-footer d-flex justify-content-start">
         <p>熱門：</p>
-        <app-btn class="btn_BG-GRAY3">Le Petit Prince</app-btn>
-        <app-btn class="btn_BG-GRAY3">ONE PIECE</app-btn>
-        <app-btn class="btn_BG-GRAY3">Warriors</app-btn>
+        <app-btn class="btn_BG-GRAY3" (click)="sync($event)">Le Petit Prince</app-btn>
+        <app-btn class="btn_BG-GRAY3" (click)="sync($event)">ONE PIECE</app-btn>
+        <app-btn class="btn_BG-GRAY3" (click)="sync($event)">Warriors</app-btn>
       </div>
     </form>
   </div>

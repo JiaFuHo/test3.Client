@@ -1,12 +1,13 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-
-import { HttpProvider } from '../../../../core/providers/system/serviceP';
+import { Router } from '@angular/router';
 
 import { CoreModule } from '../../../../shared/modules/core';
 import { Btn } from '../../../../shared/widgets/btn/btn';
 import { Drp } from '../../../../shared/widgets/drp/drp';
 import { Ipt } from '../../../../shared/widgets/ipt/ipt';
+
+import * as bootstrap from 'bootstrap';
 
 interface Opt {
   value: string;
@@ -49,7 +50,7 @@ const Type2List: Opt[] = [
 export class ModalSearch {
   //#region State
   private _formBuilder = inject(FormBuilder);
-  private _serviceP = inject(HttpProvider);
+  private _router = inject(Router);
 
   public mode = '';
   public type1List = Type1List;
@@ -72,14 +73,17 @@ export class ModalSearch {
 
     const args = this.formQ.getRawValue();
 
-    this._serviceP.get<any>('/guest/search', args).subscribe({
-      next: (res) => {
-        this.formQ.reset();
+    this._router.navigate(['/search'], { queryParams: args });
 
-        console.log(res); // ???
-      },
-      error: (err) => { },
-    });
+    const modalElem = document.getElementById('modal_search');
+
+    if (modalElem) {
+      const modalInst = bootstrap.Modal.getInstance(modalElem);
+
+      if (modalInst) { modalInst.hide(); }
+    }
+  
+    // this.formQ.reset();
   }
 
   public switch() {
@@ -98,6 +102,14 @@ export class ModalSearch {
     }
 
     Info.updateValueAndValidity();
+  }
+
+  public sync(e: any) {
+    const Info = this.formQ.controls.Info;
+
+    Info.setValue(e.target.innerText);
+
+    this.query();
   }
   //#endregion
 }

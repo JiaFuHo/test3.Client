@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
-export class HttpProvider {
+export class ServiceP {
   //#region State
   private _http = inject(HttpClient);
 
