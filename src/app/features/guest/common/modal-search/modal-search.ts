@@ -80,7 +80,7 @@ export class ModalSearch {
         this._router.navigate(['/search'], { queryParams: args });
       }, { once: true });
 
-      bootstrap.Modal.getOrCreateInstance(modalElem).hide();
+      bootstrap.Modal.getOrCreateInstance(modalElem)?.hide();
     }
 
     // this.formQ.reset();

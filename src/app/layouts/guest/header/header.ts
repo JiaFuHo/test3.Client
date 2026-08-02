@@ -17,7 +17,7 @@ export class Header {
   public search() {
     const modalElem = document.getElementById('modal_search');
 
-    if (modalElem) { bootstrap.Modal.getOrCreateInstance(modalElem).show(); }
+    if (modalElem) { bootstrap.Modal.getOrCreateInstance(modalElem)?.show(); }
   }
   //#endregion
 }

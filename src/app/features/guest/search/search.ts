@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, ChangeDetectorRef, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { ServiceP } from '../../../core/providers/system/serviceP';
@@ -12,10 +12,13 @@ import { ToastP } from './../../../core/providers/common/toastP';
 })
 export class Search implements OnInit {
   //#region State
+  private _cdr = inject(ChangeDetectorRef);
   private _route = inject(ActivatedRoute);
   private _router = inject(Router);
   private _serviceP = inject(ServiceP);
   private _toastP = inject(ToastP);
+
+  public bookInfo: any = null;
   //#endregion
 
   //#region Lifecycle
@@ -27,7 +30,11 @@ export class Search implements OnInit {
 
       this._serviceP.get<any>('/guest/search', args).subscribe({
         next: (res) => {
-          if (res.status) { this._toastP.tInfo('test123') }
+          if (res.status) {console.log(res.bookInfo)
+            this.bookInfo = res.bookInfo;
+            this._toastP.tInfo(res.message);
+            this._cdr.detectChanges();
+          }
           else {
             if (res.statusCode.startsWith('400')) { this._toastP.tWarn(res.message); }
             else { this._toastP.tErr(res.message); }

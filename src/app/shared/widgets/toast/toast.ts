@@ -29,7 +29,7 @@ export class Toast implements OnInit {
 
       const toastElem = document.getElementById('toast');
 
-      if (toastElem) { bootstrap.Toast.getOrCreateInstance(toastElem).show(); }
+      if (toastElem) { bootstrap.Toast.getOrCreateInstance(toastElem)?.show(); }
     });
   }
   //#endregion
