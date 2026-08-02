@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
 export interface ToastLvl {
-  lvl: 'Err' | 'Warn' | 'Info';
+  lvl: 'Info' | 'Warn' | 'Err';
   msg: string;
 }
 
@@ -13,10 +13,10 @@ export class ToastP {
   //#endregion
 
   //#region Method
-  public tErr(msg: string) { this.broadcast$.next({ lvl: 'Err', msg: msg }); }
+  public tInfo(msg: string) { this.broadcast$.next({ lvl: 'Info', msg: msg }); }
 
   public tWarn(msg: string) { this.broadcast$.next({ lvl: 'Warn', msg: msg }); }
 
-  public tInfo(msg: string) { this.broadcast$.next({ lvl: 'Info', msg: msg }); }
+  public tErr(msg: string) { this.broadcast$.next({ lvl: 'Err', msg: msg }); }
   //#endregion
 }

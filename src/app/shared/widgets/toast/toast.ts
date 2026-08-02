@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, ChangeDetectorRef, inject, OnInit } from '@angular/core';
 
 import { ToastLvl, ToastP } from '../../../core/providers/common/toastP';
 
@@ -12,6 +12,7 @@ import * as bootstrap from 'bootstrap';
 })
 export class Toast implements OnInit {
   //#region State
+  private _cdr = inject(ChangeDetectorRef);
   private _toastP = inject(ToastP);
 
   public lvl = '';
@@ -24,13 +25,11 @@ export class Toast implements OnInit {
       this.lvl = prompt.lvl;
       this.msg = prompt.msg;
 
+      this._cdr.detectChanges();
+
       const toastElem = document.getElementById('toast');
 
-      if (toastElem) {
-        const toastInst = bootstrap.Toast.getOrCreateInstance(toastElem);
-
-        toastInst.show();
-      }
+      if (toastElem) { bootstrap.Toast.getOrCreateInstance(toastElem).show(); }
     });
   }
   //#endregion

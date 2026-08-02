@@ -73,16 +73,16 @@ export class ModalSearch {
 
     const args = this.formQ.getRawValue();
 
-    this._router.navigate(['/search'], { queryParams: args });
-
     const modalElem = document.getElementById('modal_search');
 
     if (modalElem) {
-      const modalInst = bootstrap.Modal.getInstance(modalElem);
+      modalElem.addEventListener('hidden.bs.modal', () => {
+        this._router.navigate(['/search'], { queryParams: args });
+      }, { once: true });
 
-      if (modalInst) { modalInst.hide(); }
+      bootstrap.Modal.getOrCreateInstance(modalElem).hide();
     }
-  
+
     // this.formQ.reset();
   }
 

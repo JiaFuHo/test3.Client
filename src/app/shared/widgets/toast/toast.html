@@ -1,0 +1,10 @@
+<div class="toast-container position-fixed top-0 start-50 translate-middle-x p-3">
+  @if (msg) {
+  <div id="toast" class="toast align-items-center border-0" [class.tInfo]="lvl === 'Info'"
+    [class.tWarn]="lvl === 'Warn'" [class.tErr]="lvl === 'Err'" data-bs-delay="3000">
+    <div class="d-flex">
+      <div class="toast-body fw-bold">{{ msg }}</div>
+    </div>
+  </div>
+  }
+</div>

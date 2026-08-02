@@ -1,0 +1,17 @@
+.tInfo {
+  background-color: var(--c3-tInfo---075);
+  color: var(--c1-white---080);
+  font-weight: bold;
+}
+
+.tWarn {
+  background-color: var(--c3-tWarn---075);
+  color: var(--c1-white---080);
+  font-weight: bold;
+}
+
+.tErr {
+  background-color: var(--c3-tErr----075);
+  color: var(--c1-white---080);
+  font-weight: bold;
+}
