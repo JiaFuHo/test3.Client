@@ -26,21 +26,26 @@ export class Search implements OnInit {
     this._route.queryParams.subscribe((args) => {
       if (Object.keys(args).length === 0) { return; }
 
+      this.bookInfo = null;
       this._router.navigate(['/search'], { replaceUrl: true });
 
       this._serviceP.get<any>('/guest/search', args).subscribe({
         next: (res) => {
-          if (res.status) {console.log(res.bookInfo)
+          if (res.status) {
             this.bookInfo = res.bookInfo;
             this._toastP.tInfo(res.message);
-            this._cdr.detectChanges();
           }
           else {
             if (res.statusCode.startsWith('400')) { this._toastP.tWarn(res.message); }
             else { this._toastP.tErr(res.message); }
           }
+
+          this._cdr.detectChanges();
         },
-        error: (err) => { this._toastP.tErr('Internet Error'); },
+        error: (err) => {
+          this._toastP.tErr('Internet Error');
+          this._cdr.detectChanges();
+        },
       });
     });
   }
