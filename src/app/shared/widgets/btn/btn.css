@@ -46,3 +46,13 @@ button:hover {
   color: var(--c1-white---100);
   background-color: var(--c2-indigo1-100);
 }
+
+.btn_BG-RED {
+  color: var(--c1-white---100);
+  background-color: var(--c1-red------090);
+}
+
+.btn_BG-RED:active {
+  color: var(--c1-white---100);
+  background-color: var(--c1-red------090);
+}

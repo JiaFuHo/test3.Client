@@ -86,6 +86,8 @@ export class ModalSearch {
     // this.formQ.reset();
   }
 
+  public reset() { this.formQ.reset(); }
+
   public switch() {
     this.mode = (this.mode === '') ? 'A' : '';
 
