@@ -1,3 +1,23 @@
 img {
   max-width: 300px;
 }
+
+ul {
+  border: none;
+}
+
+.nav-link.active {
+  background-color: var(--c1-green2---025) !important;
+  border: 1px solid var(--c1-green1---050) !important;
+  border-bottom: 1px solid transparent !important;
+}
+
+.nav-link:not(.active) {
+  background-color: transparent !important;
+  border-bottom: 1px solid var(--c1-green2---025) !important;
+}
+
+.tab-content {
+  background: linear-gradient(180deg, var(--c1-green2---025) 0%, var(--c1-green2---000) 100%);
+  border: 1px solid var(--c1-green1---050) !important;
+}

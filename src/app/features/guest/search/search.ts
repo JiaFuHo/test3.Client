@@ -18,6 +18,8 @@ export class Search implements OnInit {
   private _serviceP = inject(ServiceP);
   private _toastP = inject(ToastP);
 
+  public isActive: number = 1;
+
   public bookInfo: any = null;
   //#endregion
 

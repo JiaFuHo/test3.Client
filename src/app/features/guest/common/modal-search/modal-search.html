@@ -16,31 +16,31 @@
 
           @if (mode === '') { }
           @else {
-          <div class="col-3 d-flex align-items-center mb-3 pe-1">
-            <p class="mb-0" style="padding-left: .75rem">年份：</p>
-          </div>
-          <div class="col-9 mb-3 ps-1">
-            <div class="row m-0 w-100">
-              <div class="col-6 ps-0">
-                <app-ipt [controlName]="formQ.controls.SYear" placeholder="(起)"></app-ipt>
-              </div>
-              <div class="col-6 pe-0">
-                <app-ipt [controlName]="formQ.controls.EYear" placeholder="(迄)"></app-ipt>
+            <div class="col-3 d-flex align-items-center mb-3 pe-1">
+              <p class="mb-0" style="padding-left: .75rem">年份：</p>
+            </div>
+            <div class="col-9 mb-3 ps-1">
+              <div class="row w-100 m-0">
+                <div class="col-6 ps-0">
+                  <app-ipt [controlName]="formQ.controls.SYear" placeholder="(起)"></app-ipt>
+                </div>
+                <div class="col-6 pe-0">
+                  <app-ipt [controlName]="formQ.controls.EYear" placeholder="(迄)"></app-ipt>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="col-6 mb-3 pe-1">
-            <app-drp [controlName]="formQ.controls.Lang" [options]="langList"></app-drp>
-          </div>
-          <div class="col-6 mb-3 ps-1">
-            <app-drp [controlName]="formQ.controls.Type2" [options]="type2List"></app-drp>
-          </div>
+            <div class="col-6 mb-3 pe-1">
+              <app-drp [controlName]="formQ.controls.Lang" [options]="langList"></app-drp>
+            </div>
+            <div class="col-6 mb-3 ps-1">
+              <app-drp [controlName]="formQ.controls.Type2" [options]="type2List"></app-drp>
+            </div>
           }
 
           <div class="col-12 d-flex justify-content-end gap-2">
             <app-btn id="btnSw" class="btn_BG-BLUE5" (click)="switch()">{{ (mode === '') ? '更多' : '更少' }}</app-btn>
-            <app-btn id="btnR" class="btn_BG-RED" (click)="reset()">重製</app-btn>
+            <app-btn id="btnR" class="btn_BG-RED" (click)="reset()">重置</app-btn>
             <app-btn type="submit" id="btnQ" class="btn_BG-GREEN1">搜尋</app-btn>
           </div>
         </div>

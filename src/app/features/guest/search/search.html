@@ -1,33 +1,79 @@
-<section class="container d-flex flex-column justify-content-center">
-  <div class="row">
-    @if (bookInfo) {
-    <div class="col-4 col-md-5 d-flex justify-content-end pe-4">
-      <div class="row align-items-center">
-        <img [src]="'data:image/*;base64,' + bookInfo.image" class="img-fluid object-fit-fill rounded shadow-sm">
+@if (bookInfo) {
+  <section class="container d-flex flex-column justify-content-center">
+    <div class="row">
+      <div class="col-4 col-md-5 d-flex justify-content-end pe-4">
+        <div class="row align-items-center">
+          <img [src]="'data:image/*;base64,' + bookInfo.image" class="img-fluid object-fit-fill rounded shadow-sm">
+        </div>
+        <ul class="nav nav-tabs"></ul>
+      </div>
+
+      <div class="col-8 col-md-7 d-flex flex-column ps-4">
+        <div>
+          <h1>{{ bookInfo.title }}</h1>
+        </div>
+        <div class="row my-auto fs-4">
+          <dt class="col-4 col-md-3 text-muted fw-normal mb-3">作者</dt>
+          <dd class="col-8 col-md-9 mb-3">
+            @for (authorInfo of bookInfo.authorInfos; track $index) {
+              {{ authorInfo.author }}
+
+              @if (!$last) { 、 }
+            }
+          </dd>
+
+          <dt class="col-4 col-md-3 text-muted fw-normal mb-3">譯者</dt>
+          <dd class="col-8 col-md-9 mb-3">{{ bookInfo.translator }}</dd>
+
+          <dt class="col-4 col-md-3 text-muted fw-normal mb-3">出版社</dt>
+          <dd class="col-8 col-md-9 mb-3">{{ bookInfo.publisher }}</dd>
+
+          <dt class="col-4 col-md-3 text-muted fw-normal mb-3">語言</dt>
+          <dd class="col-8 col-md-9 mb-3">{{ bookInfo.language }}</dd>
+
+          <dt class="col-4 col-md-3 text-muted fw-normal mb-3">ISBN</dt>
+          <dd class="col-8 col-md-9 mb-3">{{ bookInfo.isbn }}</dd>
+        </div>
       </div>
     </div>
+  </section>
 
-    <div class="col-8 col-md-7 d-flex flex-column ps-4">
-      <div>
-        <h1>{{ bookInfo.title }}</h1>
-      </div>
-      <div class="row my-auto fs-4">
-        <dt class="col-4 col-md-3 text-muted fw-normal mb-3">作者</dt>
-        <dd class="col-8 col-md-9 mb-3">{{ bookInfo.author }}</dd>
+  <section class="container">
+    <ul class="nav nav-tabs d-flex justify-content-center fs-5">
+      <li class="nav-item">
+        <a class="nav-link" [class]="(isActive === 1) ? 'active' : 'text-muted fw-normal'" (click)="isActive = 1">書籍簡介</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [class]="(isActive === 2) ? 'active' : 'text-muted fw-normal'" (click)="isActive = 2">作者簡介</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [class]="(isActive === 3) ? 'active' : 'text-muted fw-normal'" (click)="isActive = 3">館藏狀態</a>
+      </li>
+    </ul>
 
-        <dt class="col-4 col-md-3 text-muted fw-normal mb-3">譯者</dt>
-        <dd class="col-8 col-md-9 mb-3">{{ bookInfo.translator }}</dd>
+    <div class="tab-content h-50 p-4 rounded">
+      @if (isActive === 1) {
+        <div class="fs-5 lh-base text-muted">
+          {{ bookInfo.bDesc || '查無相關書籍簡介' }}
+        </div>
+      }
 
-        <dt class="col-4 col-md-3 text-muted fw-normal mb-3">出版社</dt>
-        <dd class="col-8 col-md-9 mb-3">{{ bookInfo.publisher }}</dd>
+      @if (isActive === 2) {
+        @for (authorInfo of bookInfo.authorInfos; track $index) {
+          <h4>{{ authorInfo.author }}</h4>
+          <div class="fs-5 lh-base text-muted">
+            {{ authorInfo.aDesc || '查無相關作者簡介' }}
+          </div>
 
-        <dt class="col-4 col-md-3 text-muted fw-normal mb-3">語言</dt>
-        <dd class="col-8 col-md-9 mb-3">{{ bookInfo.language }}</dd>
+          @if (!$last) { <br><br> }
+        }
+      }
 
-        <dt class="col-4 col-md-3 text-muted fw-normal mb-3">ISBN</dt>
-        <dd class="col-8 col-md-9 mb-3">{{ bookInfo.isbn }}</dd>
-      </div>
+      @if (isActive === 3) {
+        <div></div>
+      }
     </div>
-    }
-  </div>
-</section>
+  </section>
+}
+
+<section class="container"></section>
