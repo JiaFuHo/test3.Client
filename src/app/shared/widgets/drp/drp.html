@@ -1,3 +1,3 @@
-<select class="form-select {{ C }}" [formControl]="N">
-  @for (item of O; track item.value) { <option [value]="item.value">{{ item.text }}</option> }
-</select> 
+<select class="form-select {{ drpClass }}" [formControl]="FC">
+  @for (item of options; track item.value) { <option [value]="item.value">{{ item.text }}</option> }
+</select>

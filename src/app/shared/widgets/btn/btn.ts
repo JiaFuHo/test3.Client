@@ -10,9 +10,9 @@ import { CoreModule } from '../../modules/core';
 })
 export class Btn {
   //#region Input
-  @Input('type') T: string = 'button';
-  @Input('id') I: string = '';
-  @Input('class') C: string = '';
-  @Input('disabled') D: boolean = false;
+  @Input() type: string = 'button';
+  @Input() id: string = '';
+  @Input() btnClass: string = '';
+  @Input() disabled: boolean = false;
   //#endregion
 }

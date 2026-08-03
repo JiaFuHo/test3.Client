@@ -4,9 +4,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ServiceP } from '../../../core/providers/system/serviceP';
 import { ToastP } from './../../../core/providers/common/toastP';
 
+import { Btn } from './../../../shared/widgets/btn/btn';
+
 @Component({
   selector: 'app-search',
-  imports: [],
+  imports: [Btn],
   templateUrl: './search.html',
   styleUrl: './search.css',
 })
@@ -19,7 +21,6 @@ export class Search implements OnInit {
   private _toastP = inject(ToastP);
 
   public isActive: number = 1;
-
   public bookInfo: any = null;
   //#endregion
 

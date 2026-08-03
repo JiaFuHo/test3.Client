@@ -2,8 +2,8 @@
   <section class="container d-flex flex-column justify-content-center">
     <div class="row">
       <div class="col-4 col-md-5 d-flex justify-content-end pe-4">
-        <div class="row align-items-center">
-          <img [src]="'data:image/*;base64,' + bookInfo.image" class="img-fluid object-fit-fill rounded shadow-sm">
+        <div id="box_img" class="row align-items-center">
+          <img [src]="'data:image/*;base64,' + bookInfo.image" class="rounded shadow-sm">
         </div>
         <ul class="nav nav-tabs"></ul>
       </div>
@@ -22,17 +22,22 @@
             }
           </dd>
 
-          <dt class="col-4 col-md-3 text-muted fw-normal mb-3">譯者</dt>
-          <dd class="col-8 col-md-9 mb-3">{{ bookInfo.translator }}</dd>
+          <dt class="col-5 col-md-3 text-muted fw-normal mb-3">譯者</dt>
+          <dd class="col-7 col-md-9 mb-3">{{ bookInfo.translator }}</dd>
 
-          <dt class="col-4 col-md-3 text-muted fw-normal mb-3">出版社</dt>
-          <dd class="col-8 col-md-9 mb-3">{{ bookInfo.publisher }}</dd>
+          <dt class="col-5 col-md-3 text-muted fw-normal mb-3">出版社</dt>
+          <dd class="col-7 col-md-9 mb-3">{{ bookInfo.publisher }}</dd>
 
-          <dt class="col-4 col-md-3 text-muted fw-normal mb-3">語言</dt>
-          <dd class="col-8 col-md-9 mb-3">{{ bookInfo.language }}</dd>
+          <dt class="col-5 col-md-3 text-muted fw-normal mb-3">語言</dt>
+          <dd class="col-7 col-md-9 mb-3">{{ bookInfo.language }}</dd>
 
-          <dt class="col-4 col-md-3 text-muted fw-normal mb-3">ISBN</dt>
-          <dd class="col-8 col-md-9 mb-3">{{ bookInfo.isbn }}</dd>
+          <dt class="col-5 col-md-3 text-muted fw-normal mb-3">ISBN</dt>
+          <dd class="col-7 col-md-9 mb-3">{{ bookInfo.isbn }}</dd>
+        </div>
+        <div class="d-flex justify-content-center justify-content-md-start">
+          <app-btn id="btnRsv" class="w-50 mb-2 fs-5" btnClass="{{ bookInfo.bookStatus ? 'btn_BG-GREEN1' : 'btn_BG-RED' }}">
+            {{ (bookInfo.bookStatus) ? '可借閱，立即預約取書' : '借閱中，立即預約借閱' }}
+          </app-btn>
         </div>
       </div>
     </div>
@@ -45,9 +50,6 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" [class]="(isActive === 2) ? 'active' : 'text-muted fw-normal'" (click)="isActive = 2">作者簡介</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" [class]="(isActive === 3) ? 'active' : 'text-muted fw-normal'" (click)="isActive = 3">館藏狀態</a>
       </li>
     </ul>
 
@@ -67,10 +69,6 @@
 
           @if (!$last) { <br><br> }
         }
-      }
-
-      @if (isActive === 3) {
-        <div></div>
       }
     </div>
   </section>

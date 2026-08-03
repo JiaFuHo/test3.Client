@@ -11,8 +11,8 @@ import { CoreModule } from '../../modules/core';
 })
 export class Drp {
   //#region Input
-  @Input({ alias: 'controlName', required: true }) N!: FormControl;
-  @Input('options') O: any[] = [];
-  @Input('class') C: string = '';
+  @Input({ required: true }) FC!: FormControl;
+  @Input() options: any[] = [];
+  @Input() drpClass: string = '';
   //#endregion
 }
