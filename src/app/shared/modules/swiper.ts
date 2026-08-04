@@ -1,3 +1,3 @@
 import { register } from 'swiper/element/bundle';
 
-register();
+export function Swiper() { register(); }

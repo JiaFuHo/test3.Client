@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef, OnInit, inject } from '@angular/core';
+import { Component, ChangeDetectorRef, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { ServiceP } from '../../../core/providers/system/serviceP';
@@ -6,9 +6,11 @@ import { ToastP } from './../../../core/providers/common/toastP';
 
 import { Btn } from './../../../shared/widgets/btn/btn';
 
+import { SwiperPop } from '../common/swiper-pop/swiper-pop';
+
 @Component({
   selector: 'app-search',
-  imports: [Btn],
+  imports: [Btn, SwiperPop],
   templateUrl: './search.html',
   styleUrl: './search.css',
 })

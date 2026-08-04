@@ -11,10 +11,10 @@ import { CoreModule } from '../../modules/core';
 })
 export class Ipt {
   //#region Input
-  @Input({ required: true }) FC!: FormControl;
-  @Input() type: string = 'text';
-  @Input() id: string = '';
-  @Input() iptClass: string = '';
-  @Input() placeholder: string = '';
+  @Input({ required: true }) public FC!: FormControl;
+  @Input() public type: string = 'text';
+  @Input() public id: string = '';
+  @Input() public iptClass: string = '';
+  @Input() public placeholder: string = '';
   //#endregion
 }
