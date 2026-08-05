@@ -1,3 +1,15 @@
 @if (bookList) {
-
+  <swiper-container slides-per-view="3" space-between="20" loop="true" navigation="false" pagination="true"
+    autoplay-delay="5000" effect="coverflow" centered-slides="true" coverflow-effect-slide-shadows="false">
+    @for (book of bookList; track $index) {
+      <swiper-slide>
+        <figure class="box_book d-flex flex-column align-items-center my-5">
+          <div class="box_imgP mb-2">
+            <img [src]="'data:image/*;base64,' + book.image" class="rounded shadow-sm">
+          </div>
+          <figcaption>{{ book.title }}</figcaption>
+        </figure>
+      </swiper-slide>
+    }
+  </swiper-container>
 }

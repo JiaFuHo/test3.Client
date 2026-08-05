@@ -1,0 +1,16 @@
+.box_imgP {
+  width: 100%;
+  max-width: 300px;
+  aspect-ratio: 3 / 4;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+swiper-container {
+  --swiper-navigation-color: var(--c1-green1---100);
+  --swiper-pagination-color: var(--c1-green1---100);
+}
