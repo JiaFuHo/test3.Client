@@ -3,12 +3,13 @@ import { Component, ChangeDetectorRef, CUSTOM_ELEMENTS_SCHEMA as WebCmp, inject 
 import { ServiceP } from '../../../../core/providers/system/serviceP';
 
 import { Swiper } from '../../../../shared/modules/swiper';
+import { Btn } from '../../../../shared/widgets/btn/btn';
 
 Swiper();
 
 @Component({
   selector: 'app-swiper-pop',
-  imports: [],
+  imports: [Btn],
   templateUrl: './swiper-pop.html',
   styleUrl: './swiper-pop.css',
   schemas: [WebCmp],
@@ -34,6 +35,12 @@ export class SwiperPop {
         this._cdr.detectChanges();
       }
     });
+  }
+  //#endregion
+
+  //#region Method
+  public query() {
+    
   }
   //#endregion
 }

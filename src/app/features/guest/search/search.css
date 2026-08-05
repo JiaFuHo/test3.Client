@@ -1,3 +1,10 @@
+h2 {
+  background-image: url("/images/bgx.png");
+  background-position: center;
+  background-size: auto;
+  background-repeat: no-repeat;
+}
+
 #box_img {
   width: 100%;
   max-width: 300px;

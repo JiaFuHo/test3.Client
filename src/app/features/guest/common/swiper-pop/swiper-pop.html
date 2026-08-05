@@ -1,12 +1,50 @@
 @if (bookList) {
-  <swiper-container slides-per-view="3" space-between="20" loop="true" navigation="false" pagination="true"
-    autoplay-delay="5000" effect="coverflow" centered-slides="true" coverflow-effect-slide-shadows="false">
+  <h2 class="mt-3 mb-0 text-center">熱門書籍</h2>
+  <swiper-container slides-per-view="3" space-between="25" loop="true" navigation="true" pagination="true"
+    autoplay-delay="10000" effect="coverflow" centered-slides="true" coverflow-effect-slide-shadows="false">
     @for (book of bookList; track $index) {
       <swiper-slide>
-        <figure class="box_book d-flex flex-column align-items-center my-5">
-          <div class="box_imgP mb-2">
-            <img [src]="'data:image/*;base64,' + book.image" class="rounded shadow-sm">
+        <figure class="d-flex flex-column align-items-center my-5">
+          <div class="mb-2 box_bookP">
+            <div class="box_imgP">
+              <img [src]="'data:image/*;base64,' + book.image" class="rounded shadow-lg">
+            </div>
+            <div class="d-flex flex-column px-4 pt-4 bg-light rounded shadow-lg box_infoP">
+              <div class="row fs-6">
+                <dt class="col-4 pe-0 text-muted fw-normal mb-2">作者</dt>
+                <dd class="col-8 mb-2 pe-0">
+                  @for (authorInfo of book.authorInfos; track $index) {
+                    {{ authorInfo.author }}
+
+                    @if (!$last) { 、 }
+                  }
+                </dd>
+
+                <dt class="col-4 pe-0 text-muted fw-normal mb-2">出版社</dt>
+                <dd class="col-8 mb-2 pe-0">{{ book.publisher }}</dd>
+
+                <dt class="col-4 pe-0 text-muted fw-normal mb-2">書籍簡介</dt>
+                <dd class="col-8 mb-2 pe-0 box_descP">{{ book.bDesc || '' }}</dd>
+
+                <dt class="col-4 pe-0 text-muted fw-normal mb-2">語言</dt>
+                <dd class="col-8 mb-2 pe-0">{{ book.language }}</dd>
+
+                <dt class="col-4 pe-0 text-muted fw-normal mb-2">類型</dt>
+                <dd class="col-8 mb-2 pe-0">{{ book.type }}</dd>
+
+                <dt class="col-4 pe-0 text-muted fw-normal mb-2">ISBN</dt>
+                <dd class="col-8 mb-2 pe-0">{{ book.isbn }}</dd>
+              </div>
+
+              <div class="mt-auto mb-3">
+                <app-btn class="w-100 mb-2 fs-6" btnClass="btn_BG-BLUE5" (click)="query()">更多</app-btn>
+                <app-btn class="w-100 mb-2 fs-6" btnClass="{{ book.bookStatus ? 'btn_BG-GREEN1' : 'btn_BG-RED' }}">
+                  {{ (book.bookStatus) ? '可借閱，立即預約取書' : '借閱中，立即預約借閱' }}
+                </app-btn>
+              </div>
+            </div>
           </div>
+
           <figcaption>{{ book.title }}</figcaption>
         </figure>
       </swiper-slide>

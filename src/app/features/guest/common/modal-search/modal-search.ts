@@ -31,7 +31,7 @@ const LangList: Opt[] = [
 ];
 
 const Type2List: Opt[] = [
-  { value: '', text: '文體 (全部)' },
+  { value: '', text: '類型 (全部)' },
   { value: '1', text: '小說' },
   { value: '2', text: '兒童讀物' },
   { value: '3', text: '青少年讀物' },

@@ -1,18 +1,17 @@
 @if (bookInfo) {
-  <section class="container d-flex flex-column justify-content-center">
-    <div class="row">
+  <section class="container d-flex flex-column">
+    <h2 class="mt-3 text-center">搜尋結果</h2>
+    <div class="row my-auto">
       <div class="col-4 col-md-5 d-flex justify-content-end pe-4">
         <div id="box_img" class="row align-items-center">
-          <img [src]="'data:image/*;base64,' + bookInfo.image" class="rounded shadow-sm">
+          <img [src]="'data:image/*;base64,' + bookInfo.image" class="rounded shadow-lg">
         </div>
         <ul class="nav nav-tabs"></ul>
       </div>
 
       <div class="col-8 col-md-7 d-flex flex-column ps-4">
-        <div>
-          <h1>{{ bookInfo.title }}</h1>
-        </div>
-        <div class="row my-auto fs-4">
+        <h1>{{ bookInfo.title }}</h1>
+        <div class="row my-auto fs-5">
           <dt class="col-4 col-md-3 text-muted fw-normal mb-3">作者</dt>
           <dd class="col-8 col-md-9 mb-3">
             @for (authorInfo of bookInfo.authorInfos; track $index) {
@@ -30,6 +29,9 @@
 
           <dt class="col-5 col-md-3 text-muted fw-normal mb-3">語言</dt>
           <dd class="col-7 col-md-9 mb-3">{{ bookInfo.language }}</dd>
+
+          <dt class="col-5 col-md-3 text-muted fw-normal mb-3">類型</dt>
+          <dd class="col-7 col-md-9 mb-3">{{ bookInfo.type }}</dd>
 
           <dt class="col-5 col-md-3 text-muted fw-normal mb-3">ISBN</dt>
           <dd class="col-7 col-md-9 mb-3">{{ bookInfo.isbn }}</dd>
