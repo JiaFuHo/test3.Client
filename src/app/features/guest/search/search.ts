@@ -48,7 +48,7 @@ export class Search implements OnInit {
           this._cdr.detectChanges();
         },
         error: (err) => {
-          this._toastP.tErr('Internet Error');
+          this._toastP.tErr('Network Error');
           this._cdr.detectChanges();
         },
       });

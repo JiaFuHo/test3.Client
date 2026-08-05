@@ -1,14 +1,3 @@
 @if (bookList) {
-<swiper-container slides-per-view="3" space-between="20" autoplay-delay="2500" loop="true" navigation="true">
 
-  @for (book of bookList; track $index) {
-    <swiper-slide>
-      <div class="d-flex align-items-center justify-content-center text-white fw-bold fs-4 rounded shadow-sm"
-        style="height: 300px; background-color: black">
-        {{ book.title }}
-      </div>
-    </swiper-slide>
-  }
-
-</swiper-container>
 }
