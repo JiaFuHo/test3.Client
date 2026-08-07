@@ -9,10 +9,10 @@
       </div>
 
       <div class="col-12 col-md-7 d-flex flex-column ps-4">
-        <h1 class="mb-4 mb-md-0 text-center text-md-start">{{ bookInfo.title }}</h1>
+        <h1 class="mb-4 mb-md-3 text-center text-md-start">{{ bookInfo.title }}</h1>
         <div class="row my-auto fs-5">
-          <dt class="col-4 mb-3 text-end text-md-start text-muted fw-normal">作者</dt>
-          <dd class="col-8 mb-3">
+          <dt class="col-4 col-md-3 mb-3 text-end text-md-start text-muted fw-normal">作　者</dt>
+          <dd class="col-8 col-md-9 mb-3">
             @for (authorInfo of bookInfo.authorInfos; track $index) {
               {{ authorInfo.author }}
 
@@ -20,20 +20,20 @@
             }
           </dd>
 
-          <dt class="col-4 mb-3 text-end text-md-start text-muted fw-normal">譯者</dt>
-          <dd class="col-8 mb-3">{{ bookInfo.translator }}</dd>
+          <dt class="col-4 col-md-3 mb-3 text-end text-md-start text-muted fw-normal">譯　者</dt>
+          <dd class="col-8 col-md-9 mb-3">{{ bookInfo.translator }}</dd>
 
-          <dt class="col-4 mb-3 text-end text-md-start text-muted fw-normal">出版社</dt>
-          <dd class="col-8 mb-3">{{ bookInfo.publisher }}</dd>
+          <dt class="col-4 col-md-3 mb-3 text-end text-md-start text-muted fw-normal">出版社</dt>
+          <dd class="col-8 col-md-9 mb-3">{{ bookInfo.publisher }}</dd>
 
-          <dt class="col-4 mb-3 text-end text-md-start text-muted fw-normal">語言</dt>
-          <dd class="col-8 mb-3">{{ bookInfo.language }}</dd>
+          <dt class="col-4 col-md-3 mb-3 text-end text-md-start text-muted fw-normal">語　言</dt>
+          <dd class="col-8 col-md-9 mb-3">{{ bookInfo.language }}</dd>
 
-          <dt class="col-4 mb-3 text-end text-md-start text-muted fw-normal">類型</dt>
-          <dd class="col-8 mb-3">{{ bookInfo.type }}</dd>
+          <dt class="col-4 col-md-3 mb-3 text-end text-md-start text-muted fw-normal">類　型</dt>
+          <dd class="col-8 col-md-9 mb-3">{{ bookInfo.type }}</dd>
 
-          <dt class="col-4 mb-3 text-end text-md-start text-muted fw-normal">ISBN</dt>
-          <dd class="col-8 mb-3">{{ bookInfo.isbn }}</dd>
+          <dt class="col-4 col-md-3 mb-3 text-end text-md-start text-muted fw-normal">I S B N</dt>
+          <dd class="col-8 col-md-9 mb-3">{{ bookInfo.isbn }}</dd>
         </div>
         <div class="d-flex justify-content-center justify-content-md-start">
           <app-btn id="btnRsv" class="w-50 mb-2 fs-5" btnClass="{{ bookInfo.bookStatus ? 'btn_BG-GREEN1' : 'btn_BG-RED' }}">

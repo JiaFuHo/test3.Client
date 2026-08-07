@@ -1,6 +1,6 @@
 import { Component, ChangeDetectorRef, CUSTOM_ELEMENTS_SCHEMA as WebCmp, inject } from '@angular/core';
 
-import { ServiceP } from '../../../../core/providers/system/serviceP';
+import { BookListS } from '../../../../core/services/guest/home/booklistS';
 
 import { Swiper } from '../../../../shared/modules/swiper';
 
@@ -14,7 +14,7 @@ import { Swiper } from '../../../../shared/modules/swiper';
 export class SwiperNew {
   //#region State
   private _cdr = inject(ChangeDetectorRef);
-  private _serviceP = inject(ServiceP);
+  private _booklistS = inject(BookListS);
 
   public bookList: any = null;
   //#endregion
@@ -25,7 +25,7 @@ export class SwiperNew {
 
     this.bookList = null;
 
-    this._serviceP.get<any>('/guest/home/booklist', args).subscribe({
+    this._booklistS.exe(args).subscribe({
       next: (res) => {
         if (res.status) { this.bookList = res.bookList; }
 

@@ -1,7 +1,7 @@
 @if (bookList) {
   <h2 class="mt-3 mb-0 text-center">熱門書籍</h2>
   <swiper-container breakpoints='{"0": {"slidesPerView": 1}, "768": {"slidesPerView": 2}, "992": {"slidesPerView": 3}}'
-    space-between="25" loop="true" navigation="true" pagination="true" autoplay-delay="5000"
+    space-between="25" loop="true" navigation="true" pagination="true" autoplay-delay="5000" autoplay-pause-on-mouse-enter="true"
     effect="coverflow" centered-slides="true" coverflow-effect-slide-shadows="false">
     @for (book of bookList; track $index) {
       <swiper-slide>
@@ -38,7 +38,7 @@
               </div>
 
               <div class="mt-auto mb-3">
-                <app-btn class="w-100 mb-2 fs-6" btnClass="btn_BG-BLUE5" (click)="query()">更多</app-btn>
+                <app-btn class="w-100 mb-2 fs-6" btnClass="btn_BG-BLUE5" (click)="query(book.isbn)">更多</app-btn>
                 <app-btn class="w-100 mb-2 fs-6" btnClass="{{ book.bookStatus ? 'btn_BG-GREEN1' : 'btn_BG-RED' }}">
                   {{ (book.bookStatus) ? '可借閱，立即預約取書' : '借閱中，立即預約借閱' }}
                 </app-btn>

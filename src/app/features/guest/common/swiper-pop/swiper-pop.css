@@ -19,7 +19,7 @@ swiper-container {
   transition: transform 1s ease;
 }
 
-.box_bookP:hover {
+figure:hover .box_bookP {
   transform: rotateY(180deg);
 }
 
@@ -32,10 +32,6 @@ swiper-container {
   height: 100%;
   backface-visibility: hidden;
 }
-
-/* .box_imgP {
-  transform: rotateY(180deg);
-} */
 
 .box_infoP {
   transform: rotateY(180deg);

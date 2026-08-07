@@ -1,6 +1,7 @@
 import { Component, ChangeDetectorRef, CUSTOM_ELEMENTS_SCHEMA as WebCmp, inject } from '@angular/core';
+import { Router } from '@angular/router';
 
-import { ServiceP } from '../../../../core/providers/system/serviceP';
+import { BookListS } from '../../../../core/services/guest/home/booklistS';
 
 import { Swiper } from '../../../../shared/modules/swiper';
 import { Btn } from '../../../../shared/widgets/btn/btn';
@@ -16,8 +17,9 @@ Swiper();
 })
 export class SwiperPop {
   //#region State
+  private _booklistS = inject(BookListS);
   private _cdr = inject(ChangeDetectorRef);
-  private _serviceP = inject(ServiceP);
+  private _router = inject(Router);
 
   public bookList: any = null;
   //#endregion
@@ -28,7 +30,7 @@ export class SwiperPop {
 
     this.bookList = null;
 
-    this._serviceP.get<any>('/guest/home/booklist', args).subscribe({
+    this._booklistS.exe(args).subscribe({
       next: (res) => {
         if (res.status) { this.bookList = res.bookList; }
 
@@ -39,8 +41,10 @@ export class SwiperPop {
   //#endregion
 
   //#region Method
-  public query() {
-    
+  public query(ISBN: string) {
+    const args = { Type1: 'isbn', Info: ISBN };
+
+    this._router.navigate(['/search'], { queryParams: args });
   }
   //#endregion
 }
