@@ -1,6 +1,8 @@
-import { Component, inject } from '@angular/core';
+import { Component, ChangeDetectorRef, inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+
+import { SeriesListS } from '../../../../core/services/guest/home/serieslistS';
 
 import { CoreModule } from '../../../../shared/modules/core';
 import { Btn } from '../../../../shared/widgets/btn/btn';
@@ -49,13 +51,16 @@ const Type2List: Opt[] = [
 })
 export class ModalSearch {
   //#region State
+  private _cdr = inject(ChangeDetectorRef);
   private _formBuilder = inject(FormBuilder);
   private _router = inject(Router);
+  private _serieslistS = inject(SeriesListS);
 
   public mode = '';
   public type1List = Type1List;
   public langList = LangList;
   public type2List = Type2List;
+  public seriesList: any = null;
 
   public formQ = this._formBuilder.nonNullable.group({
     Type1: ['title'],
@@ -65,6 +70,20 @@ export class ModalSearch {
     Lang: [''],
     Type2: [''],
   });
+  //#endregion
+
+  //#region Lifecycle
+  public ngOnInit() {
+    this.seriesList = null;
+
+    this._serieslistS.exe().subscribe({
+      next: (res) => {
+        if (res.status) { this.seriesList = res.seriesList; }
+
+        this._cdr.detectChanges();
+      }
+    });
+  }
   //#endregion
 
   //#region Method

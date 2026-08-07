@@ -47,10 +47,11 @@
       </div>
 
       <div class="modal-footer d-flex justify-content-start">
-        <p>熱門：</p>
-        <app-btn btnClass="btn_BG-GRAY3" (click)="sync($event)">Le Petit Prince</app-btn>
-        <app-btn btnClass="btn_BG-GRAY3" (click)="sync($event)">ONE PIECE</app-btn>
-        <app-btn btnClass="btn_BG-GRAY3" (click)="sync($event)">Warriors</app-btn>
+        <p>系列：</p>
+
+        @for (series of seriesList; track $index) {
+          <app-btn btnClass="btn_BG-GRAY3" (click)="sync($event)">{{ series }}</app-btn>
+        }
       </div>
     </form>
   </div>
