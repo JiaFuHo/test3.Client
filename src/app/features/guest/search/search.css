@@ -1,7 +1,7 @@
 h2 {
   background-image: url("/images/bgx.png");
   background-position: center;
-  background-size: auto;
+  background-size: contain;
   background-repeat: no-repeat;
 }
 

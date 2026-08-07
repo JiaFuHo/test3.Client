@@ -27,9 +27,9 @@ export class Toast implements OnInit {
 
       this._cdr.detectChanges();
 
-      const toastElem = document.getElementById('toast');
+      const tElem = document.getElementById('toast');
 
-      if (toastElem) { bootstrap.Toast.getOrCreateInstance(toastElem)?.show(); }
+      if (tElem) { bootstrap.Toast.getOrCreateInstance(tElem)?.show(); }
     });
   }
   //#endregion

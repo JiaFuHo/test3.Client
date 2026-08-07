@@ -142,7 +142,7 @@ main {
 
 /* #region section */
 section {
-  height: calc(100vh - var(--h-header));
+  min-height: calc(100vh - var(--h-header));
 }
 
 section:last-of-type {
