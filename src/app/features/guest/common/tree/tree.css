@@ -15,7 +15,7 @@ img {
     display: block;
     z-index: 1;
     bottom: -8.75vh;
-    right: -2.5vw;
+    right: -17.5vw;
 
     width: 20vw;
     height: auto;
@@ -25,7 +25,7 @@ img {
     display: block;
     z-index: 0;
     bottom: -11.25vh;
-    right: -12.5vw;
+    right: -27.5vw;
 
     width: 30vw;
     height: auto;
@@ -37,7 +37,7 @@ img {
     display: block;
     z-index: 0;
     bottom: -8.75vh;
-    left: -7.5vw;
+    left: -22.5vw;
 
     width: 20vw;
     height: auto;
@@ -47,7 +47,7 @@ img {
     display: block;
     z-index: 2;
     bottom: -7.5vh;
-    left: -1.5vw;
+    left: -16.5vw;
 
     width: 15vw;
     height: auto;
@@ -57,7 +57,7 @@ img {
     display: block;
     z-index: 1;
     bottom: -10vh;
-    left: -2.5vw;
+    left: -17.5vw;
 
     width: 25vw;
     height: auto;

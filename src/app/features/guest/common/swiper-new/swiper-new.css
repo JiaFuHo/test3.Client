@@ -1,0 +1,11 @@
+h2 {
+  background-image: url("/images/bgx.png");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+swiper-container {
+  --swiper-navigation-color: var(--c1-green1---100);
+  --swiper-pagination-color: var(--c1-green1---100);
+}

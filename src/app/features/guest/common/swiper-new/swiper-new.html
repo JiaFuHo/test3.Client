@@ -1,3 +1,11 @@
 @if (bookList) {
+  <h2 class="mt-3 mb-0 text-center">新書推薦</h2>
+  <swiper-container breakpoints='{"0": {"slidesPerView": 1}, "768": {"slidesPerView": 2}, "992": {"slidesPerView": 3}}'
+    space-between="25" loop="true" navigation="true" pagination="true" autoplay-delay="5000" autoplay-pause-on-mouse-enter="true">
+    @for (book of bookList; track $index) {
+      <swiper-slide>
 
+      </swiper-slide>
+    }
+  </swiper-container>
 }
