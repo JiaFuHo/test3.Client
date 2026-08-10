@@ -10,6 +10,18 @@ swiper-container {
   --swiper-pagination-color: var(--c1-green1---100);
 }
 
+swiper-container::part(button-next),
+swiper-container::part(button-prev) {
+  display: none;
+}
+
+@media(min-width: 768px) {
+  swiper-container::part(button-next),
+  swiper-container::part(button-prev) {
+    display: block;
+  }
+}
+
 .box_bookP {
   position: relative;
   width: 100%;

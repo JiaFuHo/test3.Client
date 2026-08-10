@@ -1,3 +1,9 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
 h2 {
   background-image: url("/images/bgx.png");
   background-position: center;
@@ -8,4 +14,55 @@ h2 {
 swiper-container {
   --swiper-navigation-color: var(--c1-green1---100);
   --swiper-pagination-color: var(--c1-green1---100);
+}
+
+swiper-container::part(button-next),
+swiper-container::part(button-prev) {
+  display: none;
+}
+
+@media(min-width: 768px) {
+  swiper-container::part(button-next),
+  swiper-container::part(button-prev) {
+    display: block;
+  }
+}
+
+.box_bookN {
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+  aspect-ratio: 3 / 4;
+}
+
+figure:hover .box_infoN {
+  transform: translateY(0);
+}
+
+.box_imgN,
+.box_infoN {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.box_infoN {
+  transform: translateY(150%);
+  transition: transform 1s ease;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.box_descN {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
 }
