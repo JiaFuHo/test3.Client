@@ -1,4 +1,5 @@
-import { Component, ChangeDetectorRef, inject, OnInit } from '@angular/core';
+import { Component, ChangeDetectorRef, DestroyRef, inject, OnInit } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 import { ToastLvl, ToastP } from '../../../core/providers/common/toastP';
 
@@ -13,6 +14,7 @@ import * as bootstrap from 'bootstrap';
 export class Toast implements OnInit {
   //#region State
   private _cdr = inject(ChangeDetectorRef);
+  private _dr = inject(DestroyRef);
   private _toastP = inject(ToastP);
 
   public lvl = '';
@@ -21,7 +23,7 @@ export class Toast implements OnInit {
 
   //#region Lifecycle
   public ngOnInit() {
-    this._toastP.broadcast$.subscribe((prompt: ToastLvl) => {
+    this._toastP.broadcast$.pipe(takeUntilDestroyed(this._dr)).subscribe((prompt: ToastLvl) => {
       this.lvl = prompt.lvl;
       this.msg = prompt.msg;
 

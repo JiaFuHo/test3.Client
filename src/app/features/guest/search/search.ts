@@ -1,6 +1,8 @@
-import { Component, ChangeDetectorRef, inject, OnInit } from '@angular/core';
+import { Component, ChangeDetectorRef, DestroyRef, inject, OnInit } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
 
+import { BookInfo, SearchQueryReq, SearchQueryRes } from './../../../core/models/guest/test3VmG';
 import { ToastP } from './../../../core/providers/common/toastP';
 import { SearchS } from '../../../core/services/guest/search/searchS';
 
@@ -17,24 +19,25 @@ import { SwiperPop } from '../common/swiper-pop/swiper-pop';
 export class Search implements OnInit {
   //#region State
   private _cdr = inject(ChangeDetectorRef);
+  private _dr = inject(DestroyRef);
   private _route = inject(ActivatedRoute);
   private _router = inject(Router);
   private _searchS = inject(SearchS);
   private _toastP = inject(ToastP);
 
   public isActive: number = 1;
-  public bookInfo: any = null;
+  public bookInfo: BookInfo | null = null;
   //#endregion
 
   //#region Lifecycle
   public ngOnInit() {
-    this._route.queryParams.subscribe((args) => {
+    this._route.queryParams.pipe(takeUntilDestroyed(this._dr)).subscribe((args) => {
       if (Object.keys(args).length === 0) { return; }
 
       this.bookInfo = null;
       this._router.navigate(['/search'], { replaceUrl: true });
 
-      this._searchS.exe(args).subscribe({
+      this._searchS.exe(args as SearchQueryReq).subscribe({
         next: (res) => {
           if (res.status) {
             this.bookInfo = res.bookInfo;

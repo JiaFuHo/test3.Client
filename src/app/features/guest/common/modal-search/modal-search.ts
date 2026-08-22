@@ -1,7 +1,8 @@
-import { Component, ChangeDetectorRef, inject } from '@angular/core';
+import { Component, ChangeDetectorRef, inject, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
+import { SearchQueryReq } from '../../../../core/models/guest/test3VmG';
 import { SeriesListS } from '../../../../core/services/guest/home/serieslistS';
 
 import { CoreModule } from '../../../../shared/modules/core';
@@ -49,7 +50,7 @@ const Type2List: Opt[] = [
   templateUrl: './modal-search.html',
   styleUrl: './modal-search.css',
 })
-export class ModalSearch {
+export class ModalSearch implements OnInit {
   //#region State
   private _cdr = inject(ChangeDetectorRef);
   private _formBuilder = inject(FormBuilder);
@@ -60,21 +61,21 @@ export class ModalSearch {
   public type1List = Type1List;
   public langList = LangList;
   public type2List = Type2List;
-  public seriesList: any = null;
+  public seriesList: string[] = [];
 
   public formQ = this._formBuilder.nonNullable.group({
-    Type1: ['title'],
-    Info: ['', Validators.required],
-    SYear: [''],
-    EYear: [''],
-    Lang: [''],
-    Type2: [''],
+    type1: ['title'],
+    info: ['', Validators.required],
+    sYear: [''],
+    eYear: [''],
+    lang: [''],
+    type2: [''],
   });
   //#endregion
 
   //#region Lifecycle
   public ngOnInit() {
-    this.seriesList = null;
+    this.seriesList = [];
 
     this._serieslistS.exe().subscribe({
       next: (res) => {
@@ -90,7 +91,7 @@ export class ModalSearch {
   public query() {
     if (this.formQ.invalid) { this.formQ.markAllAsTouched(); return; }
 
-    const args = this.formQ.getRawValue();
+    const args: SearchQueryReq = this.formQ.getRawValue();
 
     const tElem = document.getElementById('modal_search');
 
@@ -110,25 +111,25 @@ export class ModalSearch {
   public switch() {
     this.mode = (this.mode === '') ? 'A' : '';
 
-    const Info = this.formQ.controls.Info;
-    const SYear = this.formQ.controls.SYear;
-    const EYear = this.formQ.controls.EYear;
-    const Lang = this.formQ.controls.Lang;
-    const Type2 = this.formQ.controls.Type2;
+    const info = this.formQ.controls.info;
+    const sYear = this.formQ.controls.sYear;
+    const eYear = this.formQ.controls.eYear;
+    const lang = this.formQ.controls.lang;
+    const type2 = this.formQ.controls.type2;
 
-    if (this.mode === 'A') { Info.clearValidators(); }
+    if (this.mode === 'A') { info.clearValidators(); }
     else {
-      Info.setValidators([Validators.required]);
-      [SYear, EYear, Lang, Type2].forEach(x => x.reset());
+      info.setValidators([Validators.required]);
+      [sYear, eYear, lang, type2].forEach(x => x.reset());
     }
 
-    Info.updateValueAndValidity();
+    info.updateValueAndValidity();
   }
 
   public sync(e: any) {
-    const Info = this.formQ.controls.Info;
+    const info = this.formQ.controls.info;
 
-    Info.setValue(e.target.innerText);
+    info.setValue(e.target.innerText);
 
     this.query();
   }

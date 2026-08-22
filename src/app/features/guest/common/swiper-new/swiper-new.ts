@@ -1,6 +1,7 @@
-import { Component, ChangeDetectorRef, CUSTOM_ELEMENTS_SCHEMA as WebCmp, inject } from '@angular/core';
+import { Component, ChangeDetectorRef, CUSTOM_ELEMENTS_SCHEMA as WebCmp, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { BookInfo, HomeQueryBookReq, SearchQueryReq } from '../../../../core/models/guest/test3VmG';
 import { BookListS } from '../../../../core/services/guest/home/booklistS';
 
 import { Swiper } from '../../../../shared/modules/swiper';
@@ -15,20 +16,20 @@ Swiper();
   styleUrl: './swiper-new.css',
   schemas: [WebCmp],
 })
-export class SwiperNew {
+export class SwiperNew implements OnInit {
   //#region State
   private _booklistS = inject(BookListS);
   private _cdr = inject(ChangeDetectorRef);
   private _router = inject(Router);
 
-  public bookList: any = null;
+  public bookList: BookInfo[] = [];
   //#endregion
 
   //#region Lifecycle
   public ngOnInit() {
-    const args = { Mode: 'N' };
+    const args: HomeQueryBookReq = { mode: 'N' };
 
-    this.bookList = null;
+    this.bookList = [];
 
     this._booklistS.exe(args).subscribe({
       next: (res) => {
@@ -41,8 +42,8 @@ export class SwiperNew {
   //#endregion
 
   //#region Method
-  public query(ISBN: string) {
-    const args = { Type1: 'isbn', Info: ISBN };
+  public query(isbn: string) {
+    const args: SearchQueryReq = { type1: 'isbn', info: isbn };
 
     this._router.navigate(['/search'], { queryParams: args });
   }
