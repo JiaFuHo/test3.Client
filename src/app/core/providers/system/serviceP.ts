@@ -7,7 +7,7 @@ export class ServiceP {
   //#region State
   private _http = inject(HttpClient);
 
-  private readonly serviceURL = 'https://localhost:77777';
+  private readonly serviceURL = 'https://localhost:7777';
   //#endregion
 
   //#region Method

@@ -1,4 +1,5 @@
-import { Component, ChangeDetectorRef, CUSTOM_ELEMENTS_SCHEMA as WebCmp, inject, OnInit } from '@angular/core';
+import { Component, ChangeDetectorRef, CUSTOM_ELEMENTS_SCHEMA as WebCmp, DestroyRef, inject, OnInit } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
 
 import { BookInfo, HomeQueryBookReq, SearchQueryReq } from '../../../../core/models/guest/test3VmG';
@@ -20,6 +21,7 @@ export class SwiperNew implements OnInit {
   //#region State
   private _booklistS = inject(BookListS);
   private _cdr = inject(ChangeDetectorRef);
+  private _dr = inject(DestroyRef);
   private _router = inject(Router);
 
   public bookList: BookInfo[] = [];
@@ -31,7 +33,7 @@ export class SwiperNew implements OnInit {
 
     this.bookList = [];
 
-    this._booklistS.exe(args).subscribe({
+    this._booklistS.exe(args).pipe(takeUntilDestroyed(this._dr)).subscribe({
       next: (res) => {
         if (res.status) { this.bookList = res.bookList; }
 

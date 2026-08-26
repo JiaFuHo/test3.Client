@@ -1,4 +1,5 @@
-import { Component, ChangeDetectorRef, inject, OnInit } from '@angular/core';
+import { Component, ChangeDetectorRef, DestroyRef, inject, OnInit } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -53,6 +54,7 @@ const Type2List: Opt[] = [
 export class ModalSearch implements OnInit {
   //#region State
   private _cdr = inject(ChangeDetectorRef);
+  private _dr = inject(DestroyRef);
   private _formBuilder = inject(FormBuilder);
   private _router = inject(Router);
   private _serieslistS = inject(SeriesListS);
@@ -77,7 +79,7 @@ export class ModalSearch implements OnInit {
   public ngOnInit() {
     this.seriesList = [];
 
-    this._serieslistS.exe().subscribe({
+    this._serieslistS.exe().pipe(takeUntilDestroyed(this._dr)).subscribe({
       next: (res) => {
         if (res.status) { this.seriesList = res.seriesList; }
 

@@ -2,7 +2,7 @@ import { Component, ChangeDetectorRef, DestroyRef, inject, OnInit } from '@angul
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { BookInfo, SearchQueryReq, SearchQueryRes } from './../../../core/models/guest/test3VmG';
+import { BookInfo, SearchQueryReq } from './../../../core/models/guest/test3VmG';
 import { ToastP } from './../../../core/providers/common/toastP';
 import { SearchS } from '../../../core/services/guest/search/searchS';
 
@@ -37,7 +37,7 @@ export class Search implements OnInit {
       this.bookInfo = null;
       this._router.navigate(['/search'], { replaceUrl: true });
 
-      this._searchS.exe(args as SearchQueryReq).subscribe({
+      this._searchS.exe(args as SearchQueryReq).pipe(takeUntilDestroyed(this._dr)).subscribe({
         next: (res) => {
           if (res.status) {
             this.bookInfo = res.bookInfo;
