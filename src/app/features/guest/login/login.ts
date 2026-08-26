@@ -40,7 +40,12 @@ export class LoginG {
 
     this._loginS.exe(args as LoginReq).pipe(takeUntilDestroyed(this._dr)).subscribe({
       next: (res) => {
-        if (res.status) { this._toastP.tInfo(res.message); }
+        if (res.status) {
+          this._loginS.client.set(res);
+          this._toastP.tInfo(res.message);
+
+          localStorage.setItem('client', JSON.stringify(res));
+        }
         else {
           if (res.statusCode.startsWith('400')) { this._toastP.tWarn(res.message); }
           else { this._toastP.tErr(res.message); }

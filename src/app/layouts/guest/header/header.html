@@ -11,20 +11,31 @@
 
       <div id="menu" class="collapse navbar-collapse">
         <ul class="navbar-nav ms-auto">
+          @if (path() !== '/' && path() !== '/home') {
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/" (click)="close()">
+                首頁 <i class="bi bi-house"></i>
+              </a>
+            </li>
+          }
+          @if (path() !== '/collection') {
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/collection" (click)="close()">
+                藏書 <i class="bi bi-book"></i>
+              </a>
+            </li>
+          }
           <li class="nav-item">
-            <a class="nav-link" routerLink="/" (click)="close()">
-              首頁 <i class="bi bi-house"></i>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/collection" (click)="close()">
-              藏書 <i class="bi bi-book"></i>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/loginG" (click)="close()">
-              登入 <i class="bi bi-person"></i>
-            </a>
+            @if (loginS.client()) {
+              <a class="nav-link" routerLink="/loginG" (click)="close()"> <!-- ??? -->
+                {{ loginS.client()!.cName }} <i class="bi bi-person"></i>
+              </a>
+            }
+            @else {
+              <a class="nav-link" routerLink="/loginG" (click)="close()">
+                登入 <i class="bi bi-person"></i>
+              </a>
+            }
           </li>
           <li class="nav-item">
             <a class="nav-link" (click)="search()">

@@ -1,4 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { NavigationEnd,Router } from '@angular/router';
+import { filter } from 'rxjs';
+
+import { LoginS } from '../../../core/services/common/login/loginS';
 
 import { CoreModule } from '../../../shared/modules/core';
 
@@ -13,6 +18,20 @@ import * as bootstrap from 'bootstrap';
   styleUrl: './header.css',
 })
 export class Header {
+  //#region State
+  private _router = inject(Router);
+
+  public loginS = inject(LoginS);
+  public path = signal<string>('');
+  //#endregion
+
+  //#region Constructor
+  constructor() {
+     this._router.events.pipe(filter(e => e instanceof NavigationEnd), takeUntilDestroyed())
+                        .subscribe((e: any) => { this.path.set(e.urlAfterRedirects); });
+  }
+  //#endregion
+
   //#region Method
   public close() {
     const tElem = document.getElementById('menu');
