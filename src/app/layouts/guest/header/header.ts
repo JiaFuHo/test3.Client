@@ -1,6 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { NavigationEnd,Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 
 import { LoginS } from '../../../core/services/common/login/loginS';
@@ -37,6 +37,13 @@ export class Header {
     const tElem = document.getElementById('menu');
 
     if (tElem) { bootstrap.Collapse.getOrCreateInstance(tElem)?.hide(); }
+  }
+
+  public logout() {
+    localStorage.removeItem('client');
+
+    this.loginS.client.set(null);
+    this._router.navigate(['/']);
   }
 
   public search() {

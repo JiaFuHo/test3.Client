@@ -12,4 +12,5 @@ export class LoginRes extends ResBase {
   public cName: string = '';
   public cPhone: string = '';
   public permission: number = 0;
+  public token: string = '';
 }

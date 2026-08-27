@@ -1,6 +1,7 @@
 import { Component, DestroyRef, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { LoginReq } from './../../../core/models/common/loginVm';
 import { ToastP } from './../../../core/providers/common/toastP';
@@ -23,6 +24,7 @@ export class LoginG {
   private _dr = inject(DestroyRef);
   private _formBuilder = inject(FormBuilder);
   private _loginS = inject(LoginS);
+  private _router = inject(Router);
   private _toastP = inject(ToastP);
 
   public formLG = this._formBuilder.nonNullable.group({
@@ -42,6 +44,7 @@ export class LoginG {
       next: (res) => {
         if (res.status) {
           this._loginS.client.set(res);
+          this._router.navigate(['/']);
           this._toastP.tInfo(res.message);
 
           localStorage.setItem('client', JSON.stringify(res));

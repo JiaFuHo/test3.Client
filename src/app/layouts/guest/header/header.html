@@ -27,7 +27,7 @@
           }
           <li class="nav-item">
             @if (loginS.client()) {
-              <a class="nav-link" routerLink="/loginG" (click)="close()"> <!-- ??? -->
+              <a class="nav-link" routerLink="/loginG" (click)="close(); logout()"> <!-- ??? -->
                 {{ loginS.client()!.cName }} <i class="bi bi-person"></i>
               </a>
             }
