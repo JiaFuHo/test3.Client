@@ -4,6 +4,7 @@ import { Guest } from './layouts/guest/guest';
 import { LoginG } from './features/guest/login/login';
 import { HomeG } from './features/guest/home/home';
 import { Collection } from './features/guest/collection/collection';
+import { Info } from './features/guest/info/info';
 import { Search } from './features/guest/search/search';
 
 import { Admin } from './layouts/admin/admin';
@@ -31,6 +32,10 @@ export const routes: Routes = [
       {
         path: 'collection',
         component: Collection,
+      },
+      {
+        path: 'info',
+        component: Info,
       },
       {
         path: 'search',

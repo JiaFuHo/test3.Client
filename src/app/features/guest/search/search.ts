@@ -25,8 +25,9 @@ export class Search implements OnInit {
   private _searchS = inject(SearchS);
   private _toastP = inject(ToastP);
 
-  public isActive: number = 1;
   public bookInfo: BookInfo | null = null;
+
+  public isActive: number = 1;
   //#endregion
 
   //#region Lifecycle

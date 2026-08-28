@@ -1,3 +1,4 @@
+import { Info } from './../../../features/guest/info/info';
 import { QueryResBase } from '../common/ResBase';
 
 export class BookInfo {
@@ -37,6 +38,12 @@ export class HomeQuerySeriesRes extends QueryResBase {
 export class CollectionQueryReq {}
 
 export class CollectionQueryRes extends QueryResBase {}
+//#endregion
+
+//#region Info
+export class InfoQueryReq {}
+
+export class InfoQueryRes extends QueryResBase {}
 //#endregion
 
 //#region Search

@@ -13,6 +13,11 @@ nav {
   }
 }
 
+.glassmorphism {
+  backdrop-filter: blur(.5rem);
+  -webkit-backdrop-filter: blur(.5rem);
+}
+
 .navbar-brand {
   margin-left: 10vw;
 }
@@ -37,4 +42,12 @@ nav {
 
 .nav-link:hover {
   color: var(--c1-brown2---100);
+}
+
+.drpItem {
+  color: var(--c1-black---075);
+}
+
+.drpItem:hover {
+  background-color: var(--c2-orange1-050);
 }

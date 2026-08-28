@@ -1,5 +1,6 @@
 <header class="sticky-top">
-  <nav class="navbar navbar-expand-md">
+  <nav class="navbar navbar-expand-md" [class.glassmorphism]="isToggle()"
+    [style.background]="isToggle() ? 'var(--c1-green1---075)' : 'linear-gradient(180deg, var(--c1-green1---075) 0%, var(--c1-green1---050) 50%, var(--c1-green1---025) 100%)'">
     <div class="container-fluid">
       <a class="navbar-brand" routerLink="/">
         <img id="logoH" src="/images/logoH.png">
@@ -25,11 +26,17 @@
               </a>
             </li>
           }
-          <li class="nav-item">
+          <li class="nav-item dropdown position-relative" (mouseenter)="isHover.set(true)" (mouseleave)="isHover.set(false)">
             @if (loginS.client()) {
-              <a class="nav-link" routerLink="/loginG" (click)="close(); logout()"> <!-- ??? -->
+              <a class="nav-link" routerLink="/loginG" (click)="close()">
                 {{ loginS.client()!.cName }} <i class="bi bi-person"></i>
               </a>
+
+              <ul class="dropdown-menu position-absolute" [class.show]="isHover()" style="right: 0; left: auto">
+                <li><a class="dropdown-item drpItem">帳戶</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item drpItem" (click)="logout()">登出</a></li>
+              </ul>
             }
             @else {
               <a class="nav-link" routerLink="/loginG" (click)="close()">

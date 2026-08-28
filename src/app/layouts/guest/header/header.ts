@@ -23,6 +23,9 @@ export class Header {
 
   public loginS = inject(LoginS);
   public path = signal<string>('');
+
+  public isHover = signal<boolean>(false);
+  public isToggle = signal<boolean>(false);
   //#endregion
 
   //#region Constructor
@@ -37,6 +40,8 @@ export class Header {
     const tElem = document.getElementById('menu');
 
     if (tElem) { bootstrap.Collapse.getOrCreateInstance(tElem)?.hide(); }
+
+    this.isToggle.set(false);
   }
 
   public logout() {
@@ -44,6 +49,8 @@ export class Header {
 
     this.loginS.client.set(null);
     this._router.navigate(['/']);
+
+    this.isHover.set(false);
   }
 
   public search() {
@@ -52,12 +59,16 @@ export class Header {
 
     if (tElem1) { bootstrap.Collapse.getOrCreateInstance(tElem1)?.hide(); }
     if (tElem2) { bootstrap.Modal.getOrCreateInstance(tElem2)?.show(); }
+
+    this.isToggle.set(false);
   }
 
   public toggle() {
     const tElem = document.getElementById('menu');
 
     if (tElem) { bootstrap.Collapse.getOrCreateInstance(tElem)?.toggle(); }
+
+    this.isToggle.update(x => !x);
   }
   //#endregion
 }
