@@ -1,5 +1,9 @@
-import { Info } from './../../../features/guest/info/info';
 import { QueryResBase } from '../common/ResBase';
+
+export class AuthorInfo {
+  public author: string = '';
+  public aDesc: string = '';
+}
 
 export class BookInfo {
   public title: string = '';
@@ -15,9 +19,19 @@ export class BookInfo {
   public bookStatus: boolean = false;
 }
 
-export class AuthorInfo {
-  public author: string = '';
-  public aDesc: string = '';
+export class LangInfo {
+  public langId: number = 0;
+  public lang: string = '';
+}
+
+export class SeriesInfo {
+  public seriesId: number = 0;
+  public series: string = '';
+}
+
+export class TypeInfo {
+  public typeId: number = 0;
+  public type: string = '';
 }
 
 //#region Home
@@ -30,14 +44,30 @@ export class HomeQueryBookRes extends QueryResBase {
 }
 
 export class HomeQuerySeriesRes extends QueryResBase {
-  public seriesList: string[] = [];
+  public seriesList: SeriesInfo[] = [];
 }
 //#endregion
 
 //#region Collection
-export class CollectionQueryReq {}
+export class AccordionQueryRes extends QueryResBase {
+  public typeList: TypeInfo[] = [];
+  public publisherList: string[] = [];
+  public langList: LangInfo[] = [];
+  public seriesList: SeriesInfo[] = [];
+}
 
-export class CollectionQueryRes extends QueryResBase {}
+export class CollectionQueryReq {
+  public typeId?: number;
+  public publisher?: string;
+  public langId?: number;
+  public seriesId?: number;
+  public sYear?: string;
+  public eYear?: string;
+}
+
+export class CollectionQueryRes extends QueryResBase {
+  public bookList: BookInfo[] = [];
+}
 //#endregion
 
 //#region Info

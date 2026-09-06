@@ -3,7 +3,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { SearchQueryReq } from '../../../../core/models/guest/test3VmG';
+import { SeriesInfo, SearchQueryReq } from '../../../../core/models/guest/test3VmG';
 import { SeriesListS } from '../../../../core/services/guest/home/serieslistS';
 
 import { CoreModule } from '../../../../shared/modules/core';
@@ -63,7 +63,7 @@ export class ModalSearch implements OnInit {
   public type1List = Type1List;
   public langList = LangList;
   public type2List = Type2List;
-  public seriesList: string[] = [];
+  public seriesList: SeriesInfo[] = [];
 
   public formQ = this._formBuilder.nonNullable.group({
     type1: ['title'],
