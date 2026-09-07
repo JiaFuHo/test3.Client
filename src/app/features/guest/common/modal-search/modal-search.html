@@ -8,7 +8,7 @@
       <div class="modal-body d-flex justify-content-center">
         <div class="row align-items-stretch w-100">
           <div class="col-3 mb-3 pe-1">
-            <app-drp [FC]="formQ.controls.type1" [options]="type1List"></app-drp>
+            <app-drp [FC]="formQ.controls.kind" [options]="kindList"></app-drp>
           </div>
           <div class="col-9 mb-3 ps-1">
             <app-ipt [FC]="formQ.controls.info"></app-ipt>
@@ -31,10 +31,10 @@
             </div>
 
             <div class="col-6 mb-3 pe-1">
-              <app-drp [FC]="formQ.controls.lang" [options]="langList"></app-drp>
+              <app-drp [FC]="formQ.controls.langId" [options]="langList"></app-drp>
             </div>
             <div class="col-6 mb-3 ps-1">
-              <app-drp [FC]="formQ.controls.type2" [options]="type2List"></app-drp>
+              <app-drp [FC]="formQ.controls.typeId" [options]="typeList"></app-drp>
             </div>
           }
 

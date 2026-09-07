@@ -31,8 +31,6 @@ export class SwiperNew implements OnInit {
   public ngOnInit() {
     const args: HomeQueryBookReq = { mode: 'N' };
 
-    this.bookList = [];
-
     this._booklistS.exe(args).pipe(takeUntilDestroyed(this._dr)).subscribe({
       next: (res) => {
         if (res.status) { this.bookList = res.bookList; }
@@ -45,7 +43,7 @@ export class SwiperNew implements OnInit {
 
   //#region Method
   public query(isbn: string) {
-    const args: SearchQueryReq = { type1: 'isbn', info: isbn };
+    const args: SearchQueryReq = { kind: 'isbn', info: isbn };
 
     this._router.navigate(['/search'], { queryParams: args });
   }

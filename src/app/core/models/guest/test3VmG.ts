@@ -19,21 +19,6 @@ export class BookInfo {
   public bookStatus: boolean = false;
 }
 
-export class LangInfo {
-  public langId: number = 0;
-  public lang: string = '';
-}
-
-export class SeriesInfo {
-  public seriesId: number = 0;
-  public series: string = '';
-}
-
-export class TypeInfo {
-  public typeId: number = 0;
-  public type: string = '';
-}
-
 //#region Home
 export class HomeQueryBookReq {
   public mode: string = '';
@@ -42,20 +27,9 @@ export class HomeQueryBookReq {
 export class HomeQueryBookRes extends QueryResBase {
   public bookList: BookInfo[] = [];
 }
-
-export class HomeQuerySeriesRes extends QueryResBase {
-  public seriesList: SeriesInfo[] = [];
-}
 //#endregion
 
 //#region Collection
-export class AccordionQueryRes extends QueryResBase {
-  public typeList: TypeInfo[] = [];
-  public publisherList: string[] = [];
-  public langList: LangInfo[] = [];
-  public seriesList: SeriesInfo[] = [];
-}
-
 export class CollectionQueryReq {
   public typeId?: number;
   public publisher?: string;
@@ -78,12 +52,12 @@ export class InfoQueryRes extends QueryResBase {}
 
 //#region Search
 export class SearchQueryReq {
-  public type1?: string;
+  public kind?: string;
   public info?: string;
   public sYear?: string;
   public eYear?: string;
-  public lang?: string;
-  public type2?: string;
+  public langId?: string;
+  public typeId?: string;
 }
 
 export class SearchQueryRes extends QueryResBase {

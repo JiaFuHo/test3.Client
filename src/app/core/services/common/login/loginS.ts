@@ -1,7 +1,7 @@
 import { Injectable, inject, signal } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { LoginReq, LoginRes } from './../../../models/common/loginVm';
+import { LoginReq, LoginRes } from '../../../models/common/loginVm';
 import { ServiceP } from '../../../providers/system/serviceP';
 
 @Injectable({ providedIn: 'root' })

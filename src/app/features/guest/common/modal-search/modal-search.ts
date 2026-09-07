@@ -3,8 +3,9 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { SeriesInfo, SearchQueryReq } from '../../../../core/models/guest/test3VmG';
-import { SeriesListS } from '../../../../core/services/guest/home/serieslistS';
+import { SearchQueryReq } from '../../../../core/models/guest/test3VmG';
+import { SeriesInfo } from '../../../../core/models/common/lookupVm';
+import { LookupS } from '../../../../core/services/common/lookup/lookupS';
 
 import { CoreModule } from '../../../../shared/modules/core';
 import { Btn } from '../../../../shared/widgets/btn/btn';
@@ -18,32 +19,14 @@ interface Opt {
   text: string;
 }
 
-const Type1List: Opt[] = [
+const KindList: Opt[] = [
   { value: 'title', text: '書名' },
   { value: 'author', text: '作者' },
   { value: 'publisher', text: '出版社' },
   { value: 'isbn', text: 'ISBN' },
 ];
-
-const LangList: Opt[] = [
-  { value: '', text: '語言 (全部)' },
-  { value: '1', text: 'English' },
-  { value: '2', text: 'le français' },
-  { value: '3', text: '中文' },
-  { value: '4', text: '日本語' },
-  { value: '5', text: '한국어' },
-];
-
-const Type2List: Opt[] = [
-  { value: '', text: '類型 (全部)' },
-  { value: '1', text: '小說' },
-  { value: '2', text: '兒童讀物' },
-  { value: '3', text: '青少年讀物' },
-  { value: '4', text: '散文' },
-  { value: '5', text: '傳記' },
-  { value: '6', text: '詩集' },
-  { value: '7', text: '漫畫' },
-];
+const LangList: Opt[] = [{ value: '', text: '語言 (全部)' }];
+const TypeList: Opt[] = [{ value: '', text: '類型 (全部)' }];
 
 @Component({
   selector: 'app-modal-search',
@@ -56,32 +39,37 @@ export class ModalSearch implements OnInit {
   private _cdr = inject(ChangeDetectorRef);
   private _dr = inject(DestroyRef);
   private _formBuilder = inject(FormBuilder);
+  private _lookupS = inject(LookupS);
   private _router = inject(Router);
-  private _serieslistS = inject(SeriesListS);
 
   public mode = '';
-  public type1List = Type1List;
+  public kindList = KindList;
   public langList = LangList;
-  public type2List = Type2List;
+  public typeList = TypeList;
   public seriesList: SeriesInfo[] = [];
 
   public formQ = this._formBuilder.nonNullable.group({
-    type1: ['title'],
+    kind: ['title'],
     info: ['', Validators.required],
     sYear: [''],
     eYear: [''],
-    lang: [''],
-    type2: [''],
+    langId: [''],
+    typeId: [''],
   });
   //#endregion
 
   //#region Lifecycle
   public ngOnInit() {
-    this.seriesList = [];
-
-    this._serieslistS.exe().pipe(takeUntilDestroyed(this._dr)).subscribe({
+    this._lookupS.exe().pipe(takeUntilDestroyed(this._dr)).subscribe({
       next: (res) => {
-        if (res.status) { this.seriesList = res.seriesList; }
+        if (res.status) {
+          const langListX = res.langList.map(x => ({ value: x.langId.toString(), text: x.lang }));
+          const typeListX = res.typeList.map(x => ({ value: x.typeId.toString(), text: x.type }));
+
+          this.typeList.push(...typeListX);
+          this.langList.push(...langListX);
+          this.seriesList = res.seriesList.slice(0, 3);
+        }
 
         this._cdr.detectChanges();
       }
@@ -116,13 +104,13 @@ export class ModalSearch implements OnInit {
     const info = this.formQ.controls.info;
     const sYear = this.formQ.controls.sYear;
     const eYear = this.formQ.controls.eYear;
-    const lang = this.formQ.controls.lang;
-    const type2 = this.formQ.controls.type2;
+    const langId = this.formQ.controls.langId;
+    const typeId = this.formQ.controls.typeId;
 
     if (this.mode === 'A') { info.clearValidators(); }
     else {
       info.setValidators([Validators.required]);
-      [sYear, eYear, lang, type2].forEach(x => x.reset());
+      [sYear, eYear, langId, typeId].forEach(x => x.reset());
     }
 
     info.updateValueAndValidity();

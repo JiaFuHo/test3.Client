@@ -3,8 +3,8 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { LoginReq } from './../../../core/models/common/loginVm';
-import { ToastP } from './../../../core/providers/common/toastP';
+import { LoginReq } from '../../../core/models/common/loginVm';
+import { ToastP } from '../../../core/providers/common/toastP';
 import { LoginS } from '../../../core/services/common/login/loginS';
 
 import { CoreModule } from '../../../shared/modules/core';

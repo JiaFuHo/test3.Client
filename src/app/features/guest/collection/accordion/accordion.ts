@@ -1,8 +1,8 @@
 import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
-import { TypeInfo, LangInfo, SeriesInfo } from '../../../../core/models/guest/test3VmG';
-import { AccordionS } from '../../../../core/services/guest/collection/accordionS';
+import { TypeInfo, LangInfo, SeriesInfo } from '../../../../core/models/common/lookupVm';
+import { LookupS } from '../../../../core/services/common/lookup/lookupS';
 
 import { Btn } from '../../../../shared/widgets/btn/btn';
 
@@ -14,7 +14,7 @@ import { Btn } from '../../../../shared/widgets/btn/btn';
 })
 export class Accordion {
   //#region State
-  private _accordionS = inject(AccordionS);
+  private _lookupS = inject(LookupS);
   private _dr = inject(DestroyRef);
 
   public typeList: TypeInfo[] = [];
@@ -25,13 +25,9 @@ export class Accordion {
 
   //#region Lifecycle
   public ngOnInit() {
-    this.typeList = [];
-    this.publisherList = [];
-    this.langList = [];
-    this.seriesList = [];
-
-    this._accordionS.exe().pipe(takeUntilDestroyed(this._dr)).subscribe({
-      next: (res) => {console.log(res)
+    this._lookupS.exe().pipe(takeUntilDestroyed(this._dr)).subscribe({
+      next: (res) => {
+        console.log(res);
         if (res.status) {
           this.typeList = res.typeList;
           this.publisherList = res.publisherList;
