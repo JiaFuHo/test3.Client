@@ -8,7 +8,7 @@
       <div class="modal-body d-flex justify-content-center">
         <div class="row align-items-stretch w-100">
           <div class="col-3 mb-3 pe-1">
-            <app-drp [FC]="formQ.controls.kind" [options]="kindList"></app-drp>
+            <app-drp [FC]="formQ.controls.kind" [options]="kindList()"></app-drp>
           </div>
           <div class="col-9 mb-3 ps-1">
             <app-ipt [FC]="formQ.controls.info"></app-ipt>
@@ -16,6 +16,13 @@
 
           @if (mode === '') { }
           @else {
+            <div class="col-6 mb-3 pe-1">
+              <app-drp [FC]="formQ.controls.typeId" [options]="typeList()"></app-drp>
+            </div>
+            <div class="col-6 mb-3 ps-1">
+              <app-drp [FC]="formQ.controls.langId" [options]="langList()"></app-drp>
+            </div>
+
             <div class="col-3 d-flex align-items-center mb-3 pe-1">
               <p class="mb-0" style="padding-left: .75rem">年份：</p>
             </div>
@@ -28,13 +35,6 @@
                   <app-ipt [FC]="formQ.controls.eYear" placeholder="(迄)"></app-ipt>
                 </div>
               </div>
-            </div>
-
-            <div class="col-6 mb-3 pe-1">
-              <app-drp [FC]="formQ.controls.langId" [options]="langList"></app-drp>
-            </div>
-            <div class="col-6 mb-3 ps-1">
-              <app-drp [FC]="formQ.controls.typeId" [options]="typeList"></app-drp>
             </div>
           }
 
@@ -49,7 +49,7 @@
       <div class="modal-footer d-flex justify-content-start">
         <p>系列：</p>
 
-        @for (series of seriesList; track $index) {
+        @for (series of seriesList(); track $index) {
           <app-btn btnClass="btn_BG-GRAY3" (click)="sync($event)">{{ series.series }}</app-btn>
         }
       </div>

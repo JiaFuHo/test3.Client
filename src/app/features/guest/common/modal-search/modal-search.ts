@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef, DestroyRef, inject, OnInit } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -25,8 +25,8 @@ const KindList: Opt[] = [
   { value: 'publisher', text: '出版社' },
   { value: 'isbn', text: 'ISBN' },
 ];
-const LangList: Opt[] = [{ value: '', text: '語言 (全部)' }];
 const TypeList: Opt[] = [{ value: '', text: '類型 (全部)' }];
+const LangList: Opt[] = [{ value: '', text: '語言 (全部)' }];
 
 @Component({
   selector: 'app-modal-search',
@@ -36,25 +36,24 @@ const TypeList: Opt[] = [{ value: '', text: '類型 (全部)' }];
 })
 export class ModalSearch implements OnInit {
   //#region State
-  private _cdr = inject(ChangeDetectorRef);
   private _dr = inject(DestroyRef);
   private _formBuilder = inject(FormBuilder);
   private _lookupS = inject(LookupS);
   private _router = inject(Router);
 
   public mode = '';
-  public kindList = KindList;
-  public langList = LangList;
-  public typeList = TypeList;
-  public seriesList: SeriesInfo[] = [];
+  public kindList = signal<Opt[]>(KindList);
+  public typeList = signal<Opt[]>(TypeList);
+  public langList = signal<Opt[]>(LangList);
+  public seriesList = signal<SeriesInfo[]>([]);
 
   public formQ = this._formBuilder.nonNullable.group({
-    kind: ['title'],
+    kind: 'title',
     info: ['', Validators.required],
-    sYear: [''],
-    eYear: [''],
-    langId: [''],
-    typeId: [''],
+    typeId: '',
+    langId: '',
+    sYear: '',
+    eYear: '',
   });
   //#endregion
 
@@ -63,15 +62,13 @@ export class ModalSearch implements OnInit {
     this._lookupS.exe().pipe(takeUntilDestroyed(this._dr)).subscribe({
       next: (res) => {
         if (res.status) {
-          const langListX = res.langList.map(x => ({ value: x.langId.toString(), text: x.lang }));
-          const typeListX = res.typeList.map(x => ({ value: x.typeId.toString(), text: x.type }));
+          const TypeListX = res.typeList.map(x => ({ value: x.typeId.toString(), text: x.type }));
+          const LangListX = res.langList.map(x => ({ value: x.langId.toString(), text: x.lang }));
 
-          this.typeList.push(...typeListX);
-          this.langList.push(...langListX);
-          this.seriesList = res.seriesList.slice(0, 3);
+          this.typeList.set([...TypeList, ...TypeListX]);
+          this.langList.set([...LangList, ...LangListX]);
+          this.seriesList.set(res.seriesList.slice(0, 3));
         }
-
-        this._cdr.detectChanges();
       }
     });
   }

@@ -62,3 +62,8 @@ button:hover {
   color: var(--c1-white---100);
   background-color: var(--c1-red------090);
 }
+
+.btn_ACD:hover {
+  background-color: var(--c2-orange1-050);
+  box-shadow: 0 0 0 .25rem var(--c2-orange1-050);
+}

@@ -14,8 +14,9 @@ nav {
 }
 
 .glassmorphism {
-  backdrop-filter: blur(.5rem);
+  background-color: var(--c1-green1---075);
   -webkit-backdrop-filter: blur(.5rem);
+  backdrop-filter: blur(.5rem);
 }
 
 .navbar-brand {

@@ -31,10 +31,10 @@ export class HomeQueryBookRes extends QueryResBase {
 
 //#region Collection
 export class CollectionQueryReq {
-  public typeId?: number;
+  public typeId?: string;
   public publisher?: string;
-  public langId?: number;
-  public seriesId?: number;
+  public langId?: string;
+  public seriesId?: string;
   public sYear?: string;
   public eYear?: string;
 }
@@ -54,10 +54,10 @@ export class InfoQueryRes extends QueryResBase {}
 export class SearchQueryReq {
   public kind?: string;
   public info?: string;
+  public typeId?: string;
+  public langId?: string;
   public sYear?: string;
   public eYear?: string;
-  public langId?: string;
-  public typeId?: string;
 }
 
 export class SearchQueryRes extends QueryResBase {

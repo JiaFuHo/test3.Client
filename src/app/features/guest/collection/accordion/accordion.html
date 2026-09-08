@@ -1,0 +1,119 @@
+<form [formGroup]="formQ" (ngSubmit)="query()">
+  <div class="accordion">
+    <div class="accordion-item">
+      <div class="accordion-header">
+        <button type="button" class="accordion-button text-dark" [class.collapsed]="!isCollapseT()"
+          [style.background-color]="isCollapseT() ? 'var(--c1-green1---025)' : 'var(--c1-white---100)'"
+          (click)="collapse('T')">類別</button>
+      </div>
+      <div class="accordion-collapse collapse" [class.show]="isCollapseT()">
+        <div class="accordion-body d-flex flex-column p-3 gap-2">
+          @for (type of typeList(); track type.typeId) {
+            @let typeId = type.typeId.toString();
+
+            <app-btn type="submit" btnClass="btn_ACD d-flex justify-content-between align-items-center w-100
+              text-start text-muted border-0 rounded-2"
+              (click)="formQ.controls.typeId.setValue(typeId)">
+              {{ type.type }}
+
+              @if (formQ.controls.typeId.value === typeId) { <i class="bi bi-check-circle-fill text-success"></i> }
+            </app-btn>
+          }
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-header">
+        <button type="button" class="accordion-button text-dark" [class.collapsed]="!isCollapseP()"
+          [style.background-color]="isCollapseP() ? 'var(--c1-green1---025)' : 'var(--c1-white---100)'"
+          (click)="collapse('P')">出版社</button>
+      </div>
+      <div class="accordion-collapse collapse" [class.show]="isCollapseP()">
+        <div class="accordion-body d-flex flex-column p-3 gap-2">
+          @for (publisher of publisherList(); track $index) {
+            <app-btn type="submit" btnClass="btn_ACD d-flex justify-content-between align-items-center w-100
+              text-start text-muted border-0 rounded-2"
+              (click)="formQ.controls.publisher.setValue(publisher)">
+              {{ publisher }}
+
+              @if (formQ.controls.publisher.value === publisher) { <i class="bi bi-check-circle-fill text-success"></i> }
+            </app-btn>
+          }
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-header">
+        <button type="button" class="accordion-button text-dark" [class.collapsed]="!isCollapseL()"
+          [style.background-color]="isCollapseL() ? 'var(--c1-green1---025)' : 'var(--c1-white---100)'"
+          (click)="collapse('L')">語言</button>
+      </div>
+      <div class="accordion-collapse collapse" [class.show]="isCollapseL()">
+        <div class="accordion-body d-flex flex-column p-3 gap-2">
+          @for (lang of langList(); track lang.langId) {
+            @let langId = lang.langId.toString();
+
+            <app-btn type="submit" btnClass="btn_ACD d-flex justify-content-between align-items-center w-100
+              text-start text-muted border-0 rounded-2"
+              (click)="formQ.controls.langId.setValue(langId)">
+              {{ lang.lang }}
+
+              @if (formQ.controls.langId.value === langId) { <i class="bi bi-check-circle-fill text-success"></i> }
+            </app-btn>
+          }
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-header">
+        <button type="button" class="accordion-button text-dark" [class.collapsed]="!isCollapseS()"
+          [style.background-color]="isCollapseS() ? 'var(--c1-green1---025)' : 'var(--c1-white---100)'"
+          (click)="collapse('S')">系列</button>
+      </div>
+      <div class="accordion-collapse collapse" [class.show]="isCollapseS()">
+        <div class="accordion-body d-flex flex-column p-3 gap-2">
+          @for (series of seriesList(); track series.seriesId) {
+            @let seriesId = series.seriesId.toString();
+
+            <app-btn type="submit" btnClass="btn_ACD d-flex justify-content-between align-items-center w-100
+              text-start text-muted border-0 rounded-2"
+              (click)="formQ.controls.seriesId.setValue(seriesId)">
+              {{ series.series }}
+
+              @if (formQ.controls.seriesId.value === seriesId) { <i class="bi bi-check-circle-fill text-success"></i> }
+            </app-btn>
+          }
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-header">
+        <button type="button" class="accordion-button text-dark" [class.collapsed]="!isCollapseY()"
+          [style.background-color]="isCollapseY() ? 'var(--c1-green1---025)' : 'var(--c1-white---100)'"
+          (click)="collapse('Y')">年份</button>
+      </div>
+      <div class="accordion-collapse collapse" [class.show]="isCollapseY()">
+        <div class="accordion-body d-flex flex-column p-3 gap-2">
+          <div class="row w-100 m-0">
+            <div class="col-6 ps-0">
+              <app-ipt [FC]="formQ.controls.sYear" placeholder="(起)"></app-ipt>
+            </div>
+            <div class="col-6 pe-0">
+              <app-ipt [FC]="formQ.controls.eYear" placeholder="(迄)"></app-ipt>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-body d-flex flex-column p-0">
+        <app-btn id="btnR" btnClass="btn_BG-RED w-100" (click)="reset()">重置</app-btn>
+      </div>
+    </div>
+  </div>
+</form>

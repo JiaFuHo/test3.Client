@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef, DestroyRef, inject, OnInit } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -18,16 +18,15 @@ import { SwiperPop } from '../common/swiper-pop/swiper-pop';
 })
 export class Search implements OnInit {
   //#region State
-  private _cdr = inject(ChangeDetectorRef);
   private _dr = inject(DestroyRef);
   private _route = inject(ActivatedRoute);
   private _router = inject(Router);
   private _searchS = inject(SearchS);
   private _toastP = inject(ToastP);
 
-  public bookInfo: BookInfo | null = null;
+  public bookInfo = signal<BookInfo | null>(null);
 
-  public isActive: number = 1;
+  public isActive = signal<number>(1);
   //#endregion
 
   //#region Lifecycle
@@ -40,20 +39,21 @@ export class Search implements OnInit {
       this._searchS.exe(args as SearchQueryReq).pipe(takeUntilDestroyed(this._dr)).subscribe({
         next: (res) => {
           if (res.status) {
-            this.bookInfo = res.bookInfo;
+            this.bookInfo.set(res.bookInfo);
             this._toastP.tInfo(res.message);
           }
           else {
-            if (res.statusCode.startsWith('400')) { this._toastP.tWarn(res.message); }
-            else { this._toastP.tErr(res.message); }
+            if (res.statusCode.startsWith('400')) {
+              this.bookInfo.set(null);
+              this._toastP.tWarn(res.message);
+            }
+            else {
+              this.bookInfo.set(null);
+              this._toastP.tErr(res.message);
+            }
           }
-
-          this._cdr.detectChanges();
         },
-        error: (err) => {
-          this._toastP.tErr('Network Error');
-          this._cdr.detectChanges();
-        },
+        error: (err) => { this._toastP.tErr('Network Error'); }
       });
     });
   }

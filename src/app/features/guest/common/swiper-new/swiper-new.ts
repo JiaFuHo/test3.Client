@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef, CUSTOM_ELEMENTS_SCHEMA as WebCmp, DestroyRef, inject, OnInit } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA as WebCmp, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
 
@@ -20,11 +20,10 @@ Swiper();
 export class SwiperNew implements OnInit {
   //#region State
   private _booklistS = inject(BookListS);
-  private _cdr = inject(ChangeDetectorRef);
   private _dr = inject(DestroyRef);
   private _router = inject(Router);
 
-  public bookList: BookInfo[] = [];
+  public bookList = signal<BookInfo[]>([]);
   //#endregion
 
   //#region Lifecycle
@@ -32,11 +31,7 @@ export class SwiperNew implements OnInit {
     const args: HomeQueryBookReq = { mode: 'N' };
 
     this._booklistS.exe(args).pipe(takeUntilDestroyed(this._dr)).subscribe({
-      next: (res) => {
-        if (res.status) { this.bookList = res.bookList; }
-
-        this._cdr.detectChanges();
-      }
+      next: (res) => { if (res.status) { this.bookList.set(res.bookList); } }
     });
   }
   //#endregion

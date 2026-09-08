@@ -7,7 +7,7 @@
 h2 {
   background-image: url("/images/bgx.png");
   background-position: center;
-  background-size: contain;
+  background-size: auto;
   background-repeat: no-repeat;
 }
 
@@ -22,6 +22,7 @@ swiper-container::part(button-prev) {
 }
 
 @media(min-width: 768px) {
+
   swiper-container::part(button-next),
   swiper-container::part(button-prev) {
     display: block;
