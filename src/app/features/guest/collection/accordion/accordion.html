@@ -13,7 +13,7 @@
 
             <app-btn type="submit" btnClass="btn_ACD d-flex justify-content-between align-items-center w-100
               text-start text-muted border-0 rounded-2"
-              (click)="formQ.controls.typeId.setValue(typeId)">
+              (click)="select('typeId', typeId)">
               {{ type.type }}
 
               @if (formQ.controls.typeId.value === typeId) { <i class="bi bi-check-circle-fill text-success"></i> }
@@ -34,7 +34,7 @@
           @for (publisher of publisherList(); track $index) {
             <app-btn type="submit" btnClass="btn_ACD d-flex justify-content-between align-items-center w-100
               text-start text-muted border-0 rounded-2"
-              (click)="formQ.controls.publisher.setValue(publisher)">
+              (click)="select('publisher', publisher)">
               {{ publisher }}
 
               @if (formQ.controls.publisher.value === publisher) { <i class="bi bi-check-circle-fill text-success"></i> }
@@ -57,7 +57,7 @@
 
             <app-btn type="submit" btnClass="btn_ACD d-flex justify-content-between align-items-center w-100
               text-start text-muted border-0 rounded-2"
-              (click)="formQ.controls.langId.setValue(langId)">
+              (click)="select('langId', langId)">
               {{ lang.lang }}
 
               @if (formQ.controls.langId.value === langId) { <i class="bi bi-check-circle-fill text-success"></i> }
@@ -80,7 +80,7 @@
 
             <app-btn type="submit" btnClass="btn_ACD d-flex justify-content-between align-items-center w-100
               text-start text-muted border-0 rounded-2"
-              (click)="formQ.controls.seriesId.setValue(seriesId)">
+              (click)="select('seriesId', seriesId)">
               {{ series.series }}
 
               @if (formQ.controls.seriesId.value === seriesId) { <i class="bi bi-check-circle-fill text-success"></i> }
@@ -100,10 +100,12 @@
         <div class="accordion-body d-flex flex-column p-3 gap-2">
           <div class="row w-100 m-0">
             <div class="col-6 ps-0">
-              <app-ipt [FC]="formQ.controls.sYear" placeholder="(起)"></app-ipt>
+              <!-- <app-ipt [FC]="formQ.controls.sYear" placeholder="(起)" (change)="query()"></app-ipt> -->
+              <app-ipt [FC]="formQ.controls.sYear" placeholder="(起)" (keydown.enter)="query()" (focusout)="query()"></app-ipt>
             </div>
             <div class="col-6 pe-0">
-              <app-ipt [FC]="formQ.controls.eYear" placeholder="(迄)"></app-ipt>
+              <!-- <app-ipt [FC]="formQ.controls.eYear" placeholder="(迄)" (change)="query()"></app-ipt> -->
+              <app-ipt [FC]="formQ.controls.eYear" placeholder="(迄)" (keydown.enter)="query()" (focusout)="query()"></app-ipt>
             </div>
           </div>
         </div>

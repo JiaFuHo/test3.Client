@@ -71,12 +71,19 @@ export class Accordion implements OnInit {
     }
   }
 
-  public reset() { this.formQ.reset(); }
-
   public query() {
-    const args: CollectionQueryReq = this.formQ.getRawValue();
+    const args: CollectionQueryReq = { ...new CollectionQueryReq(), ...this.formQ.getRawValue() };
 
     this._router.navigate(['/collection'], { queryParams: args });
+  }
+
+  public reset() { this.formQ.reset(); this.query(); }
+
+  public select(FC: string, tVal: string) {
+    const tElem = this.formQ.get(FC);
+
+    if (tElem?.value === tVal) { tElem.setValue(''); }
+    else { tElem?.setValue(tVal); }
   }
   //#endregion
 }

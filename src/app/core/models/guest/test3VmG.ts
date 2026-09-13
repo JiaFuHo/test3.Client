@@ -1,3 +1,4 @@
+import { QueryReqBase } from '../common/ReqBase';
 import { QueryResBase } from '../common/ResBase';
 
 export class AuthorInfo {
@@ -30,13 +31,15 @@ export class HomeQueryBookRes extends QueryResBase {
 //#endregion
 
 //#region Collection
-export class CollectionQueryReq {
+export class CollectionQueryReq extends QueryReqBase {
   public typeId?: string;
   public publisher?: string;
   public langId?: string;
   public seriesId?: string;
   public sYear?: string;
   public eYear?: string;
+
+  public override size: number = 5;
 }
 
 export class CollectionQueryRes extends QueryResBase {

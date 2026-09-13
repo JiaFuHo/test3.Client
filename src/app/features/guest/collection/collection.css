@@ -4,3 +4,20 @@ h2 {
   background-size: auto;
   background-repeat: no-repeat;
 }
+
+#box_bookList {
+  background-color: var(--c1-brown3---010);
+  border-color: var(--c1-gray3---050);
+}
+
+#box_img {
+  width: 100%;
+  max-width: 270px;
+  aspect-ratio: 3 / 4;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
