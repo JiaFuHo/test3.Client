@@ -31,7 +31,13 @@ export class Collection implements OnInit {
   //#region Lifecycle
   public ngOnInit() {
     this._route.queryParams.pipe(takeUntilDestroyed(this._dr)).subscribe((args) => {
-      this._collectinS.exe(args as CollectionQueryReq).pipe(takeUntilDestroyed(this._dr)).subscribe({
+      const req = new CollectionQueryReq();
+
+      Object.assign(req, args);
+
+      const reqX = JSON.parse(JSON.stringify(req));
+
+      this._collectinS.exe(reqX).pipe(takeUntilDestroyed(this._dr)).subscribe({
         next: (res) => {
           if (res.status) {console.log(res)
             this.bookList.set(res.bookList);
