@@ -66,5 +66,5 @@ export class Collection implements OnInit {
 
       this._router.navigate(['/search'], { queryParams: args });
     }
-    //#endregion
+  //#endregion
 }
