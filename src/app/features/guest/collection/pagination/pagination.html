@@ -1,0 +1,27 @@
+<nav class="d-flex justify-content-center mt-5">
+  <ul class="pagination mb-0">
+    <li class="page-item" [class.btnCstH]="page() === 1">
+      <a class="page-link" (click)="flip(1)">&laquo;</a>
+    </li>
+    <li class="page-item" [class.btnCstH]="page() === 1">
+      <a class="page-link" (click)="flip(page() - 1)">&lsaquo;</a>
+    </li>
+
+    @for (x of pageArray(); track x) {
+      <li class="page-item position-relative">
+        <i class="bi bi-person-walking position-absolute start-50 translate-middle-x"
+          style="top: -2rem; font-size: 1.5rem; z-index: 10;"
+          [style.color]="x === page() ? 'var(--c1-black---100)' : 'transparent'"></i>
+        <a class="page-link" [class.rounded-start]="page() === 1 && $first"
+          [class.rounded-end]="page() === totalPage() && $last" (click)="flip(x)">{{ x }}</a>
+      </li>
+    }
+
+    <li class="page-item" [class.btnCstH]="page() === totalPage()">
+      <a class="page-link" (click)="flip(page() + 1)">&rsaquo;</a>
+    </li>
+    <li class="page-item" [class.btnCstH]="page() === totalPage()">
+      <a class="page-link" (click)="flip(totalPage())">&raquo;</a>
+    </li>
+  </ul>
+</nav>

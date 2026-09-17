@@ -7,49 +7,49 @@
 
     <div class="col-7 col-lg-9">
       @if (bookList().length > 0) {
-        <div id="box_bookList" class="border rounded-3 shadow-lg">
-          @for (book of bookList(); track $index) {
+        <div id="box_bookList" class="mb-4 border rounded-3 shadow-lg">
+          @for (x of bookList(); track $index) {
             <div class="row" [class.border-bottom]="!$last">
               <div class="col-12 col-lg-5 d-flex justify-content-center justify-content-lg-end my-4 pe-4">
                 <div id="box_img" class="row align-items-center">
-                  <img [src]="'data:image/*;base64,' + book.image" class="rounded shadow-lg">
+                  <img [src]="'data:image/*;base64,' + x.image" class="rounded shadow-lg">
                 </div>
               </div>
 
               <div class="col-12 col-lg-7 d-flex flex-column my-4 px-4 ps-lg-4">
-                <h4 class="mb-4 mb-lg-3 text-center text-lg-start">{{ book.title }}</h4>
+                <h4 class="mb-4 mb-lg-3 text-center text-lg-start">{{ x.title }}</h4>
                 <div class="row d-none d-lg-flex my-auto fs-5">
                   <dt class="col-4 col-lg-3 mb-3 text-end text-lg-start text-muted fw-normal">作　者</dt>
                   <dd class="col-8 col-lg-9 mb-3">
-                    @for (authorInfo of book.authorInfos; track $index) {
-                      {{ authorInfo.author }}
+                    @for (y of x.authorInfos; track $index) {
+                      {{ y.author }}
 
                       @if (!$last) { 、 }
                     }
                   </dd>
 
                   <dt class="col-4 col-lg-3 mb-3 text-end text-lg-start text-muted fw-normal">譯　者</dt>
-                  <dd class="col-8 col-lg-9 mb-3">{{ book.translator }}</dd>
+                  <dd class="col-8 col-lg-9 mb-3">{{ x.translator }}</dd>
 
                   <dt class="col-4 col-lg-3 mb-3 text-end text-lg-start text-muted fw-normal">出版社</dt>
-                  <dd class="col-8 col-lg-9 mb-3">{{ book.publisher }}</dd>
+                  <dd class="col-8 col-lg-9 mb-3">{{ x.publisher }}</dd>
 
                   <dt class="col-4 col-lg-3 mb-3 text-end text-lg-start text-muted fw-normal">語　言</dt>
-                  <dd class="col-8 col-lg-9 mb-3">{{ book.language }}</dd>
+                  <dd class="col-8 col-lg-9 mb-3">{{ x.language }}</dd>
 
                   <dt class="col-4 col-lg-3 mb-3 text-end text-lg-start text-muted fw-normal">類　型</dt>
-                  <dd class="col-8 col-lg-9 mb-3">{{ book.type }}</dd>
+                  <dd class="col-8 col-lg-9 mb-3">{{ x.type }}</dd>
 
                   <dt class="col-4 col-lg-3 mb-3 text-end text-lg-start text-muted fw-normal">I S B N</dt>
-                  <dd class="col-8 col-lg-9 mb-3">{{ book.isbn }}</dd>
+                  <dd class="col-8 col-lg-9 mb-3">{{ x.isbn }}</dd>
                 </div>
                 <div class="row mt-auto g-2">
                   <div class="col-12 col-xl-6">
-                    <app-btn class="w-100 fs-5" btnClass="btn_BG-BLUE5" (click)="query(book.isbn)">更多</app-btn>
+                    <app-btn class="w-100 fs-5" btnClass="btn_BG-BLUE5" (click)="query(x.isbn)">更多</app-btn>
                   </div>
                   <div class="col-12 col-xl-6">
-                    <app-btn class="w-100 fs-5" btnClass="{{ book.bookStatus ? 'btn_BG-GREEN1' : 'btn_BG-RED' }}">
-                      {{ (book.bookStatus) ? '可借閱，立即預約取書' : '借閱中，立即預約借閱' }}
+                    <app-btn class="w-100 fs-5" btnClass="{{ x.bookStatus ? 'btn_BG-GREEN1' : 'btn_BG-RED' }}">
+                      {{ (x.bookStatus) ? '可借閱，立即預約取書' : '借閱中，立即預約借閱' }}
                     </app-btn>
                   </div>
                 </div>
@@ -57,6 +57,9 @@
             </div>
           }
         </div>
+
+        <app-pagination [totalCount]="totalCount()" [page]="page()" [size]="size()"
+          (pageX)="flip($event)"></app-pagination>
       }
       @else {
         <div id="box_bookList" class="d-flex justify-content-center align-items-center border rounded-3 shadow-lg"

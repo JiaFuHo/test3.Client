@@ -49,8 +49,8 @@
       <div class="modal-footer d-flex justify-content-start">
         <p>系列：</p>
 
-        @for (series of seriesList(); track $index) {
-          <app-btn btnClass="btn_BG-GRAY3" (click)="sync($event)">{{ series.series }}</app-btn>
+        @for (x of seriesList(); track $index) {
+          <app-btn btnClass="btn_BG-GRAY3" (click)="sync($event)">{{ x.series }}</app-btn>
         }
       </div>
     </form>

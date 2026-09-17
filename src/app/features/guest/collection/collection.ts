@@ -25,6 +25,9 @@ export class Collection implements OnInit {
   private _router = inject(Router);
   private _toastP = inject(ToastP);
 
+  public totalCount = signal<number>(0);
+  public page = signal<number>(1);
+  public size = signal<number>(5);
   public bookList = signal<BookInfo[]>([]);
   //#endregion
 
@@ -39,7 +42,10 @@ export class Collection implements OnInit {
 
       this._collectinS.exe(reqX).pipe(takeUntilDestroyed(this._dr)).subscribe({
         next: (res) => {
-          if (res.status) {console.log(res)
+          if (res.status) {
+            this.totalCount.set(res.totalCount);
+            this.page.set(Number(reqX.page) || 1);
+            this.size.set(Number(reqX.size) || 5);
             this.bookList.set(res.bookList);
             this._toastP.tInfo(res.message);
           }
@@ -61,10 +67,16 @@ export class Collection implements OnInit {
   //#endregion
 
   //#region Method
-    public query(isbn: string) {
-      const args: SearchQueryReq = { kind: 'isbn', info: isbn };
+  public flip(pageX: number) {
+    const args = this._route.snapshot.queryParams;
 
-      this._router.navigate(['/search'], { queryParams: args });
-    }
+    this._router.navigate(['/collection'], { queryParams: { ...args, page: pageX } });
+  }
+
+  public query(isbn: string) {
+    const args: SearchQueryReq = { kind: 'isbn', info: isbn };
+
+    this._router.navigate(['/search'], { queryParams: args });
+  }
   //#endregion
 }

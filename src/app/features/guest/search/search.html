@@ -13,8 +13,8 @@
         <div class="row my-auto fs-5">
           <dt class="col-4 col-md-3 mb-3 text-end text-md-start text-muted fw-normal">作　者</dt>
           <dd class="col-8 col-md-9 mb-3">
-            @for (authorInfo of bookInfo()!.authorInfos; track $index) {
-              {{ authorInfo.author }}
+            @for (x of bookInfo()!.authorInfos; track $index) {
+              {{ x.author }}
 
               @if (!$last) { 、 }
             }
@@ -62,10 +62,10 @@
       }
 
       @if (isActive() === 2) {
-        @for (authorInfo of bookInfo()!.authorInfos; track $index) {
-          <h4>{{ authorInfo.author }}</h4>
+        @for (x of bookInfo()!.authorInfos; track $index) {
+          <h4>{{ x.author }}</h4>
           <div class="fs-5 lh-base text-muted">
-            {{ authorInfo.aDesc || '查無相關作者簡介' }}
+            {{ x.aDesc || '查無相關作者簡介' }}
           </div>
 
           @if (!$last) { <br><br> }

@@ -8,13 +8,13 @@
       </div>
       <div class="accordion-collapse collapse" [class.show]="isCollapseT()">
         <div class="accordion-body d-flex flex-column p-3 gap-2">
-          @for (type of typeList(); track type.typeId) {
-            @let typeId = type.typeId.toString();
+          @for (x of typeList(); track x.typeId) {
+            @let typeId = x.typeId.toString();
 
             <app-btn type="submit" btnClass="btn_ACD d-flex justify-content-between align-items-center w-100
               text-start text-muted border-0 rounded-2"
               (click)="select('typeId', typeId)">
-              {{ type.type }}
+              {{ x.type }}
 
               @if (formQ.controls.typeId.value === typeId) { <i class="bi bi-check-circle-fill text-success"></i> }
             </app-btn>
@@ -31,13 +31,13 @@
       </div>
       <div class="accordion-collapse collapse" [class.show]="isCollapseP()">
         <div class="accordion-body d-flex flex-column p-3 gap-2">
-          @for (publisher of publisherList(); track $index) {
+          @for (x of publisherList(); track $index) {
             <app-btn type="submit" btnClass="btn_ACD d-flex justify-content-between align-items-center w-100
               text-start text-muted border-0 rounded-2"
-              (click)="select('publisher', publisher)">
-              {{ publisher }}
+              (click)="select('publisher', x)">
+              {{ x }}
 
-              @if (formQ.controls.publisher.value === publisher) { <i class="bi bi-check-circle-fill text-success"></i> }
+              @if (formQ.controls.publisher.value === x) { <i class="bi bi-check-circle-fill text-success"></i> }
             </app-btn>
           }
         </div>
@@ -52,13 +52,13 @@
       </div>
       <div class="accordion-collapse collapse" [class.show]="isCollapseL()">
         <div class="accordion-body d-flex flex-column p-3 gap-2">
-          @for (lang of langList(); track lang.langId) {
-            @let langId = lang.langId.toString();
+          @for (x of langList(); track x.langId) {
+            @let langId = x.langId.toString();
 
             <app-btn type="submit" btnClass="btn_ACD d-flex justify-content-between align-items-center w-100
               text-start text-muted border-0 rounded-2"
               (click)="select('langId', langId)">
-              {{ lang.lang }}
+              {{ x.lang }}
 
               @if (formQ.controls.langId.value === langId) { <i class="bi bi-check-circle-fill text-success"></i> }
             </app-btn>
@@ -75,13 +75,13 @@
       </div>
       <div class="accordion-collapse collapse" [class.show]="isCollapseS()">
         <div class="accordion-body d-flex flex-column p-3 gap-2">
-          @for (series of seriesList(); track series.seriesId) {
-            @let seriesId = series.seriesId.toString();
+          @for (x of seriesList(); track x.seriesId) {
+            @let seriesId = x.seriesId.toString();
 
             <app-btn type="submit" btnClass="btn_ACD d-flex justify-content-between align-items-center w-100
               text-start text-muted border-0 rounded-2"
               (click)="select('seriesId', seriesId)">
-              {{ series.series }}
+              {{ x.series }}
 
               @if (formQ.controls.seriesId.value === seriesId) { <i class="bi bi-check-circle-fill text-success"></i> }
             </app-btn>
