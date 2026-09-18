@@ -16,7 +16,6 @@ swiper-container::part(button-prev) {
 }
 
 @media(min-width: 768px) {
-
   swiper-container::part(button-next),
   swiper-container::part(button-prev) {
     display: block;
