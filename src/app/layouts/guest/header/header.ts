@@ -45,12 +45,14 @@ export class Header {
   }
 
   public logout() {
-    localStorage.removeItem('client');
+    if (confirm("確定登出?")) {
+      localStorage.removeItem('client');
 
-    this.loginS.client.set(null);
-    this._router.navigate(['/']);
+      this.loginS.client.set(null);
+      this._router.navigate(['/']);
 
-    this.isHover.set(false);
+      this.isHover.set(false);
+    }
   }
 
   public search() {

@@ -1,0 +1,14 @@
+h2 {
+  background-image: url("/images/bgx.png");
+  background-position: center;
+  background-size: auto;
+  background-repeat: no-repeat;
+}
+
+li:hover {
+  background-color: var(--c2-orange1-050);
+}
+
+.isActive {
+  background-color: var(--c1-green1---025);
+}

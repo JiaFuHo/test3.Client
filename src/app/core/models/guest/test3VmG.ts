@@ -1,5 +1,5 @@
 import { QueryReqBase } from '../common/ReqBase';
-import { QueryResBase } from '../common/ResBase';
+import { ResBase, QueryResBase } from '../common/ResBase';
 
 export class AuthorInfo {
   public author: string = '';
@@ -50,7 +50,23 @@ export class CollectionQueryRes extends QueryResBase {
 //#region Info
 export class InfoQueryReq {}
 
-export class InfoQueryRes extends QueryResBase {}
+export class InfoQueryRes extends ResBase {}
+
+export class FavQueryReq {}
+
+export class FavQueryRes extends QueryResBase {}
+
+export class RsvQueryReq {}
+
+export class RsvQueryRes extends QueryResBase {}
+
+export class HxQueryReq {}
+
+export class HxQueryRes extends QueryResBase {}
+
+export class MsgQueryReq {}
+
+export class MsgQueryRes extends QueryResBase {}
 //#endregion
 
 //#region Search

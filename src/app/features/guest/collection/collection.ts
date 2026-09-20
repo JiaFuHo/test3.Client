@@ -3,8 +3,8 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { BookInfo, CollectionQueryReq, SearchQueryReq } from '../../../core/models/guest/test3VmG';
-import { ToastP } from '../../../core/providers/common/toastP';
 import { CollectinS } from '../../../core/services/guest/collection/collectionS';
+import { ToastP } from '../../../core/providers/common/toastP';
 
 import { Btn } from '../../../shared/widgets/btn/btn';
 
@@ -47,7 +47,7 @@ export class Collection implements OnInit {
             this.page.set(Number(reqX.page) || 1);
             this.size.set(Number(reqX.size) || 5);
             this.bookList.set(res.bookList);
-            this._toastP.tInfo(res.message);
+            // this._toastP.tInfo(res.message);
           }
           else {
             if (res.statusCode.startsWith('400')) {

@@ -1,3 +1,37 @@
-<section class="container">
-  <p>info works!</p>
+<section class="container mb-4 mb-md-0">
+  <h2 class="mb-3 pt-3 text-center">帳戶</h2>
+  <div class="row">
+    <aside class="col-5 col-md-3">
+      <div class="d-flex flex-column w-100 px-4">
+        <ul class="flex-column nav nav-pills bg-light rounded-4 shadow-lg overflow-hidden">
+          <li class="nav-item py-2 pt-3" [class.isActive]="isActive() === 'infoX'">
+            <a class="nav-link text-start text-muted fw-bold" (click)="isActive.set('infoX')">會員資訊</a>
+          </li>
+          <li class="nav-item py-2" [class.isActive]="isActive() === 'fav'">
+            <a class="nav-link text-start text-muted fw-bold" (click)="isActive.set('fav')">我的最愛</a>
+          </li>
+          <li class="nav-item py-2" [class.isActive]="isActive() === 'rsv'">
+            <a class="nav-link text-start text-muted fw-bold" (click)="isActive.set('rsv')">預約紀錄</a>
+          </li>
+          <li class="nav-item py-2" [class.isActive]="isActive() === 'hx'">
+            <a class="nav-link text-start text-muted fw-bold" (click)="isActive.set('hx')">借閱紀錄</a>
+          </li>
+          <li class="nav-item py-2" [class.isActive]="isActive() === 'msg'">
+            <a class="nav-link text-start text-muted fw-bold" (click)="isActive.set('msg')">訊息中心</a>
+          </li>
+          <li class="nav-item py-2 pb-3">
+            <a class="nav-link text-start text-muted fw-bold" (click)="logout()">登出</a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+
+    <div class="col-7 col-md-9">
+      @if (isActive() === 'infoX') { <app-infoX></app-infoX> }
+      @else if (isActive() === 'fav') { <app-fav></app-fav> }
+      @else if (isActive() === 'rsv') { <app-rsv></app-rsv> }
+      @else if (isActive() === 'hx') { <app-hx></app-hx> }
+      @else if (isActive() === 'msg') { <app-msg></app-msg> }
+    </div>
+  </div>
 </section>

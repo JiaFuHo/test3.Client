@@ -3,8 +3,8 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { BookInfo, SearchQueryReq } from '../../../core/models/guest/test3VmG';
-import { ToastP } from '../../../core/providers/common/toastP';
 import { SearchS } from '../../../core/services/guest/search/searchS';
+import { ToastP } from '../../../core/providers/common/toastP';
 
 import { Btn } from '../../../shared/widgets/btn/btn';
 
