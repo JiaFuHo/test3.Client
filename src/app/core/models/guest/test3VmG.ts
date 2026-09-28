@@ -7,6 +7,7 @@ export class AuthorInfo {
 }
 
 export class BookInfo {
+  public collectionId: number = 0;
   public title: string = '';
   public bDesc: string = '';
   public image: string = '';
@@ -32,12 +33,12 @@ export class HomeQueryBookRes extends QueryResBase {
 
 //#region Collection
 export class CollectionQueryReq extends QueryReqBase {
-  public typeId?: string;
+  public typeId?: number;
   public publisher?: string;
-  public langId?: string;
-  public seriesId?: string;
-  public sYear?: string;
-  public eYear?: string;
+  public langId?: number;
+  public seriesId?: number;
+  public sYear?: number;
+  public eYear?: number;
 
   public override size: number = 5;
 }
@@ -48,35 +49,112 @@ export class CollectionQueryRes extends QueryResBase {
 //#endregion
 
 //#region Info
-export class InfoQueryReq {}
+export class InfoQueryReqBase extends QueryReqBase {
+  public guid: string = '';
+}
 
-export class InfoQueryRes extends ResBase {}
+export class InfoSaveReqBase {
+  public guid: string = '';
+}
 
-export class FavQueryReq {}
+export class FavQueryReq extends InfoQueryReqBase {}
 
-export class FavQueryRes extends QueryResBase {}
+export class FavQueryRes extends QueryResBase {
+  public favList: FavInfo[] = [];
+}
 
-export class RsvQueryReq {}
+export class FavInfo {
+  public collectionId: number = 0;
+  public title: string = '';
+  public image: string = '';
+  public authorInfos: AuthorInfo[] = [];
+  public publisher: string = '';
+}
 
-export class RsvQueryRes extends QueryResBase {}
+export class FavSaveReq extends InfoSaveReqBase {
+  public collectionId?: number;
+}
 
-export class HxQueryReq {}
+export class FavSaveRes extends ResBase {}
 
-export class HxQueryRes extends QueryResBase {}
+export class RsvQueryReq extends InfoQueryReqBase {}
 
-export class MsgQueryReq {}
+export class RsvQueryRes extends QueryResBase {
+  public rsvList: RsvInfo[] = [];
+}
 
-export class MsgQueryRes extends QueryResBase {}
+export class RsvInfo {
+  public collectionId: number = 0;
+  public title: string = '';
+  public image: string = '';
+  public authorInfos: AuthorInfo[] = [];
+  public reservateDate: string = '';
+  public dueDateR: string = '';
+  public reservationStatus: string = '';
+}
+
+export class RsvSaveReq extends InfoSaveReqBase {
+  public collectionId?: number;
+  public reservationStatusId?: number;
+}
+
+export class RsvSaveRes extends ResBase {}
+
+export class HxQueryReq extends InfoQueryReqBase {}
+
+export class HxQueryRes extends QueryResBase {
+  public hxList: HxInfo[] = [];
+}
+
+export class HxInfo {
+  public historyId?: number;
+  public title: string = '';
+  public image: string = '';
+  public authorInfos: AuthorInfo[] = [];
+  public borrowDate: string = '';
+  public dueDateB: string = '';
+  public borrowStatus: string = '';
+  public score: number = 0;
+  public feedback: string = '';
+}
+
+export class HxSaveReq extends InfoSaveReqBase {
+  public historyId?: number;
+  public score?: number;
+  public feedback: string = '';
+}
+
+export class HxSaveRes extends ResBase {}
+
+export class MsgQueryReq extends InfoQueryReqBase {}
+
+export class MsgQueryRes extends QueryResBase {
+  public msgList: MsgInfo[] = [];
+}
+
+export class MsgInfo {
+  public notificationId: number = 0;
+  public message: string = '';
+  public notificationDate: string = '';
+  public isRead: boolean = false;
+}
+
+export class MsgSaveReq extends InfoSaveReqBase {
+  public notificationId?: number;
+  public isRead?: boolean;
+}
+
+export class MsgSaveRes extends ResBase {}
 //#endregion
 
 //#region Search
 export class SearchQueryReq {
   public kind?: string;
   public info?: string;
-  public typeId?: string;
-  public langId?: string;
-  public sYear?: string;
-  public eYear?: string;
+  public typeId?: number;
+  public langId?: number;
+  public sYear?: number;
+  public eYear?: number;
 }
 
 export class SearchQueryRes extends QueryResBase {
