@@ -23,8 +23,9 @@ export class LoginG {
   //#region State
   private _dr = inject(DestroyRef);
   private _formBuilder = inject(FormBuilder);
-  private _loginS = inject(LoginS);
   private _router = inject(Router);
+
+  private _loginS = inject(LoginS);
   private _toastP = inject(ToastP);
 
   public formLG = this._formBuilder.nonNullable.group({
@@ -40,11 +41,11 @@ export class LoginG {
 
     const args = this.formLG.getRawValue();
 
-    this._loginS.exe(args as LoginReq).pipe(takeUntilDestroyed(this._dr)).subscribe({
+    this._loginS.post(args as LoginReq).pipe(takeUntilDestroyed(this._dr)).subscribe({
       next: (res) => {
         if (res.status) {
-          this._loginS.client.set(res);
           this._router.navigate(['/']);
+          this._loginS.client.set(res);
           this._toastP.tInfo(res.message);
 
           localStorage.setItem('client', JSON.stringify(res));
@@ -54,7 +55,7 @@ export class LoginG {
           else { this._toastP.tErr(res.message); }
         }
       },
-      error: (err) => { this._toastP.tErr('Network Error'); }
+      error: () => { this._toastP.tErr('Network Error'); }
     })
   }
   //#endregion

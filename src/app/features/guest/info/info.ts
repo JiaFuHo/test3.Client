@@ -16,8 +16,9 @@ import { Msg } from './msg/msg';
 })
 export class Info implements OnInit {
   //#region State
-  private _loginS = inject(LoginS);
   private _router = inject(Router);
+
+  private _loginS = inject(LoginS);
 
   public isActive = signal<string>('infoX');
   //#endregion
@@ -31,8 +32,8 @@ export class Info implements OnInit {
     if (confirm("確定登出?")) {
       localStorage.removeItem('client');
 
-      this._loginS.client.set(null);
       this._router.navigate(['/']);
+      this._loginS.client.set(null);
     }
   }
   //#endregion

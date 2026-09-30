@@ -22,6 +22,7 @@ export class Header {
   private _router = inject(Router);
 
   public loginS = inject(LoginS);
+
   public path = signal<string>('');
 
   public isHover = signal<boolean>(false);
@@ -49,9 +50,8 @@ export class Header {
       localStorage.removeItem('client');
 
       this.loginS.client.set(null);
-      this._router.navigate(['/']);
-
       this.isHover.set(false);
+      this._router.navigate(['/']);
     }
   }
 

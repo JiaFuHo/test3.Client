@@ -11,7 +11,7 @@ export class LookupS {
   //#endregion
 
   //#region Method
-  public exe(): Observable<LookupRes> {
+  public get(): Observable<LookupRes> {
     return this._serviceP.get<LookupRes>('/lookup');
   }
   //#endregion

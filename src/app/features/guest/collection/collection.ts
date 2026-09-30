@@ -2,8 +2,9 @@ import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { BookInfo, CollectionQueryReq, SearchQueryReq } from '../../../core/models/guest/test3VmG';
-import { CollectinS } from '../../../core/services/guest/collection/collectionS';
+import { BookInfo, CollectionQueryReq, RsvSaveReq, SearchQueryReq } from '../../../core/models/guest/test3VmG';
+import { CollectionS } from '../../../core/services/guest/collection/collectionS';
+import { RsvS } from '../../../core/services/guest/info/rsvS';
 import { ToastP } from '../../../core/providers/common/toastP';
 
 import { Btn } from '../../../shared/widgets/btn/btn';
@@ -19,10 +20,12 @@ import { Pagination } from './pagination/pagination';
 })
 export class Collection implements OnInit {
   //#region State
-  private _collectinS = inject(CollectinS);
   private _dr = inject(DestroyRef);
   private _route = inject(ActivatedRoute);
   private _router = inject(Router);
+
+  private _collectionS = inject(CollectionS);
+  private _rsvS = inject(RsvS);
   private _toastP = inject(ToastP);
 
   public totalCount = signal<number>(0);
@@ -40,14 +43,13 @@ export class Collection implements OnInit {
 
       const reqX = JSON.parse(JSON.stringify(req));
 
-      this._collectinS.exe(reqX).pipe(takeUntilDestroyed(this._dr)).subscribe({
+      this._collectionS.get(reqX).pipe(takeUntilDestroyed(this._dr)).subscribe({
         next: (res) => {
           if (res.status) {
             this.totalCount.set(res.totalCount);
             this.page.set(Number(reqX.page) || 1);
             this.size.set(Number(reqX.size) || 5);
             this.bookList.set(res.bookList);
-            // this._toastP.tInfo(res.message);
           }
           else {
             if (res.statusCode.startsWith('400')) {
@@ -60,7 +62,7 @@ export class Collection implements OnInit {
             }
           }
         },
-        error: (err) => { this._toastP.tErr('Network Error'); }
+        error: () => { this._toastP.tErr('Network Error'); }
       });
     });
   }
@@ -77,6 +79,25 @@ export class Collection implements OnInit {
     const args: SearchQueryReq = { kind: 'isbn', info: isbn };
 
     this._router.navigate(['/search'], { queryParams: args });
+  }
+
+  public reserve(collectionId: string) {
+    const args = new RsvSaveReq();
+
+    args.reservationStatusId = '1';
+
+    this._rsvS.post(args).pipe(takeUntilDestroyed(this._dr)).subscribe({
+      next: (res) => {
+        if (res.status) {
+          // ???
+        }
+        else {
+          if (res.statusCode.startsWith('400')) { this._toastP.tWarn(res.message); }
+          else { this._toastP.tErr(res.message); }
+        }
+      },
+      error: () => { this._toastP.tErr('Network Error'); }
+    });
   }
   //#endregion
 }

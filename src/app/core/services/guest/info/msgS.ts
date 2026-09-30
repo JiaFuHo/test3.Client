@@ -2,6 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { MsgQueryReq, MsgQueryRes } from '../../../models/guest/test3VmG';
+import { MsgSaveReq, MsgSaveRes } from '../../../models/guest/test3VmG';
 import { ServiceP } from '../../../providers/system/serviceP';
 
 @Injectable({ providedIn: 'root' })
@@ -11,8 +12,16 @@ export class MsgS {
   //#endregion
 
   //#region Method
-  public exe(args: MsgQueryReq): Observable<MsgQueryRes> {
+  public get(args: MsgQueryReq): Observable<MsgQueryRes> {
     return this._serviceP.get<MsgQueryRes>('/guest/info/msg', args);
+  }
+
+  public post(args: MsgSaveReq): Observable<MsgSaveRes> {
+    return this._serviceP.post<MsgSaveRes>('/guest/info/msg', args);
+  }
+
+  public put(args: MsgSaveReq): Observable<MsgSaveRes> {
+    return this._serviceP.put<MsgSaveRes>('/guest/info/msg', args);
   }
   //#endregion
 }

@@ -21,8 +21,9 @@ export class Accordion implements OnInit {
   //#region State
   private _dr = inject(DestroyRef);
   private _formBuilder = inject(FormBuilder);
-  private _lookupS = inject(LookupS);
   private _router = inject(Router);
+
+  private _lookupS = inject(LookupS);
 
   public typeList = signal<TypeInfo[]>([]);
   public publisherList = signal<string[]>([]);
@@ -47,7 +48,7 @@ export class Accordion implements OnInit {
 
   //#region Lifecycle
   public ngOnInit() {
-    this._lookupS.exe().pipe(takeUntilDestroyed(this._dr)).subscribe({
+    this._lookupS.get().pipe(takeUntilDestroyed(this._dr)).subscribe({
       next: (res) => {
         if (res.status) {
           this.typeList.set(res.typeList);

@@ -36,7 +36,8 @@
           <dd class="col-8 col-md-9 mb-3">{{ bookInfo()!.isbn }}</dd>
         </div>
         <div class="d-flex justify-content-center justify-content-md-start">
-          <app-btn id="btnRsv" class="w-50 mb-2 fs-5" btnClass="{{ bookInfo()!.bookStatus ? 'btn_BG-GREEN1' : 'btn_BG-RED' }}">
+          <app-btn id="btnRsv" class="w-50 mb-2 fs-5" btnClass="{{ bookInfo()!.bookStatus ? 'btn_BG-GREEN1' : 'btn_BG-RED' }}"
+            (click)="reserve(bookInfo()!.collectionId.toString())">
             {{ (bookInfo()!.bookStatus) ? '可借閱，立即預約取書' : '借閱中，立即預約借閱' }}
           </app-btn>
         </div>

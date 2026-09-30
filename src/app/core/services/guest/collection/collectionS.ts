@@ -5,13 +5,13 @@ import { CollectionQueryReq, CollectionQueryRes } from '../../../models/guest/te
 import { ServiceP } from '../../../providers/system/serviceP';
 
 @Injectable({ providedIn: 'root' })
-export class CollectinS {
+export class CollectionS {
   //#region State
   private _serviceP = inject(ServiceP);
   //#endregion
 
   //#region Method
-  public exe(args: CollectionQueryReq): Observable<CollectionQueryRes> {
+  public get(args: CollectionQueryReq): Observable<CollectionQueryRes> {
     return this._serviceP.get<CollectionQueryRes>('/guest/collection', args);
   }
   //#endregion

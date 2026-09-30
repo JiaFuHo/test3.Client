@@ -11,7 +11,7 @@ export class SearchS {
   //#endregion
 
   //#region Method
-  public exe(args: SearchQueryReq): Observable<SearchQueryRes> {
+  public get(args: SearchQueryReq): Observable<SearchQueryRes> {
     return this._serviceP.get<SearchQueryRes>('/guest/search', args);
   }
   //#endregion

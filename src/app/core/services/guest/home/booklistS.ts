@@ -11,7 +11,7 @@ export class BookListS {
   //#endregion
 
   //#region Method
-  public exe(args: HomeQueryBookReq): Observable<HomeQueryBookRes> {
+  public get(args: HomeQueryBookReq): Observable<HomeQueryBookRes> {
     return this._serviceP.get<HomeQueryBookRes>('/guest/home/booklist', args);
   }
   //#endregion

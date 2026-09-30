@@ -15,6 +15,7 @@ export class Toast implements OnInit {
   //#region State
   private _cdr = inject(ChangeDetectorRef);
   private _dr = inject(DestroyRef);
+
   private _toastP = inject(ToastP);
 
   public lvl = '';
@@ -26,7 +27,6 @@ export class Toast implements OnInit {
     this._toastP.broadcast$.pipe(takeUntilDestroyed(this._dr)).subscribe((prompt: ToastLvl) => {
       this.lvl = prompt.lvl;
       this.msg = prompt.msg;
-
       this._cdr.detectChanges();
 
       const tElem = document.getElementById('toast');

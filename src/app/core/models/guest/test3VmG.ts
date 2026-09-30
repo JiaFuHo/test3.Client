@@ -23,7 +23,7 @@ export class BookInfo {
 
 //#region Home
 export class HomeQueryBookReq {
-  public mode: string = '';
+  public mode?: string;
 }
 
 export class HomeQueryBookRes extends QueryResBase {
@@ -33,12 +33,12 @@ export class HomeQueryBookRes extends QueryResBase {
 
 //#region Collection
 export class CollectionQueryReq extends QueryReqBase {
-  public typeId?: number;
+  public typeId?: string;
   public publisher?: string;
-  public langId?: number;
-  public seriesId?: number;
-  public sYear?: number;
-  public eYear?: number;
+  public langId?: string;
+  public seriesId?: string;
+  public sYear?: string;
+  public eYear?: string;
 
   public override size: number = 5;
 }
@@ -50,11 +50,13 @@ export class CollectionQueryRes extends QueryResBase {
 
 //#region Info
 export class InfoQueryReqBase extends QueryReqBase {
-  public guid: string = '';
+  public guid?: string;
+
+  public override size: number = 5;
 }
 
 export class InfoSaveReqBase {
-  public guid: string = '';
+  public guid?: string;
 }
 
 export class FavQueryReq extends InfoQueryReqBase {}
@@ -72,7 +74,7 @@ export class FavInfo {
 }
 
 export class FavSaveReq extends InfoSaveReqBase {
-  public collectionId?: number;
+  public collectionId?: string;
 }
 
 export class FavSaveRes extends ResBase {}
@@ -94,8 +96,8 @@ export class RsvInfo {
 }
 
 export class RsvSaveReq extends InfoSaveReqBase {
-  public collectionId?: number;
-  public reservationStatusId?: number;
+  public collectionId?: string;
+  public reservationStatusId?: string;
 }
 
 export class RsvSaveRes extends ResBase {}
@@ -107,7 +109,7 @@ export class HxQueryRes extends QueryResBase {
 }
 
 export class HxInfo {
-  public historyId?: number;
+  public historyId: number = 0;
   public title: string = '';
   public image: string = '';
   public authorInfos: AuthorInfo[] = [];
@@ -119,9 +121,9 @@ export class HxInfo {
 }
 
 export class HxSaveReq extends InfoSaveReqBase {
-  public historyId?: number;
-  public score?: number;
-  public feedback: string = '';
+  public historyId?: string;
+  public score?: string;
+  public feedback?: string;
 }
 
 export class HxSaveRes extends ResBase {}
@@ -140,7 +142,7 @@ export class MsgInfo {
 }
 
 export class MsgSaveReq extends InfoSaveReqBase {
-  public notificationId?: number;
+  public notificationId?: string;
   public isRead?: boolean;
 }
 
@@ -151,10 +153,10 @@ export class MsgSaveRes extends ResBase {}
 export class SearchQueryReq {
   public kind?: string;
   public info?: string;
-  public typeId?: number;
-  public langId?: number;
-  public sYear?: number;
-  public eYear?: number;
+  public typeId?: string;
+  public langId?: string;
+  public sYear?: string;
+  public eYear?: string;
 }
 
 export class SearchQueryRes extends QueryResBase {

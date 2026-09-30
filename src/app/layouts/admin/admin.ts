@@ -10,15 +10,26 @@ import { CoreModule } from '../../shared/modules/core';
 })
 export class Admin {
   //#region State
+  
   //#endregion
+
   //#region Computed
+  
   //#endregion
+
   //#region Constructor
+  
   //#endregion
+
   //#region Lifecycle
+  
   //#endregion
+
   //#region Event
+  
   //#endregion
+
   //#region Method
+  
   //#endregion
 }

@@ -38,8 +38,9 @@ export class ModalSearch implements OnInit {
   //#region State
   private _dr = inject(DestroyRef);
   private _formBuilder = inject(FormBuilder);
-  private _lookupS = inject(LookupS);
   private _router = inject(Router);
+
+  private _lookupS = inject(LookupS);
 
   public mode = '';
   public kindList = signal<Opt[]>(KindList);
@@ -59,7 +60,7 @@ export class ModalSearch implements OnInit {
 
   //#region Lifecycle
   public ngOnInit() {
-    this._lookupS.exe().pipe(takeUntilDestroyed(this._dr)).subscribe({
+    this._lookupS.get().pipe(takeUntilDestroyed(this._dr)).subscribe({
       next: (res) => {
         if (res.status) {
           const TypeListX = res.typeList.map(x => ({ value: x.typeId.toString(), text: x.type }));

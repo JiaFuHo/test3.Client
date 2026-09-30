@@ -20,6 +20,7 @@ export class LoginA {
   //#region State
   private _dr = inject(DestroyRef);
   private _formBuilder = inject(FormBuilder);
+
   private _loginS = inject(LoginS);
   private _toastP = inject(ToastP);
 
@@ -36,7 +37,7 @@ export class LoginA {
 
     const args = this.formLA.getRawValue();
 
-    this._loginS.exe(args as LoginReq).pipe(takeUntilDestroyed(this._dr)).subscribe({
+    this._loginS.post(args as LoginReq).pipe(takeUntilDestroyed(this._dr)).subscribe({
       next: (res) => {
         if (res.status) {
           this._loginS.client.set(res);
@@ -49,7 +50,7 @@ export class LoginA {
           else { this._toastP.tErr(res.message); }
         }
       },
-      error: (err) => { this._toastP.tErr('Network Error'); }
+      error: () => { this._toastP.tErr('Network Error'); }
     })
   }
   //#endregion

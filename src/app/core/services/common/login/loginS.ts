@@ -13,17 +13,17 @@ export class LoginS {
   //#endregion
 
   //#region Method
+  public post(args: LoginReq): Observable<LoginRes> {
+    const C = (args.mode === 'G') ? 'guest' : 'admin';
+
+    return this._serviceP.post<LoginRes>(`/${C}/login`, args);
+  }
+
   private _cache(): LoginRes | null {
     const client = localStorage.getItem('client');
 
     if (client) { return JSON.parse(client); }
     else { return null; }
-  }
-
-  public exe(args: LoginReq): Observable<LoginRes> {
-    const C = (args.mode === 'G') ? 'guest' : 'admin';
-
-    return this._serviceP.post<LoginRes>(`/${C}/login`, args);
   }
   //#endregion
 }

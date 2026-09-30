@@ -48,7 +48,8 @@
                     <app-btn class="w-100 fs-5" btnClass="btn_BG-BLUE5" (click)="query(x.isbn)">更多</app-btn>
                   </div>
                   <div class="col-12 col-xl-6">
-                    <app-btn class="w-100 fs-5" btnClass="{{ x.bookStatus ? 'btn_BG-GREEN1' : 'btn_BG-RED' }}">
+                    <app-btn class="w-100 fs-5" btnClass="{{ x.bookStatus ? 'btn_BG-GREEN1' : 'btn_BG-RED' }}"
+                      (click)="reserve(x.collectionId.toString())">
                       {{ (x.bookStatus) ? '可借閱，立即預約取書' : '借閱中，立即預約借閱' }}
                     </app-btn>
                   </div>

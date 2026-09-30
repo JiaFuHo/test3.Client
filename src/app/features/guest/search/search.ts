@@ -2,7 +2,8 @@ import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { BookInfo, SearchQueryReq } from '../../../core/models/guest/test3VmG';
+import { BookInfo, RsvSaveReq, SearchQueryReq } from '../../../core/models/guest/test3VmG';
+import { RsvS } from '../../../core/services/guest/info/rsvS';
 import { SearchS } from '../../../core/services/guest/search/searchS';
 import { ToastP } from '../../../core/providers/common/toastP';
 
@@ -21,6 +22,8 @@ export class Search implements OnInit {
   private _dr = inject(DestroyRef);
   private _route = inject(ActivatedRoute);
   private _router = inject(Router);
+
+  private _rsvS = inject(RsvS);
   private _searchS = inject(SearchS);
   private _toastP = inject(ToastP);
 
@@ -36,7 +39,7 @@ export class Search implements OnInit {
 
       this._router.navigate(['/search'], { replaceUrl: true });
 
-      this._searchS.exe(args as SearchQueryReq).pipe(takeUntilDestroyed(this._dr)).subscribe({
+      this._searchS.get(args as SearchQueryReq).pipe(takeUntilDestroyed(this._dr)).subscribe({
         next: (res) => {
           if (res.status) {
             this.bookInfo.set(res.bookInfo);
@@ -53,8 +56,29 @@ export class Search implements OnInit {
             }
           }
         },
-        error: (err) => { this._toastP.tErr('Network Error'); }
+        error: () => { this._toastP.tErr('Network Error'); }
       });
+    });
+  }
+  //#endregion
+
+  //#region Method
+  public reserve(collectionId: string) {
+    const args = new RsvSaveReq();
+
+    args.reservationStatusId = '1';
+
+    this._rsvS.post(args).pipe(takeUntilDestroyed(this._dr)).subscribe({
+      next: (res) => {
+        if (res.status) {
+          // ???
+        }
+        else {
+          if (res.statusCode.startsWith('400')) { this._toastP.tWarn(res.message); }
+          else { this._toastP.tErr(res.message); }
+        }
+      },
+      error: () => { this._toastP.tErr('Network Error'); }
     });
   }
   //#endregion

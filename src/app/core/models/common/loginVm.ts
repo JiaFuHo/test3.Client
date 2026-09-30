@@ -1,9 +1,9 @@
 import { ResBase } from '../common/ResBase';
 
 export class LoginReq {
-  public cAcc: string = '';
-  public cPwd: string = '';
-  public mode: string = '';
+  public cAcc?: string;
+  public cPwd?: string;
+  public mode?: string;
 }
 
 export class LoginRes extends ResBase {
