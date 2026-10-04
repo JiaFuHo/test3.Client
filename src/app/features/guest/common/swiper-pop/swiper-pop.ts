@@ -3,6 +3,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
 
 import { BookInfo, HomeQueryBookReq, RsvSaveReq, SearchQueryReq } from '../../../../core/models/guest/test3VmG';
+import { LoginS } from '../../../../core/services/common/login/loginS';
 import { BookListS } from '../../../../core/services/guest/home/booklistS';
 import { RsvS } from '../../../../core/services/guest/info/rsvS';
 import { ToastP } from '../../../../core/providers/common/toastP';
@@ -24,6 +25,7 @@ export class SwiperPop implements OnInit {
   private _dr = inject(DestroyRef);
   private _router = inject(Router);
 
+  private _loginS = inject(LoginS);
   private _booklistS = inject(BookListS);
   private _rsvS = inject(RsvS);
   private _toastP = inject(ToastP);
@@ -51,13 +53,13 @@ export class SwiperPop implements OnInit {
   public reserve(collectionId: string) {
     const args = new RsvSaveReq();
 
+    args.guid = this._loginS.client()?.guid;
+    args.collectionId = collectionId;
     args.reservationStatusId = '1';
 
     this._rsvS.post(args).pipe(takeUntilDestroyed(this._dr)).subscribe({
       next: (res) => {
-        if (res.status) {
-          // ???
-        }
+        if (res.status) { this._toastP.tInfo(res.message); }
         else {
           if (res.statusCode.startsWith('400')) { this._toastP.tWarn(res.message); }
           else { this._toastP.tErr(res.message); }

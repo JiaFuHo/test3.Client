@@ -1,8 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { FavQueryReq, FavQueryRes } from '../../../models/guest/test3VmG';
-import { FavSaveReq, FavSaveRes } from '../../../models/guest/test3VmG';
+import { FavQueryReq, FavQueryRes, FavSaveReq, FavSaveRes } from '../../../models/guest/test3VmG';
 import { ServiceP } from '../../../providers/system/serviceP';
 
 @Injectable({ providedIn: 'root' })

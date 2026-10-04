@@ -1,8 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { HxQueryReq, HxQueryRes } from '../../../models/guest/test3VmG';
-import { HxSaveReq, HxSaveRes } from '../../../models/guest/test3VmG';
+import { HxQueryReq, HxQueryRes, HxSaveReq, HxSaveRes } from '../../../models/guest/test3VmG';
 import { ServiceP } from '../../../providers/system/serviceP';
 
 @Injectable({ providedIn: 'root' })
@@ -14,10 +13,6 @@ export class HxS {
   //#region Method
   public get(args: HxQueryReq): Observable<HxQueryRes> {
     return this._serviceP.get<HxQueryRes>('/guest/info/hx', args);
-  }
-
-  public post(args: HxSaveReq): Observable<HxSaveRes> {
-    return this._serviceP.post<HxSaveRes>('/guest/info/hx', args);
   }
 
   public put(args: HxSaveReq): Observable<HxSaveRes> {

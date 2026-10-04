@@ -1,8 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { RsvQueryReq, RsvQueryRes } from '../../../models/guest/test3VmG';
-import { RsvSaveReq, RsvSaveRes } from '../../../models/guest/test3VmG';
+import { RsvQueryReq, RsvQueryRes, RsvSaveReq, RsvSaveRes } from '../../../models/guest/test3VmG';
 import { ServiceP } from '../../../providers/system/serviceP';
 
 @Injectable({ providedIn: 'root' })

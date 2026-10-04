@@ -3,6 +3,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { BookInfo, CollectionQueryReq, RsvSaveReq, SearchQueryReq } from '../../../core/models/guest/test3VmG';
+import { LoginS } from '../../../core/services/common/login/loginS';
 import { CollectionS } from '../../../core/services/guest/collection/collectionS';
 import { RsvS } from '../../../core/services/guest/info/rsvS';
 import { ToastP } from '../../../core/providers/common/toastP';
@@ -24,6 +25,7 @@ export class Collection implements OnInit {
   private _route = inject(ActivatedRoute);
   private _router = inject(Router);
 
+  private _loginS = inject(LoginS);
   private _collectionS = inject(CollectionS);
   private _rsvS = inject(RsvS);
   private _toastP = inject(ToastP);
@@ -84,13 +86,13 @@ export class Collection implements OnInit {
   public reserve(collectionId: string) {
     const args = new RsvSaveReq();
 
+    args.guid = this._loginS.client()?.guid;
+    args.collectionId = collectionId;
     args.reservationStatusId = '1';
 
     this._rsvS.post(args).pipe(takeUntilDestroyed(this._dr)).subscribe({
       next: (res) => {
-        if (res.status) {
-          // ???
-        }
+        if (res.status) { this._toastP.tInfo(res.message); }
         else {
           if (res.statusCode.startsWith('400')) { this._toastP.tWarn(res.message); }
           else { this._toastP.tErr(res.message); }
