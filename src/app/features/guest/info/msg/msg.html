@@ -1,1 +1,30 @@
-<p>msg works!</p>
+<div class="p-3 bg-light rounded-4 shadow-lg">
+  @if (msgList().length > 0) {
+    <table class="table table-striped align-middle w-100 m-0">
+      <thead class="text-center">
+        <tr>
+          <th style="width: 15%">通知日</th>
+          <th style="width: 80%">通知內容</th>
+          <th style="width: 5%"></th>
+        </tr>
+      </thead>
+
+      <tbody class="text-center">
+        @for (x of msgList(); track $index) {
+          <tr>
+            <td>{{ (x.notificationDate | date: 'yyyy-MM-dd') || '' }}</td>
+            <td>{{ x.message }}</td>
+            <td>
+              @if (!x.isRead) { <span class="fs-2" style="color: var(--c1-red------090);">•</span> }
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+  @else {
+    <div class="d-flex justify-content-center align-items-center" style="height: 320px">
+      <div class="fs-5 text-muted">查無相關紀錄</div>
+    </div>
+  }
+</div>

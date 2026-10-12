@@ -92,6 +92,7 @@ export class RsvInfo {
   public authorInfos: AuthorInfo[] = [];
   public reservateDate: string = '';
   public dueDateR: string = '';
+  public reservationStatusId: number = 0;
   public reservationStatus: string = '';
 }
 
@@ -110,6 +111,7 @@ export class HxQueryRes extends QueryResBase {
 
 export class HxInfo {
   public historyId: number = 0;
+  public collectionId: number = 0;
   public title: string = '';
   public image: string = '';
   public authorInfos: AuthorInfo[] = [];
@@ -118,6 +120,7 @@ export class HxInfo {
   public borrowStatus: string = '';
   public score: number = 0;
   public feedback: string = '';
+  public isFav: boolean = false;
 }
 
 export class HxSaveReq extends InfoSaveReqBase {

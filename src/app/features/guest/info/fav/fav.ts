@@ -1,7 +1,7 @@
 import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
-import { FavQueryReq, FavInfo } from '../../../../core/models/guest/test3VmG';
+import { FavQueryReq, FavInfo, FavSaveReq } from '../../../../core/models/guest/test3VmG';
 import { FavS } from '../../../../core/services/guest/info/favS';
 import { LoginS } from '../../../../core/services/common/login/loginS';
 import { ToastP } from '../../../../core/providers/common/toastP';
@@ -10,7 +10,7 @@ import { Btn } from '../../../../shared/widgets/btn/btn';
 
 @Component({
   selector: 'app-fav',
-  imports: [],
+  imports: [Btn],
   templateUrl: './fav.html',
   styleUrl: './fav.css',
 })
@@ -26,7 +26,11 @@ export class Fav implements OnInit {
   //#endregion
 
   //#region Lifecycle
-  public ngOnInit() {
+  public ngOnInit() { this._queryFav(); }
+  //#endregion
+
+  //#region Method
+  private _queryFav() {
     const args = new FavQueryReq();
 
     args.guid = this._loginS.client()!.guid;
@@ -42,11 +46,28 @@ export class Fav implements OnInit {
       error: () => { this._toastP.tErr('Network Error'); }
     });
   }
-  //#endregion
 
-  //#region Method
-  public create() {}
+  public deleteFav(collectionId: string) {
+    if (confirm("確定刪除?")) {
+      const args = new FavSaveReq();
 
-  public delete() {}
+      args.guid = this._loginS.client()?.guid;
+      args.collectionId = collectionId;
+
+      this._favS.delete(args).pipe(takeUntilDestroyed(this._dr)).subscribe({
+        next: (res) => {
+          if (res.status) {
+            this._queryFav();
+            this._toastP.tInfo(res.message);
+          }
+          else {
+            if (res.statusCode.startsWith('400')) { this._toastP.tWarn(res.message); }
+            else { this._toastP.tErr(res.message); }
+          }
+        },
+        error: () => { this._toastP.tErr('Network Error'); }
+      });
+    }
+  }
   //#endregion
 }

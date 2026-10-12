@@ -50,7 +50,7 @@ export class SwiperNew implements OnInit {
     this._router.navigate(['/search'], { queryParams: args });
   }
 
-  public reserve(collectionId: string) {
+  public createRsv(collectionId: string) {
     const args = new RsvSaveReq();
 
     args.guid = this._loginS.client()?.guid;

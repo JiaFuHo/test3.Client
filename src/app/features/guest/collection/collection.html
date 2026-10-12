@@ -49,7 +49,7 @@
                   </div>
                   <div class="col-12 col-xl-6">
                     <app-btn class="w-100 fs-5" btnClass="{{ x.bookStatus ? 'btn_BG-GREEN1' : 'btn_BG-RED' }}"
-                      (click)="reserve(x.collectionId.toString())">
+                      (click)="createRsv(x.collectionId.toString())">
                       {{ (x.bookStatus) ? '可借閱，立即預約取書' : '借閱中，立即預約借閱' }}
                     </app-btn>
                   </div>
@@ -65,7 +65,7 @@
       @else {
         <div id="box_bookList" class="d-flex justify-content-center align-items-center border rounded-3 shadow-lg"
           style="height: 400px">
-          <div class="fs-5 lh-base text-muted">查無相關館藏</div>
+          <div class="fs-5 text-muted">查無相關館藏</div>
         </div>
       }
     </div>

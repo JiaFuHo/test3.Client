@@ -1,7 +1,8 @@
 import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { DatePipe } from '@angular/common';
 
-import { RsvQueryReq, RsvInfo } from '../../../../core/models/guest/test3VmG';
+import { RsvQueryReq, RsvInfo, RsvSaveReq } from '../../../../core/models/guest/test3VmG';
 import { RsvS } from '../../../../core/services/guest/info/rsvS';
 import { LoginS } from '../../../../core/services/common/login/loginS';
 import { ToastP } from '../../../../core/providers/common/toastP';
@@ -10,7 +11,7 @@ import { Btn } from '../../../../shared/widgets/btn/btn';
 
 @Component({
   selector: 'app-rsv',
-  imports: [],
+  imports: [Btn, DatePipe],
   templateUrl: './rsv.html',
   styleUrl: './rsv.css',
 })
@@ -26,7 +27,11 @@ export class Rsv implements OnInit {
   //#endregion
 
   //#region Lifecycle
-  public ngOnInit() {
+  public ngOnInit() { this._queryRsv(); }
+  //#endregion
+
+  //#region Method
+  private _queryRsv() {
     const args = new RsvQueryReq();
 
     args.guid = this._loginS.client()!.guid;
@@ -42,9 +47,51 @@ export class Rsv implements OnInit {
       error: () => { this._toastP.tErr('Network Error'); }
     });
   }
-  //#endregion
 
-  //#region Method
-  public update() {}
+  public createRsv(collectionId: string) {
+    const args = new RsvSaveReq();
+
+    args.guid = this._loginS.client()?.guid;
+    args.collectionId = collectionId;
+    args.reservationStatusId = '1';
+
+    this._rsvS.post(args).pipe(takeUntilDestroyed(this._dr)).subscribe({
+      next: (res) => {
+        if (res.status) {
+          this._queryRsv();
+          this._toastP.tInfo(res.message);
+        }
+        else {
+          if (res.statusCode.startsWith('400')) { this._toastP.tWarn(res.message); }
+          else { this._toastP.tErr(res.message); }
+        }
+      },
+      error: () => { this._toastP.tErr('Network Error'); }
+    });
+  }
+
+  public updateRsv(collectionId: string) {
+    if (confirm("確定取消?")) {
+      const args = new RsvSaveReq();
+
+      args.guid = this._loginS.client()?.guid;
+      args.collectionId = collectionId;
+      args.reservationStatusId = '2';
+
+      this._rsvS.put(args).pipe(takeUntilDestroyed(this._dr)).subscribe({
+        next: (res) => {
+          if (res.status) {
+            this._queryRsv();
+            this._toastP.tInfo(res.message);
+          }
+          else {
+            if (res.statusCode.startsWith('400')) { this._toastP.tWarn(res.message); }
+            else { this._toastP.tErr(res.message); }
+          }
+        },
+        error: () => { this._toastP.tErr('Network Error'); }
+      });
+    }
+  }
   //#endregion
 }
