@@ -11,11 +11,17 @@
 
       <tbody class="text-center">
         @for (x of msgList(); track $index) {
-          <tr>
+          <tr (dblclick)="popup(x.notificationId.toString(), x.message)">
             <td>{{ (x.notificationDate | date: 'yyyy-MM-dd') || '' }}</td>
-            <td>{{ x.message }}</td>
             <td>
-              @if (!x.isRead) { <span class="fs-2" style="color: var(--c1-red------090);">•</span> }
+              <div class="box_msg">{{ x.message }}</div>
+            </td>
+            <td>
+              @if (!x.isRead) {
+                <span class="d-inline-block rounded-circle"
+                  style="width: .5rem; height: .5rem; background-color: var(--c1-red------090);">
+                </span>
+              }
             </td>
           </tr>
         }
@@ -28,3 +34,5 @@
     </div>
   }
 </div>
+
+<app-modal-msg [msg]="msg()"></app-modal-msg>

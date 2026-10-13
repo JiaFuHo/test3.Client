@@ -2,7 +2,7 @@ import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { DatePipe } from '@angular/common';
 
-import { FavSaveReq, HxQueryReq, HxInfo, HxSaveReq } from '../../../../core/models/guest/test3VmG';
+import { FavSaveReq, HxQueryReq, HxInfo } from '../../../../core/models/guest/test3VmG';
 import { FavS } from '../../../../core/services/guest/info/favS';
 import { HxS } from '../../../../core/services/guest/info/hxS';
 import { LoginS } from '../../../../core/services/common/login/loginS';
@@ -10,9 +10,13 @@ import { ToastP } from '../../../../core/providers/common/toastP';
 
 import { Btn } from '../../../../shared/widgets/btn/btn';
 
+import { ModalHx } from './modal-hx/modal-hx';
+
+import * as bootstrap from 'bootstrap';
+
 @Component({
   selector: 'app-hx',
-  imports: [Btn, DatePipe],
+  imports: [Btn, DatePipe, ModalHx],
   templateUrl: './hx.html',
   styleUrl: './hx.css',
 })
@@ -26,10 +30,13 @@ export class Hx implements OnInit {
   private _toastP = inject(ToastP);
 
   public hxList = signal<HxInfo[]>([]);
+  public historyId = signal<string>('');
+  public score = signal<string>('');
+  public feedback = signal<string>('');
   //#endregion
 
   //#region Lifecycle
-  public ngOnInit() { this._queryHx(); }
+  public ngOnInit() { this.queryHx(); }
   //#endregion
 
   //#region Method
@@ -42,7 +49,7 @@ export class Hx implements OnInit {
     this._favS.post(args).pipe(takeUntilDestroyed(this._dr)).subscribe({
       next: (res) => {
         if (res.status) {
-          this._queryHx();
+          this.queryHx();
           this._toastP.tInfo(res.message);
         }
         else {
@@ -64,7 +71,7 @@ export class Hx implements OnInit {
       this._favS.delete(args).pipe(takeUntilDestroyed(this._dr)).subscribe({
         next: (res) => {
           if (res.status) {
-            this._queryHx();
+            this.queryHx();
             this._toastP.tInfo(res.message);
           }
           else {
@@ -77,13 +84,13 @@ export class Hx implements OnInit {
     }
   }
 
-  private _queryHx() {
+  public queryHx() {
     const args = new HxQueryReq();
 
     args.guid = this._loginS.client()!.guid;
 
     this._hxS.get(args).pipe(takeUntilDestroyed(this._dr)).subscribe({
-      next: (res) => {
+      next: (res) => {console.log(res.hxList)
         if (res.status) { this.hxList.set(res.hxList); }
         else {
           if (res.statusCode.startsWith('400')) { this._toastP.tWarn(res.message); }
@@ -94,26 +101,14 @@ export class Hx implements OnInit {
     });
   }
 
-  public updateHx(historyId: string) {
-    const args = new HxSaveReq();
+  public popup(historyId: string, score: string, feedback: string) {
+    const tElem = document.getElementById('modal_hx');
 
-    args.historyId = historyId;
-    // ??? score
-    // ??? feedback
+    if (tElem) { bootstrap.Modal.getOrCreateInstance(tElem)?.show(); }
 
-    this._hxS.put(args).pipe(takeUntilDestroyed(this._dr)).subscribe({
-      next: (res) => {
-        if (res.status) {
-          this._queryHx();
-          this._toastP.tInfo(res.message);
-        }
-        else {
-          if (res.statusCode.startsWith('400')) { this._toastP.tWarn(res.message); }
-          else { this._toastP.tErr(res.message); }
-        }
-      },
-      error: () => { this._toastP.tErr('Network Error'); }
-    });
+    this.historyId.set(historyId);
+    this.score.set(score);
+    this.feedback.set(feedback);
   }
   //#endregion
 }

@@ -51,15 +51,15 @@ export class CollectionQueryRes extends QueryResBase {
 //#region Info
 export class InfoQueryReqBase extends QueryReqBase {
   public guid?: string;
-
-  public override size: number = 5;
 }
 
 export class InfoSaveReqBase {
   public guid?: string;
 }
 
-export class FavQueryReq extends InfoQueryReqBase {}
+export class FavQueryReq extends InfoQueryReqBase {
+  public override size: number = 5;
+}
 
 export class FavQueryRes extends QueryResBase {
   public favList: FavInfo[] = [];
@@ -79,7 +79,9 @@ export class FavSaveReq extends InfoSaveReqBase {
 
 export class FavSaveRes extends ResBase {}
 
-export class RsvQueryReq extends InfoQueryReqBase {}
+export class RsvQueryReq extends InfoQueryReqBase {
+  public override size: number = 5;
+}
 
 export class RsvQueryRes extends QueryResBase {
   public rsvList: RsvInfo[] = [];
@@ -103,7 +105,9 @@ export class RsvSaveReq extends InfoSaveReqBase {
 
 export class RsvSaveRes extends ResBase {}
 
-export class HxQueryReq extends InfoQueryReqBase {}
+export class HxQueryReq extends InfoQueryReqBase {
+  public override size: number = 5;
+}
 
 export class HxQueryRes extends QueryResBase {
   public hxList: HxInfo[] = [];
@@ -118,7 +122,7 @@ export class HxInfo {
   public borrowDate: string = '';
   public dueDateB: string = '';
   public borrowStatus: string = '';
-  public score: number = 0;
+  public score: number | null = null;
   public feedback: string = '';
   public isFav: boolean = false;
 }

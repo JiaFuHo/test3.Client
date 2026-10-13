@@ -1,0 +1,15 @@
+<div id="modal_hx" class="modal fade" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header justify-content-center">
+        @if ((!score() || score() === '0') && (!feedback())) { <h4 class="modal-title">新增評論</h4> }
+        @else { <h4 class="modal-title">修改評論</h4> }
+      </div>
+
+      <div class="modal-body d-flex justify-content-center">
+        {{ score() }}
+        {{ feedback() }}
+      </div>
+    </div>
+  </div>
+</div>
