@@ -1,0 +1,9 @@
+.bi-star,
+.bi-star-fill {
+  color: var(--c3-tWarn---075);
+}
+
+textarea:focus {
+  border-color: var(--c2-orange1-075);
+  box-shadow: 0 0 0 .25rem var(--c2-orange1-075);
+}

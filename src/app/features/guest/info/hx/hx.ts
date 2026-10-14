@@ -90,7 +90,7 @@ export class Hx implements OnInit {
     args.guid = this._loginS.client()!.guid;
 
     this._hxS.get(args).pipe(takeUntilDestroyed(this._dr)).subscribe({
-      next: (res) => {console.log(res.hxList)
+      next: (res) => {
         if (res.status) { this.hxList.set(res.hxList); }
         else {
           if (res.statusCode.startsWith('400')) { this._toastP.tWarn(res.message); }

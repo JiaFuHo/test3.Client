@@ -122,7 +122,7 @@ export class HxInfo {
   public borrowDate: string = '';
   public dueDateB: string = '';
   public borrowStatus: string = '';
-  public score: number | null = null;
+  public score: number | null = 0;
   public feedback: string = '';
   public isFav: boolean = false;
 }

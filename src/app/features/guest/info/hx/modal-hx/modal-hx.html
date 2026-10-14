@@ -1,15 +1,35 @@
 <div id="modal_hx" class="modal fade" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
+    <form class="modal-content" [formGroup]="formS" (ngSubmit)="updateHx()">
       <div class="modal-header justify-content-center">
         @if ((!score() || score() === '0') && (!feedback())) { <h4 class="modal-title">新增評論</h4> }
         @else { <h4 class="modal-title">修改評論</h4> }
       </div>
 
-      <div class="modal-body d-flex justify-content-center">
-        {{ score() }}
-        {{ feedback() }}
+      <div class="modal-body d-flex justify-content-start">
+        <div class="row align-items-stretch w-100">
+          <label class="col-3 col-form-label mb-3">評分：</label>
+          <div class="col-9 d-flex align-items-center mb-3">
+            @for (x of starList; track $index) {
+              <i class="bi"
+                [class.bi-star]="x > +formS.controls.score.value"
+                [class.bi-star-fill]="x <= +formS.controls.score.value"
+                style="cursor: pointer"
+                (click)="rate(x)">
+              </i>
+            }
+          </div>
+
+          <label class="col-3 col-form-label">評論：</label>
+          <div class="col-9">
+            <textarea class="form-control" [formControl]="formS.controls.feedback" rows="5"></textarea>
+          </div>
+        </div>
       </div>
-    </div>
+
+      <div class="modal-footer d-flex justify-content-end">
+        <app-btn type="submit" id="btnS" btnClass="btn_BG-GREEN1">儲存</app-btn>
+      </div>
+    </form>
   </div>
 </div>
