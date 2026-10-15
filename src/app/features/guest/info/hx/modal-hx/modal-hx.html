@@ -10,25 +10,23 @@
         <div class="row align-items-stretch w-100">
           <label class="col-3 col-form-label mb-3">評分：</label>
           <div class="col-9 d-flex align-items-center mb-3">
-            @for (x of starList; track $index) {
+            @for (x of starArray; track $index) {
               <i class="bi"
                 [class.bi-star]="x > +formS.controls.score.value"
                 [class.bi-star-fill]="x <= +formS.controls.score.value"
-                style="cursor: pointer"
-                (click)="rate(x)">
-              </i>
+                style="cursor: pointer" (click)="rate(x)"></i>
             }
           </div>
 
-          <label class="col-3 col-form-label">評論：</label>
-          <div class="col-9">
+          <label class="col-3 col-form-label mb-3">評論：</label>
+          <div class="col-9 mb-3">
             <textarea class="form-control" [formControl]="formS.controls.feedback" rows="5"></textarea>
           </div>
-        </div>
-      </div>
 
-      <div class="modal-footer d-flex justify-content-end">
-        <app-btn type="submit" id="btnS" btnClass="btn_BG-GREEN1">儲存</app-btn>
+          <div class="col-12 d-flex justify-content-end">
+            <app-btn type="submit" id="btnS" btnClass="btn_BG-GREEN1">儲存</app-btn>
+          </div>
+        </div>
       </div>
     </form>
   </div>

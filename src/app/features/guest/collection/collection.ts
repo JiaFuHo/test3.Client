@@ -9,9 +9,9 @@ import { RsvS } from '../../../core/services/guest/info/rsvS';
 import { ToastP } from '../../../core/providers/common/toastP';
 
 import { Btn } from '../../../shared/widgets/btn/btn';
+import { Pagination } from '../../../shared/widgets/pagination/pagination';
 
 import { Accordion } from './accordion/accordion';
-import { Pagination } from './pagination/pagination';
 
 @Component({
   selector: 'app-collection',
@@ -39,10 +39,7 @@ export class Collection implements OnInit {
   //#region Lifecycle
   public ngOnInit() {
     this._route.queryParams.pipe(takeUntilDestroyed(this._dr)).subscribe((args) => {
-      const req = new CollectionQueryReq();
-
-      Object.assign(req, args);
-
+      const req  = Object.assign(new CollectionQueryReq(), args);
       const reqX = JSON.parse(JSON.stringify(req));
 
       this._collectionS.get(reqX).pipe(takeUntilDestroyed(this._dr)).subscribe({
@@ -71,12 +68,6 @@ export class Collection implements OnInit {
   //#endregion
 
   //#region Method
-  public flip(pageX: number) {
-    const args = this._route.snapshot.queryParams;
-
-    this._router.navigate(['/collection'], { queryParams: { ...args, page: pageX } });
-  }
-
   public query(isbn: string) {
     const args: SearchQueryReq = { kind: 'isbn', info: isbn };
 
@@ -84,11 +75,11 @@ export class Collection implements OnInit {
   }
 
   public createRsv(collectionId: string) {
-    const args = new RsvSaveReq();
-
-    args.guid = this._loginS.client()?.guid;
-    args.collectionId = collectionId;
-    args.reservationStatusId = '1';
+    const args = Object.assign(new RsvSaveReq(), {
+      guid: this._loginS.client()?.guid,
+      collectionId: collectionId,
+      reservationStatusId: '1',
+    });
 
     this._rsvS.post(args).pipe(takeUntilDestroyed(this._dr)).subscribe({
       next: (res) => {
@@ -100,6 +91,12 @@ export class Collection implements OnInit {
       },
       error: () => { this._toastP.tErr('Network Error'); }
     });
+  }
+
+  public flip(pageX: number) {
+    const args = this._route.snapshot.queryParams;
+
+    this._router.navigate(['/collection'], { queryParams: { ...args, page: pageX } });
   }
   //#endregion
 }

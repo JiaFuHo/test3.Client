@@ -79,7 +79,7 @@ export class ModalSearch implements OnInit {
   public query() {
     if (this.formQ.invalid) { this.formQ.markAllAsTouched(); return; }
 
-    const args: SearchQueryReq = this.formQ.getRawValue();
+    const args = Object.assign(new SearchQueryReq(), this.formQ.getRawValue());
 
     const tElem = document.getElementById('modal_search');
 
@@ -90,8 +90,6 @@ export class ModalSearch implements OnInit {
 
       bootstrap.Modal.getOrCreateInstance(tElem)?.hide();
     }
-
-    // this.formQ.reset();
   }
 
   public reset() { this.formQ.reset(); }

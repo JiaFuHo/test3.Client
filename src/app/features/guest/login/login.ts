@@ -39,9 +39,9 @@ export class LoginG {
   public loginG() {
     if (this.formLG.invalid) { this.formLG.markAllAsTouched(); return; }
 
-    const args = this.formLG.getRawValue();
+    const args = Object.assign(new LoginReq(), this.formLG.getRawValue());
 
-    this._loginS.post(args as LoginReq).pipe(takeUntilDestroyed(this._dr)).subscribe({
+    this._loginS.post(args).pipe(takeUntilDestroyed(this._dr)).subscribe({
       next: (res) => {
         if (res.status) {
           this._router.navigate(['/']);

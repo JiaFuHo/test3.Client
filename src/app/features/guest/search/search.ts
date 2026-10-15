@@ -41,7 +41,9 @@ export class Search implements OnInit {
 
       this._router.navigate(['/search'], { replaceUrl: true });
 
-      this._searchS.get(args as SearchQueryReq).pipe(takeUntilDestroyed(this._dr)).subscribe({
+      const req = Object.assign(new SearchQueryReq(), args);
+
+      this._searchS.get(req).pipe(takeUntilDestroyed(this._dr)).subscribe({
         next: (res) => {
           if (res.status) {
             this.bookInfo.set(res.bookInfo);
@@ -66,11 +68,11 @@ export class Search implements OnInit {
 
   //#region Method
   public createRsv(collectionId: string) {
-    const args = new RsvSaveReq();
-
-    args.guid = this._loginS.client()?.guid;
-    args.collectionId = collectionId;
-    args.reservationStatusId = '1';
+    const args = Object.assign(new RsvSaveReq(), {
+      guid: this._loginS.client()?.guid,
+      collectionId: collectionId,
+      reservationStatusId: '1',
+    });
 
     this._rsvS.post(args).pipe(takeUntilDestroyed(this._dr)).subscribe({
       next: (res) => {

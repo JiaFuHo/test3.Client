@@ -36,6 +36,9 @@
         }
       </tbody>
     </table>
+
+    <app-pagination [totalCount]="totalCount()" [page]="page()" [size]="size()"
+          (pageX)="flip($event)"></app-pagination>
   }
   @else {
     <div class="d-flex justify-content-center align-items-center" style="height: 320px">

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import { LoginS } from '../../../core/services/common/login/loginS';
 
+import { InfoX } from "./infox/infox";
 import { Fav } from './fav/fav';
 import { Rsv } from './rsv/rsv';
 import { Hx } from './hx/hx';
@@ -10,7 +11,7 @@ import { Msg } from './msg/msg';
 
 @Component({
   selector: 'app-info',
-  imports: [Fav, Rsv, Hx, Msg],
+  imports: [InfoX, Fav, Rsv, Hx, Msg],
   templateUrl: './info.html',
   styleUrl: './info.css',
 })

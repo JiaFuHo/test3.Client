@@ -51,11 +51,11 @@ export class SwiperNew implements OnInit {
   }
 
   public createRsv(collectionId: string) {
-    const args = new RsvSaveReq();
-
-    args.guid = this._loginS.client()?.guid;
-    args.collectionId = collectionId;
-    args.reservationStatusId = '1';
+    const args = Object.assign(new RsvSaveReq(), {
+      guid: this._loginS.client()?.guid,
+      collectionId: collectionId,
+      reservationStatusId: '1',
+    });
 
     this._rsvS.post(args).pipe(takeUntilDestroyed(this._dr)).subscribe({
       next: (res) => {

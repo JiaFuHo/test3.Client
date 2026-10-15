@@ -8,10 +8,11 @@ import { LoginS } from '../../../../core/services/common/login/loginS';
 import { ToastP } from '../../../../core/providers/common/toastP';
 
 import { Btn } from '../../../../shared/widgets/btn/btn';
+import { Pagination } from '../../../../shared/widgets/pagination/pagination';
 
 @Component({
   selector: 'app-rsv',
-  imports: [Btn, DatePipe],
+  imports: [Btn, DatePipe, Pagination],
   templateUrl: './rsv.html',
   styleUrl: './rsv.css',
 })
@@ -23,6 +24,9 @@ export class Rsv implements OnInit {
   private _loginS = inject(LoginS);
   private _toastP = inject(ToastP);
 
+  public totalCount = signal<number>(0);
+  public page = signal<number>(1);
+  public size = signal<number>(5);
   public rsvList = signal<RsvInfo[]>([]);
   //#endregion
 
@@ -32,13 +36,20 @@ export class Rsv implements OnInit {
 
   //#region Method
   private _queryRsv() {
-    const args = new RsvQueryReq();
-
-    args.guid = this._loginS.client()!.guid;
+    const args = Object.assign(new RsvQueryReq(), {
+      page: this.page(),
+      size: this.size(),
+      guid: this._loginS.client()!.guid,
+    });
 
     this._rsvS.get(args).pipe(takeUntilDestroyed(this._dr)).subscribe({
       next: (res) => {
-        if (res.status) { this.rsvList.set(res.rsvList); }
+        if (res.status) {
+          this.totalCount.set(res.totalCount);
+          this.page.set(Number(args.page) || 1);
+          this.size.set(Number(args.size) || 5);
+          this.rsvList.set(res.rsvList);
+        }
         else {
           if (res.statusCode.startsWith('400')) { this._toastP.tWarn(res.message); }
           else { this._toastP.tErr(res.message); }
@@ -49,11 +60,11 @@ export class Rsv implements OnInit {
   }
 
   public createRsv(collectionId: string) {
-    const args = new RsvSaveReq();
-
-    args.guid = this._loginS.client()?.guid;
-    args.collectionId = collectionId;
-    args.reservationStatusId = '1';
+    const args = Object.assign(new RsvSaveReq(), {
+      guid: this._loginS.client()?.guid,
+      collectionId: collectionId,
+      reservationStatusId: '1',
+    });
 
     this._rsvS.post(args).pipe(takeUntilDestroyed(this._dr)).subscribe({
       next: (res) => {
@@ -72,11 +83,11 @@ export class Rsv implements OnInit {
 
   public updateRsv(collectionId: string) {
     if (confirm("確定取消?")) {
-      const args = new RsvSaveReq();
-
-      args.guid = this._loginS.client()?.guid;
-      args.collectionId = collectionId;
-      args.reservationStatusId = '2';
+      const args = Object.assign(new RsvSaveReq(), {
+        guid: this._loginS.client()?.guid,
+        collectionId: collectionId,
+        reservationStatusId: '2',
+      });
 
       this._rsvS.put(args).pipe(takeUntilDestroyed(this._dr)).subscribe({
         next: (res) => {
@@ -92,6 +103,11 @@ export class Rsv implements OnInit {
         error: () => { this._toastP.tErr('Network Error'); }
       });
     }
+  }
+
+  public flip(pageX: number) {
+    this.page.set(pageX);
+    this._queryRsv();
   }
   //#endregion
 }

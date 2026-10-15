@@ -73,7 +73,7 @@ export class Accordion implements OnInit {
   }
 
   public query() {
-    const args: CollectionQueryReq = { ...new CollectionQueryReq(), ...this.formQ.getRawValue() };
+    const args = Object.assign(new CollectionQueryReq(), this.formQ.getRawValue());
 
     this._router.navigate(['/collection'], { queryParams: args });
   }

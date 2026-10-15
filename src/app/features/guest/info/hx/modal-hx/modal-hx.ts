@@ -33,7 +33,7 @@ export class ModalHx {
 
   public isSaved = output<boolean>();
 
-  public readonly starList = [1, 2, 3, 4, 5];
+  public readonly starArray = [1, 2, 3, 4, 5];
 
   public formS = this._formBuilder.nonNullable.group({
     historyId: '',
@@ -56,9 +56,9 @@ export class ModalHx {
 
   //#region Method
   public updateHx() {
-    const args: HxSaveReq = this.formS.getRawValue();
-
-    args.guid = this._loginS.client()!.guid;
+    const args = Object.assign(new HxSaveReq(), this.formS.getRawValue(), {
+      guid: this._loginS.client()!.guid,
+    });
 
     this._hxS.put(args).pipe(takeUntilDestroyed(this._dr)).subscribe({
       next: (res) => {

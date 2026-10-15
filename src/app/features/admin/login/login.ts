@@ -35,9 +35,9 @@ export class LoginA {
   public loginA() {
     if (this.formLA.invalid) { this.formLA.markAllAsTouched(); return; }
 
-    const args = this.formLA.getRawValue();
+    const args = Object.assign(new LoginReq(), this.formLA.getRawValue());
 
-    this._loginS.post(args as LoginReq).pipe(takeUntilDestroyed(this._dr)).subscribe({
+    this._loginS.post(args).pipe(takeUntilDestroyed(this._dr)).subscribe({
       next: (res) => {
         if (res.status) {
           this._loginS.client.set(res);

@@ -48,10 +48,14 @@
   <section class="container">
     <ul class="nav nav-tabs d-flex justify-content-center fs-5">
       <li class="nav-item">
-        <a class="nav-link" [class]="(isActive() === 1) ? 'active' : 'text-muted fw-normal'" (click)="isActive.set(1)">書籍簡介</a>
+        <a class="nav-link"
+        [class]="(isActive() === 1) ? 'active' : 'text-muted fw-normal'"
+        style="cursor: pointer" (click)="isActive.set(1)">書籍簡介</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" [class]="(isActive() === 2) ? 'active' : 'text-muted fw-normal'" (click)="isActive.set(2)">作者簡介</a>
+        <a class="nav-link"
+          [class]="(isActive() === 2) ? 'active' : 'text-muted fw-normal'"
+          style="cursor: pointer" (click)="isActive.set(2)">作者簡介</a>
       </li>
     </ul>
 
