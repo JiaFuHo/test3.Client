@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, input, OnInit, signal } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { LoginS } from '../../../core/services/common/login/loginS';

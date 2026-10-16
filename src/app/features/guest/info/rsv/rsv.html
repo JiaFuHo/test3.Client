@@ -29,7 +29,10 @@
             </td>
             <td>{{ (x.reservateDate | date: 'yyyy/MM/dd HH:mm:ss') || '' }}</td>
             <td>{{ (x.dueDateR | date: 'yyyy/MM/dd') || '' }}</td>
-            <td>{{ x.reservationStatus }}</td>
+            <td [class.fw-bold]="(x.reservationStatusId === 5)"
+              [style.color]="(x.reservationStatusId === 5) ? 'var(--c1-red------100)' : ''">
+              {{ x.reservationStatus }}
+            </td>
             <td class="pe-3">
               @if (x.reservationStatusId === 1 || x.reservationStatusId === 3) {
                 <app-btn class="w-100 fs-5" btnClass="btn_BG-RED"
@@ -50,7 +53,7 @@
     </table>
 
     <app-pagination [totalCount]="totalCount()" [page]="page()" [size]="size()"
-          (pageX)="flip($event)"></app-pagination>
+      (pageX)="flip($event)"></app-pagination>
   }
   @else {
     <div class="d-flex justify-content-center align-items-center" style="height: 320px">

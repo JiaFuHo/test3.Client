@@ -1,5 +1,5 @@
 <header class="sticky-top">
-  <nav class="navbar navbar-expand-md" [class.glassmorphism]="isToggle()">
+  <nav class="navbar navbar-expand-md" [class.glassmorphism]="(isToggle())">
     <div class="container-fluid">
       <a class="navbar-brand" routerLink="/">
         <img id="logoH" src="/images/logoH.png">
@@ -31,7 +31,7 @@
                 {{ loginS.client()!.cName }} <i class="bi bi-person"></i>
               </a>
 
-              <ul class="dropdown-menu position-absolute" [class.show]="isHover()" style="right: 0; left: auto">
+              <ul class="dropdown-menu position-absolute" [class.show]="(isHover())" style="right: 0; left: auto">
                 <li><a class="dropdown-item drpItem" routerLink="/info" (click)="close()">帳戶</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item drpItem" (click)="logout()">登出</a></li>

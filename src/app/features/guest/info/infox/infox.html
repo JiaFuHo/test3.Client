@@ -1,1 +1,48 @@
-<p>infox test123!</p>
+<div class="p-4 bg-light rounded-4 shadow-lg">
+  <div class="p-4 bg-white border rounded-4 shadow-sm box"></div>
+
+  <div class="p-0 pt-4 box">
+    <div class="row h-100 g-3">
+      <div class="col-12 col-sm-6 col-md-3">
+        <div class="col-md-3 bg-white border rounded-4 shadow-sm box_cnt"
+          (click)="switch('fav')">
+          <div class="mb-2 fs-2" style="color: var(--c1-red------100)">
+            <i class="bi bi-heart-fill"></i>
+          </div>
+          <div class="mb-2 fs-4 text-muted">我的最愛</div>
+          <div class="fs-4 fw-bold">{{ fCnt() }}</div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-6 col-md-3">
+        <div class="col-md-3 bg-white border rounded-4 shadow-sm box_cnt"
+          (click)="switch('rsv')">
+          <div class="mb-2 fs-2" style="color: var(--c1-green1---100)">
+            <i class="bi bi-check-circle"></i>
+          </div>
+          <div class="mb-2 fs-4 text-muted">可取書</div>
+          <div class="fs-4 fw-bold">{{ rCnt() }}</div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-6 col-md-3">
+        <div class="col-md-3 bg-white border rounded-4 shadow-sm box_cnt"
+          (click)="switch('hx')">
+          <div class="mb-2 fs-2" style="color: var(--c1-blue5----100)">
+            <i class="bi bi-book-half"></i>
+          </div>
+          <div class="mb-2 fs-4 text-muted">借閱中</div>
+          <div class="fs-4 fw-bold">{{ hCnt() }}</div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-6 col-md-3">
+        <div class="col-md-3 bg-white border rounded-4 shadow-sm box_cnt"
+          (click)="switch('msg')">
+          <div class="mb-2 fs-2" style="color: var(--c1-orange1--075)">
+            <i class="bi bi-bell-fill"></i>
+          </div>
+          <div class="mb-2 fs-4 text-muted">未讀訊息</div>
+          <div class="fs-4 fw-bold">{{ mCnt() }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

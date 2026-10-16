@@ -29,7 +29,10 @@
             </td>
             <td>{{ (x.borrowDate | date: 'yyyy/MM/dd HH:mm:ss') || '' }}</td>
             <td>{{ (x.dueDateB | date: 'yyyy/MM/dd') || '' }}</td>
-            <td>{{ x.borrowStatus }}</td>
+            <td [class.fw-bold]="(x.borrowStatusId === 3)"
+              [style.color]="(x.borrowStatusId === 3) ? 'var(--c1-red------100)' : ''">
+              {{ x.borrowStatus }}
+            </td>
             <td class="pe-3">
               @if (!x.isFav) {
                 <app-btn class="w-100 mb-2 fs-5" btnClass="btn_BG-GREEN1"
@@ -63,7 +66,7 @@
     </table>
 
     <app-pagination [totalCount]="totalCount()" [page]="page()" [size]="size()"
-          (pageX)="flip($event)"></app-pagination>
+      (pageX)="flip($event)"></app-pagination>
   }
   @else {
     <div class="d-flex justify-content-center align-items-center" style="height: 320px">

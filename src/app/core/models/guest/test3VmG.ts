@@ -57,6 +57,15 @@ export class InfoSaveReqBase {
   public guid?: string;
 }
 
+export class InfoXQueryReq extends InfoQueryReqBase {}
+
+export class InfoXQueryRes extends ResBase {
+  public fCnt: number = 0;
+  public rCnt: number = 0;
+  public hCnt: number = 0;
+  public mCnt: number = 0;
+}
+
 export class FavQueryReq extends InfoQueryReqBase {
   public override size: number = 5;
 }
@@ -121,6 +130,7 @@ export class HxInfo {
   public authorInfos: AuthorInfo[] = [];
   public borrowDate: string = '';
   public dueDateB: string = '';
+  public borrowStatusId: number = 0;
   public borrowStatus: string = '';
   public score: number | null = 0;
   public feedback: string = '';

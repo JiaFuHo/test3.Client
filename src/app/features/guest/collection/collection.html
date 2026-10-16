@@ -9,7 +9,7 @@
       @if (bookList().length > 0) {
         <div id="box_bookList" class="mb-4 border rounded-3 shadow-lg">
           @for (x of bookList(); track $index) {
-            <div class="row" [class.border-bottom]="!$last">
+            <div class="row" [class.border-bottom]="(!$last)">
               <div class="col-12 col-lg-5 d-flex justify-content-center justify-content-lg-end my-4 pe-4">
                 <div id="box_img" class="row align-items-center">
                   <img [src]="'data:image/*;base64,' + x.image" class="rounded shadow-lg">

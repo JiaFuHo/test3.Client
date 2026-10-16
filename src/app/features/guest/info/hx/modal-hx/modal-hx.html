@@ -12,8 +12,8 @@
           <div class="col-9 d-flex align-items-center mb-3">
             @for (x of starArray; track $index) {
               <i class="bi"
-                [class.bi-star]="x > +formS.controls.score.value"
-                [class.bi-star-fill]="x <= +formS.controls.score.value"
+                [class.bi-star]="(x > +formS.controls.score.value)"
+                [class.bi-star-fill]="(x <= +formS.controls.score.value)"
                 style="cursor: pointer" (click)="rate(x)"></i>
             }
           </div>
