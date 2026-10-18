@@ -5,7 +5,7 @@ import { Toast } from './shared/widgets/toast/toast';
 
 @Component({
   selector: 'app-root',
-  imports: [Toast, CoreModule],
+  imports: [CoreModule, Toast],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })

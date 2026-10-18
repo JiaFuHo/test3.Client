@@ -66,6 +66,15 @@ export class InfoXQueryRes extends ResBase {
   public mCnt: number = 0;
 }
 
+export class InfoXSaveReq extends InfoSaveReqBase {
+  public cPwd?: string;
+  public cPhone?: string;
+
+  public mode?: string;
+}
+
+export class InfoXSaveRes extends ResBase {}
+
 export class FavQueryReq extends InfoQueryReqBase {
   public override size: number = 5;
 }
