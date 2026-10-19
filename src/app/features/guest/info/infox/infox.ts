@@ -88,11 +88,11 @@ export class InfoX implements OnInit {
             const client = Object.assign(this.loginS.client()!, { cPhone: this.formZ.value! });
 
             this.loginS.client.set({ ...client });
-            this.isModified.set('');
 
             localStorage.setItem('client', JSON.stringify(client));
           }
 
+          this.isModified.set('');
           this._toastP.tInfo(res.message);
         }
         else {
@@ -110,9 +110,14 @@ export class InfoX implements OnInit {
     this.isModified.set(mode);
 
     if (mode === 'cPwdX') {
-      if (!this.formX.value) { this._toastP.tWarn('請輸入欲修改密碼'); return; }
+      if (!this.formX.value) {
+        this.isModified.set('cPwd');
+        this._toastP.tWarn('請輸入欲修改密碼');
 
-      this._toastP.tInfo('請重新輸入欲修改密碼');
+        return;
+      }
+
+      this._toastP.tWarn('請重新輸入欲修改密碼');
     }
     else {
       this.formX.reset();
