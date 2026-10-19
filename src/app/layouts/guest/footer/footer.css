@@ -1,9 +1,0 @@
-footer {
-  background: linear-gradient(180deg, var(--c1-brown3---000) 0%, var(--c1-brown3---025) 20%, var(--c1-brown1---050) 60%, var(--c1-brown1---075) 100%);
-}
-
-#logoF {
-  width: auto;
-  height: 15vh;
-  object-fit: contain;
-}
