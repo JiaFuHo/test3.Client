@@ -1,0 +1,3 @@
+<select class="form-select" [class]="drpClass" [formControl]="FC">
+  @for (x of options; track x.value) { <option [value]="x.value">{{ x.text }}</option> }
+</select>

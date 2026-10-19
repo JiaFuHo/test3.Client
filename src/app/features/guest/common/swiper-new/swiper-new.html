@@ -1,0 +1,56 @@
+@if (bookList()) {
+  <h2 class="mt-3 mb-0 text-center">新書推薦</h2>
+  <swiper-container class="my-auto"
+    breakpoints='{"0": {"slidesPerView": 1}, "768": {"slidesPerView": 2}, "992": {"slidesPerView": 3}}'
+    space-between="0" loop="true" navigation="true" pagination="true" autoplay="true" autoplay-delay="5000"
+    autoplay-disable-on-interaction="false" autoplay-pause-on-mouse-enter="true" centered-slides="true">
+    @for (x of bookList(); track $index) {
+      <swiper-slide>
+        <figure class="d-flex flex-column align-items-center my-5">
+          <div class="mb-2 box_bookN">
+            <div class="box_imgN">
+              <img [src]="'data:image/*;base64,' + x.image" class="rounded shadow-lg">
+            </div>
+            <div class="d-flex flex-column px-4 pt-4 bg-light rounded shadow-lg box_infoN">
+              <div class="row fs-6">
+                <dt class="col-4 mb-2 pe-0 text-muted fw-normal">作者</dt>
+                <dd class="col-8 mb-2 pe-0">
+                  @for (y of x.authorInfos; track $index) {
+                    {{ y.author }}
+
+                    @if (!$last) { 、 }
+                  }
+                </dd>
+
+                <dt class="col-4 mb-2 pe-0 text-muted fw-normal">出版社</dt>
+                <dd class="col-8 mb-2 pe-0">{{ x.publisher }}</dd>
+
+                <dt class="col-4 mb-2 pe-0 text-muted fw-normal">書籍簡介</dt>
+                <dd class="col-8 mb-2 pe-0 box_descN">{{ x.bDesc || '' }}</dd>
+
+                <dt class="col-4 mb-2 pe-0 text-muted fw-normal">語言</dt>
+                <dd class="col-8 mb-2 pe-0">{{ x.language }}</dd>
+
+                <dt class="col-4 mb-2 pe-0 text-muted fw-normal">類型</dt>
+                <dd class="col-8 mb-2 pe-0">{{ x.type }}</dd>
+
+                <dt class="col-4 mb-2 pe-0 text-muted fw-normal">ISBN</dt>
+                <dd class="col-8 mb-2 pe-0">{{ x.isbn }}</dd>
+              </div>
+
+              <div class="mt-auto mb-3">
+                <app-btn class="w-100 mb-2 fs-6" btnClass="btn_BG-BLUE5" (click)="query(x.isbn)">更多</app-btn>
+                <app-btn class="w-100 mb-2 fs-6" btnClass="{{ x.bookStatus ? 'btn_BG-GREEN1' : 'btn_BG-RED' }}"
+                  (click)="createRsv(x.collectionId.toString())">
+                  {{ (x.bookStatus) ? '可借閱，立即預約取書' : '借閱中，立即預約借閱' }}
+                </app-btn>
+              </div>
+            </div>
+          </div>
+
+          <figcaption>{{ x.title }}</figcaption>
+        </figure>
+      </swiper-slide>
+    }
+  </swiper-container>
+}

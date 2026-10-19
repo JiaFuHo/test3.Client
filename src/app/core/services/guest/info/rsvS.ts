@@ -1,0 +1,26 @@
+import { Injectable, inject } from '@angular/core';
+import { Observable } from 'rxjs';
+
+import { RsvQueryReq, RsvQueryRes, RsvSaveReq, RsvSaveRes } from '../../../models/guest/test3VmG';
+import { ServiceP } from '../../../providers/system/serviceP';
+
+@Injectable({ providedIn: 'root' })
+export class RsvS {
+  //#region State
+  private _serviceP = inject(ServiceP);
+  //#endregion
+
+  //#region Method
+  public get(args: RsvQueryReq): Observable<RsvQueryRes> {
+    return this._serviceP.get<RsvQueryRes>('/guest/info/rsv', args);
+  }
+
+  public post(args: RsvSaveReq): Observable<RsvSaveRes> {
+    return this._serviceP.post<RsvSaveRes>('/guest/info/rsv', args);
+  }
+
+  public put(args: RsvSaveReq): Observable<RsvSaveRes> {
+    return this._serviceP.put<RsvSaveRes>('/guest/info/rsv', args);
+  }
+  //#endregion
+}

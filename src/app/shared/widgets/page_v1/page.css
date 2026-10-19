@@ -1,0 +1,9 @@
+a,
+a:hover {
+  background-color: var(--c1-brown1---050);
+  color: var(--c1-white---100);
+}
+
+.btnCstH {
+  visibility: hidden;
+}
