@@ -163,8 +163,8 @@ export class MsgQueryRes extends QueryResBase {
 export class MsgInfo {
   public notificationId: number = 0;
   public message: string = '';
-  public notificationDate: string = '';
   public isRead: boolean = false;
+  public nTime: string = '';
 }
 
 export class MsgSaveReq extends InfoSaveReqBase {
