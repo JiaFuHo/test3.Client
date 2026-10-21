@@ -11,7 +11,7 @@
 
       <tbody class="text-center user-select-none">
         @for (x of msgList(); track $index) {
-          <tr style="cursor: pointer" (dblclick)="popup(x.notificationId.toString(), x.message)">
+          <tr style="cursor: pointer" (dblclick)="popup(x.notificationId.toString(), x.message, x.isRead)">
             <td>{{ (x.cTime| date: 'yyyy/MM/dd') || '' }}</td>
             <td>
               <div class="box_msg">{{ x.message }}</div>

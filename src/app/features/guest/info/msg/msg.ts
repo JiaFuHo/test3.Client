@@ -89,13 +89,14 @@ export class Msg implements OnInit {
 
   public flip_v2() { this._queryMsg(); }
 
-  public popup(notificationId: string, message: string) {
+  public popup(notificationId: string, message: string, isRead: boolean) {
     const tElem = document.getElementById('modal_msg');
 
     if (tElem) { bootstrap.Modal.getOrCreateInstance(tElem)?.show(); }
 
     this.msg.set(message);
-    this._updateMsg(notificationId);
+
+    if (!isRead) { this._updateMsg(notificationId); }
   }
   //#endregion
 }
