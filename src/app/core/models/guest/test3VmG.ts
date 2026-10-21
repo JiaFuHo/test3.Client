@@ -164,7 +164,7 @@ export class MsgInfo {
   public notificationId: number = 0;
   public message: string = '';
   public isRead: boolean = false;
-  public nTime: string = '';
+  public cTime: string = '';
 }
 
 export class MsgSaveReq extends InfoSaveReqBase {
