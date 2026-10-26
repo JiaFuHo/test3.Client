@@ -39,9 +39,9 @@
           }
 
           <div class="col-12 d-flex justify-content-end gap-2">
-            <app-btn id="btnSw" btnClass="btn_BG-BLUE5" (click)="switch()">{{ (mode === '') ? '更多' : '更少' }}</app-btn>
-            <app-btn id="btnR" btnClass="btn_BG-RED" (click)="reset()">重置</app-btn>
-            <app-btn type="submit" id="btnQ" btnClass="btn_BG-GREEN1">搜尋</app-btn>
+            <app-btn btnId="btnSw" btnClass="btn_BG-BLUE5" (click)="switch()">{{ (mode === '') ? '更多' : '更少' }}</app-btn>
+            <app-btn btnId="btnR" btnClass="btn_BG-RED" (click)="reset()">重置</app-btn>
+            <app-btn type="submit" btnId="btnQ" btnClass="btn_BG-GREEN1">搜尋</app-btn>
           </div>
         </div>
       </div>

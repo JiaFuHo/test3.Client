@@ -35,13 +35,13 @@
             </td>
             <td class="pe-3">
               @if (!x.isFav) {
-                <app-btn class="w-100 mb-2 fs-5" btnClass="btn_BG-GREEN1"
+                <app-btn class="w-100 mb-2 fs-5" btnClass="btn_BG-GREEN1" data-method="createFav"
                   (click)="createFav(x.collectionId.toString())">
                   新增最愛 <i class="bi bi-heart-fill"></i>
                 </app-btn>
               }
               @else {
-                <app-btn class="w-100 mb-2 fs-5" btnClass="btn_BG-RED"
+                <app-btn class="w-100 mb-2 fs-5" btnClass="btn_BG-RED" data-method="deleteFav"
                   (click)="deleteFav(x.collectionId.toString())">
                   刪除最愛 <i class="bi bi-heartbreak-fill"></i>
                 </app-btn>

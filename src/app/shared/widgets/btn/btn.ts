@@ -11,7 +11,7 @@ import { CoreModule } from '../../modules/core';
 export class Btn {
   //#region Input
   @Input() public type: string = 'button';
-  @Input() public id: string = '';
+  @Input() public btnId: string = '';
   @Input() public btnClass: string = '';
   @Input() public disabled: boolean = false;
   //#endregion
