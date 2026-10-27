@@ -48,13 +48,13 @@
               }
 
               @if (!x.score && !x.feedback) {
-                <app-btn class="w-100 fs-5" btnClass="btn_BG-BLUE5"
+                <app-btn class="w-100 fs-5" btnClass="btn_BG-BLUE5" data-method="popup"
                   (click)="popup(x.historyId.toString(), (x.score ?? '').toString(), x.feedback)">
                   新增評論 <i class="bi bi-chat-left-text-fill"></i>
                 </app-btn>
               }
               @else {
-                <app-btn class="w-100 fs-5" btnClass="btn_BG-BLUE5"
+                <app-btn class="w-100 fs-5" btnClass="btn_BG-BLUE5" data-method="popup"
                   (click)="popup(x.historyId.toString(), (x.score ?? '').toString(), x.feedback)">
                   修改評論 <i class="bi bi-chat-left-text-fill"></i>
                 </app-btn>

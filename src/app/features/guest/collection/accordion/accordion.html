@@ -12,7 +12,7 @@
             @let typeId = x.typeId.toString();
 
             <app-btn type="submit" btnClass="btn_ACD d-flex justify-content-between align-items-center w-100
-              text-start text-muted border-0 rounded-2"
+              text-start text-muted border-0 rounded-2" data-method="select_T"
               (click)="select('typeId', typeId)">
               {{ x.type }}
 
@@ -33,7 +33,7 @@
         <div class="accordion-body d-flex flex-column p-3 gap-2">
           @for (x of publisherList(); track $index) {
             <app-btn type="submit" btnClass="btn_ACD d-flex justify-content-between align-items-center w-100
-              text-start text-muted border-0 rounded-2"
+              text-start text-muted border-0 rounded-2" data-method="select_P"
               (click)="select('publisher', x)">
               {{ x }}
 
@@ -56,7 +56,7 @@
             @let langId = x.langId.toString();
 
             <app-btn type="submit" btnClass="btn_ACD d-flex justify-content-between align-items-center w-100
-              text-start text-muted border-0 rounded-2"
+              text-start text-muted border-0 rounded-2" data-method="select_L"
               (click)="select('langId', langId)">
               {{ x.lang }}
 
@@ -79,7 +79,7 @@
             @let seriesId = x.seriesId.toString();
 
             <app-btn type="submit" btnClass="btn_ACD d-flex justify-content-between align-items-center w-100
-              text-start text-muted border-0 rounded-2"
+              text-start text-muted border-0 rounded-2" data-method="select_S"
               (click)="select('seriesId', seriesId)">
               {{ x.series }}
 

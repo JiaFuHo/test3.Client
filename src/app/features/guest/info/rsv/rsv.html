@@ -35,13 +35,13 @@
             </td>
             <td class="pe-3">
               @if (x.reservationStatusId === 1 || x.reservationStatusId === 3) {
-                <app-btn class="w-100 fs-5" btnClass="btn_BG-RED"
+                <app-btn class="w-100 fs-5" btnClass="btn_BG-RED" data-method="updateRsv"
                   (click)="updateRsv(x.collectionId.toString())">
                   取消預約 <i class="bi bi-x-circle"></i>
                 </app-btn>
               }
               @else if (x.reservationStatusId === 2) {
-                <app-btn class="w-100 fs-5" btnClass="btn_BG-GREEN1"
+                <app-btn class="w-100 fs-5" btnClass="btn_BG-GREEN1" data-method="createRsv"
                   (click)="createRsv(x.collectionId.toString())">
                   重新預約 <i class="bi bi-check-circle"></i>
                 </app-btn>
