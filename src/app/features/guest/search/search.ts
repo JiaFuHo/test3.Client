@@ -41,9 +41,10 @@ export class Search implements OnInit {
 
       this._router.navigate(['/search'], { replaceUrl: true });
 
-      const req = Object.assign(new SearchQueryReq(), args);
+      const req  = Object.assign(new SearchQueryReq(), args);
+      const reqX = JSON.parse(JSON.stringify(req));
 
-      this._searchS.get(req).pipe(takeUntilDestroyed(this._dr)).subscribe({
+      this._searchS.get(reqX).pipe(takeUntilDestroyed(this._dr)).subscribe({
         next: (res) => {
           if (res.status) {
             this.bookInfo.set(res.bookInfo);
